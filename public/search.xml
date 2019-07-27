@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>sqli-labs_les12</title>
+      <link href="/2019/07/27/sqli-labs-les12/"/>
+      <url>/2019/07/27/sqli-labs-les12/</url>
+      
+        <content type="html"><![CDATA[<h1 id="猜语句"><a href="#猜语句" class="headerlink" title="猜语句"></a>猜语句</h1><blockquote><p>username:1’</p></blockquote><p>failed,没有报错</p><blockquote><p>username:1”</p></blockquote><p>这下有显示报错了</p><img src="/2019/07/27/sqli-labs-les12/error.png" title="error"><p>这下知道了查询语句为👇</p><blockquote><p>$sql=”SELECT username, password FROM users WHERE username=($uname) and password=($passwd) LIMIT 0,1”;</p></blockquote><h1 id="猜列数"><a href="#猜列数" class="headerlink" title="猜列数"></a>猜列数</h1><blockquote><p>“) order by 3#也像les11一样是不存在第三列的</p></blockquote><h1 id="其他步骤"><a href="#其他步骤" class="headerlink" title="其他步骤"></a>其他步骤</h1><p>就跟<a href="https://ocgittt.github.io/2019/07/25/sqli-labs-les11/">les11</a>一模一样了</p><p>les12[完]</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> sqli-labs </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> sqli-labs_les12 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>blogs from wordpress to hexo</title>
       <link href="/2019/07/27/blogs-from-wordpress-to-hexo/"/>
       <url>/2019/07/27/blogs-from-wordpress-to-hexo/</url>
