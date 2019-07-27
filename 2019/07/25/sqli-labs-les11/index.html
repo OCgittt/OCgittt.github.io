@@ -79,13 +79,13 @@
 
 
 
-<meta name="description" content="sqli-labs-master les11:POST-Error Based-Single quotes-String 一开始如上图所示.由题得知这是一道POST报错型(单引号那种语句)的题有了前面简单的GET类型的题,那么就先试一下  Username:adminPassword:1  然后就   再试试  Username:adminPassword:1’ or 1=1 %23    看到报">
+<meta name="description" content="sqli-labs-master les11:POST-Error Based-Single quotes-String 一开始如上图所示.由题得知这是一道POST报错型(单引号那种语句)的题有了前面简单的GET类型的题,那么就先试一下  Username:adminPassword:1  然后就">
 <meta name="keywords" content="sqli-labs-master_les11">
 <meta property="og:type" content="article">
 <meta property="og:title" content="sqli-labs-master_les11">
 <meta property="og:url" content="https://ocgittt.github.io/2019/07/25/sqli-labs-les11/index.html">
 <meta property="og:site_name" content="OC的博客">
-<meta property="og:description" content="sqli-labs-master les11:POST-Error Based-Single quotes-String 一开始如上图所示.由题得知这是一道POST报错型(单引号那种语句)的题有了前面简单的GET类型的题,那么就先试一下  Username:adminPassword:1  然后就   再试试  Username:adminPassword:1’ or 1=1 %23    看到报">
+<meta property="og:description" content="sqli-labs-master les11:POST-Error Based-Single quotes-String 一开始如上图所示.由题得知这是一道POST报错型(单引号那种语句)的题有了前面简单的GET类型的题,那么就先试一下  Username:adminPassword:1  然后就">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://ocgittt.github.io/2019/07/25/sqli-labs-les11/start.png">
 <meta property="og:image" content="https://ocgittt.github.io/2019/07/25/sqli-labs-les11/failed1.png">
@@ -96,10 +96,10 @@
 <meta property="og:image" content="https://ocgittt.github.io/2019/07/25/sqli-labs-les11/columns.png">
 <meta property="og:image" content="https://ocgittt.github.io/2019/07/25/sqli-labs-les11/username&passwd.png">
 <meta property="og:image" content="https://ocgittt.github.io/2019/07/25/sqli-labs-les11/id.png">
-<meta property="og:updated_time" content="2019-07-26T16:03:40.530Z">
+<meta property="og:updated_time" content="2019-07-27T03:52:03.146Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="sqli-labs-master_les11">
-<meta name="twitter:description" content="sqli-labs-master les11:POST-Error Based-Single quotes-String 一开始如上图所示.由题得知这是一道POST报错型(单引号那种语句)的题有了前面简单的GET类型的题,那么就先试一下  Username:adminPassword:1  然后就   再试试  Username:adminPassword:1’ or 1=1 %23    看到报">
+<meta name="twitter:description" content="sqli-labs-master les11:POST-Error Based-Single quotes-String 一开始如上图所示.由题得知这是一道POST报错型(单引号那种语句)的题有了前面简单的GET类型的题,那么就先试一下  Username:adminPassword:1  然后就">
 <meta name="twitter:image" content="https://ocgittt.github.io/2019/07/25/sqli-labs-les11/start.png">
 
 
@@ -339,7 +339,7 @@
 </blockquote>
 <p>然后就</p>
 <img src="/2019/07/25/sqli-labs-les11/failed1.png" title="failed">
-
+<a id="more"></a>
 <p>再试试</p>
 <blockquote>
 <p>Username:admin<br>Password:1’ or 1=1 %23</p>
@@ -364,7 +364,7 @@
 <blockquote>
 <p>1’ order by 2#</p>
 </blockquote>
-<p>没问题<br>看了一下源码:</p>
+<p>没问题,所以只有两列<br>看了一下源码:</p>
 <blockquote>
 <p>$sql=”SELECT username, password FROM users WHERE username=’$uname’ and password=’$passwd’ LIMIT 0,1”;</p>
 </blockquote>
@@ -424,6 +424,10 @@
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/24/sqli-labs-master-les10get-blind-time-based-double-quotes/" rel="next" title="sqli-labs-master les10:GET-blind-time based -double quotes">
+                <i class="fa fa-chevron-left"></i> sqli-labs-master les10:GET-blind-time based -double quotes
+              </a>
             
           </div>
 
@@ -510,7 +514,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -521,7 +525,7 @@
               
               <div class="site-state-item site-state-categories">
                 
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">categories</span>
                 
               </div>

