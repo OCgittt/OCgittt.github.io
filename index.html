@@ -264,7 +264,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ocgittt.github.io/2019/07/28/no-orivileges-on-mysql/">
+    <link itemprop="mainEntityOfPage" href="https://ocgittt.github.io/2019/07/28/no-privileges-on-mysql/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="OC">
@@ -283,7 +283,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/07/28/no-orivileges-on-mysql/" itemprop="url">no-privileges-on-mysql</a></h1>
+                <a class="post-title-link" href="/2019/07/28/no-privileges-on-mysql/" itemprop="url">no-privileges-on-mysql</a></h1>
         
 
         <div class="post-meta">
@@ -372,8 +372,14 @@
 <p><a href="https://blog.csdn.net/bingjianIT/article/details/82780535" target="_blank" rel="noopener">语句1–codekongs-[CSDN]</a><br><a href="https://blog.csdn.net/weixin_41725862/article/details/88045476" target="_blank" rel="noopener">语句2–行走的猪蹄子-[CSDN]</a></p>
 <h1 id="在Ubuntu18-04搭建网站遇到的问题"><a href="#在Ubuntu18-04搭建网站遇到的问题" class="headerlink" title="在Ubuntu18.04搭建网站遇到的问题"></a>在Ubuntu18.04搭建网站遇到的问题</h1><p>作为一名超级新的萌新,以前搭站都是在Windows利用phpstudy搭的…<br>后来被师傅劝告在虚拟机上搭会比较好<br>因此学习一下怎样在虚拟机上搭站<br><a href="https://blog.csdn.net/timothy93bp/article/details/77530555" target="_blank" rel="noopener">MySQL+php7.0</a><br><a href="https://blog.csdn.net/qq_42280544/article/details/83904046" target="_blank" rel="noopener">MySQL+php5.6</a><br>为了省事我全用root来跟步骤…可能因为这样导致后来需要给权限才能正常工作</p>
 <ul>
-<li>给一个文件夹及其子文件777权限:<blockquote>
+<li><p>给一个文件夹及其子文件777权限:</p>
+<blockquote>
 <p>chmod -r 777 文件夹名</p>
+</blockquote>
+</li>
+<li><p>导入数据库:</p>
+<blockquote>
+<p>mysql -uroot -p 库名 &lt; xxx.sql</p>
 </blockquote>
 </li>
 </ul>
@@ -466,6 +472,28 @@
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/sqli-labs/" itemprop="url" rel="index">
+                    <span itemprop="name">sqli-labs</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
