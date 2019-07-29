@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="zh-Hans">
+<html class="theme-next gemini use-motion" lang="zh-Hans">
 <head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -79,12 +79,12 @@
 
 
 
-<meta name="description" content="[basic challenges] WP1 WP2les1:GET-Error based-Single quotes-String 看到please input the ID as parameter with numeric value后就GET一个id=1[常规测试]">
+<meta name="description" content="[basic challenges] WP1 WP2les1:GET-Error based-Single quotes-String">
 <meta property="og:type" content="article">
 <meta property="og:title" content="sqli-labs-master les1-les6">
 <meta property="og:url" content="https://ocgittt.github.io/2019/07/17/ctfthe-gamesqli-labs-master/index.html">
 <meta property="og:site_name" content="OC的博客">
-<meta property="og:description" content="[basic challenges] WP1 WP2les1:GET-Error based-Single quotes-String 看到please input the ID as parameter with numeric value后就GET一个id=1[常规测试]">
+<meta property="og:description" content="[basic challenges] WP1 WP2les1:GET-Error based-Single quotes-String">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://ocbillhome.files.wordpress.com/2019/07/les1_1.png">
 <meta property="og:image" content="https://ocbillhome.files.wordpress.com/2019/07/getid1.png">
@@ -116,10 +116,10 @@
 <meta property="og:image" content="https://ocbillhome.files.wordpress.com/2019/07/columns-1.png">
 <meta property="og:image" content="https://ocbillhome.files.wordpress.com/2019/07/up.png">
 <meta property="og:image" content="https://ocbillhome.files.wordpress.com/2019/07/up1.png">
-<meta property="og:updated_time" content="2019-07-28T12:25:14.523Z">
+<meta property="og:updated_time" content="2019-07-29T05:23:16.144Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="sqli-labs-master les1-les6">
-<meta name="twitter:description" content="[basic challenges] WP1 WP2les1:GET-Error based-Single quotes-String 看到please input the ID as parameter with numeric value后就GET一个id=1[常规测试]">
+<meta name="twitter:description" content="[basic challenges] WP1 WP2les1:GET-Error based-Single quotes-String">
 <meta name="twitter:image" content="https://ocbillhome.files.wordpress.com/2019/07/les1_1.png">
 
 
@@ -128,7 +128,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Gemini',
     version: '5.1.4',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
@@ -217,6 +217,26 @@
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
           </a>
         </li>
       
@@ -385,10 +405,9 @@
 
       
         <h2 id="basic-challenges-WP1-WP2"><a href="#basic-challenges-WP1-WP2" class="headerlink" title="[basic challenges] WP1 WP2"></a>[basic challenges] <a href="https://bbs.pediy.com/thread-220075.htm" target="_blank" rel="noopener">WP1</a> <a href="https://www.cnblogs.com/peterpan0707007/p/7620048.html" target="_blank" rel="noopener">WP2</a></h2><h3 id="les1-GET-Error-based-Single-quotes-String"><a href="#les1-GET-Error-based-Single-quotes-String" class="headerlink" title="les1:GET-Error based-Single quotes-String"></a>les1:GET-Error based-Single quotes-String</h3><p><img src="https://ocbillhome.files.wordpress.com/2019/07/les1_1.png" alt></p>
+<a id="more"></a>
 <p>看到please input the ID as parameter with numeric value后就GET一个id=1[常规测试]</p>
 <p><img src="https://ocbillhome.files.wordpress.com/2019/07/getid1.png" alt></p>
-<a id="more"></a>
-
 <p>有回显,则没毛病,再来个id=1’试试[单引号测试]</p>
 <p><img src="https://ocbillhome.files.wordpress.com/2019/07/getid1-1.png" alt></p>
 <p>竟然都不行,且从报错来看,查询语句是 <strong><code>SELECT * FROM users WHERE id=&#39;1&#39;</code> <code>LIMIT 0,1;</code></strong>这种结构的</p>
@@ -592,7 +611,7 @@
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <p class="site-author-name" itemprop="name">OC</p>
-              <p class="site-description motion-element" itemprop="description">OC的博客</p>
+              <p class="site-description motion-element" itemprop="description">what's your problem</p>
           </div>
 
           <nav class="site-state motion-element">
@@ -612,10 +631,10 @@
               
               
               <div class="site-state-item site-state-categories">
-                
+                <a href="/categories/index.html">
                   <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">分类</span>
-                
+                </a>
               </div>
             
 
@@ -623,10 +642,10 @@
               
               
               <div class="site-state-item site-state-tags">
-                
-                  <span class="site-state-item-count">2</span>
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">1</span>
                   <span class="site-state-item-name">标签</span>
-                
+                </a>
               </div>
             
 
@@ -650,6 +669,24 @@
           
 
           
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://impakho.com/" title="impakho" target="_blank">impakho</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://zo1ro.tk/" title="zo1ro" target="_blank">zo1ro</a>
+                  </li>
+                
+              </ul>
+            </div>
           
 
           
@@ -697,15 +734,11 @@
 </div>
 
 
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
 
 
 
-  <span class="post-meta-divider">|</span>
 
-
-
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
 
 
 
@@ -804,6 +837,13 @@
 
   
   
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
 
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>

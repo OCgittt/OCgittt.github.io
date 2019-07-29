@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="zh-Hans">
+<html class="theme-next gemini use-motion" lang="zh-Hans">
 <head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -79,19 +79,19 @@
 
 
 
-<meta name="description" content="题目:POST-Double injection-Single quotes-String with twist看题目已经知道是带括号的单引号的查询语句 猜语句 username:’    所以查询语句为:  $sql=”SELECT username, password FROM users WHERE username=(‘$uname’) and password=(‘$passwd’) L">
+<meta name="description" content="题目:POST-Double injection-Single quotes-String with twist看题目已经知道是带括号的单引号的查询语句">
 <meta property="og:type" content="article">
 <meta property="og:title" content="sqli-labs-les13">
 <meta property="og:url" content="https://ocgittt.github.io/2019/07/27/sqli-labs-les13/index.html">
 <meta property="og:site_name" content="OC的博客">
-<meta property="og:description" content="题目:POST-Double injection-Single quotes-String with twist看题目已经知道是带括号的单引号的查询语句 猜语句 username:’    所以查询语句为:  $sql=”SELECT username, password FROM users WHERE username=(‘$uname’) and password=(‘$passwd’) L">
+<meta property="og:description" content="题目:POST-Double injection-Single quotes-String with twist看题目已经知道是带括号的单引号的查询语句">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://ocgittt.github.io/2019/07/27/sqli-labs-les13/error.png">
 <meta property="og:image" content="https://ocgittt.github.io/2019/07/27/sqli-labs-les13/successfully.png">
-<meta property="og:updated_time" content="2019-07-28T15:59:16.267Z">
+<meta property="og:updated_time" content="2019-07-29T05:02:25.752Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="sqli-labs-les13">
-<meta name="twitter:description" content="题目:POST-Double injection-Single quotes-String with twist看题目已经知道是带括号的单引号的查询语句 猜语句 username:’    所以查询语句为:  $sql=”SELECT username, password FROM users WHERE username=(‘$uname’) and password=(‘$passwd’) L">
+<meta name="twitter:description" content="题目:POST-Double injection-Single quotes-String with twist看题目已经知道是带括号的单引号的查询语句">
 <meta name="twitter:image" content="https://ocgittt.github.io/2019/07/27/sqli-labs-les13/error.png">
 
 
@@ -100,7 +100,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Gemini',
     version: '5.1.4',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
@@ -189,6 +189,26 @@
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
           </a>
         </li>
       
@@ -357,6 +377,7 @@
 
       
         <h1 id="题目-POST-Double-injection-Single-quotes-String-with-twist"><a href="#题目-POST-Double-injection-Single-quotes-String-with-twist" class="headerlink" title="题目:POST-Double injection-Single quotes-String with twist"></a>题目:POST-Double injection-Single quotes-String with twist</h1><p>看题目已经知道是带括号的单引号的查询语句</p>
+<a id="more"></a>
 <h1 id="猜语句"><a href="#猜语句" class="headerlink" title="猜语句"></a>猜语句</h1><blockquote>
 <p>username:’</p>
 </blockquote>
@@ -494,7 +515,7 @@
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <p class="site-author-name" itemprop="name">OC</p>
-              <p class="site-description motion-element" itemprop="description">OC的博客</p>
+              <p class="site-description motion-element" itemprop="description">what's your problem</p>
           </div>
 
           <nav class="site-state motion-element">
@@ -514,10 +535,10 @@
               
               
               <div class="site-state-item site-state-categories">
-                
+                <a href="/categories/index.html">
                   <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">分类</span>
-                
+                </a>
               </div>
             
 
@@ -525,10 +546,10 @@
               
               
               <div class="site-state-item site-state-tags">
-                
-                  <span class="site-state-item-count">2</span>
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">1</span>
                   <span class="site-state-item-name">标签</span>
-                
+                </a>
               </div>
             
 
@@ -552,6 +573,24 @@
           
 
           
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://impakho.com/" title="impakho" target="_blank">impakho</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://zo1ro.tk/" title="zo1ro" target="_blank">zo1ro</a>
+                  </li>
+                
+              </ul>
+            </div>
           
 
           
@@ -599,15 +638,11 @@
 </div>
 
 
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
 
 
 
-  <span class="post-meta-divider">|</span>
 
-
-
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
 
 
 
@@ -706,6 +741,13 @@
 
   
   
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
 
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>

