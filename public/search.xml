@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>一些命令</title>
+      <link href="/2019/08/18/%E4%B8%80%E4%BA%9B%E5%91%BD%E4%BB%A4/"/>
+      <url>/2019/08/18/%E4%B8%80%E4%BA%9B%E5%91%BD%E4%BB%A4/</url>
+      
+        <content type="html"><![CDATA[<h1 id="find"><a href="#find" class="headerlink" title="find"></a>find</h1><p><strong>find &lt;指定目录&gt; &lt;指定文件&gt; &lt;指定动作&gt;</strong></p><a id="more"></a><p>例如</p><blockquote><p>find /var/www/html/ -name test*(可以不要指定动作)</p></blockquote><blockquote><p>find /var/www/html/ -name test* ls<br>find /var/www/html/ -name “test*” ls</p></blockquote><p>感觉要不要双引号问题不大</p><img src="/2019/08/18/一些命令/findquotes.png"><p>find &lt;指定目录&gt; -type f -mmin -10<br>查找10分钟内更新过的普通文件,如果不加-type f,则会显示目录+普通文件+特殊文件</p><blockquote><p>find /var/www/html/ -type f -mmin -10</p></blockquote><h1 id="修改ssh密码"><a href="#修改ssh密码" class="headerlink" title="修改ssh密码"></a>修改ssh密码</h1><p><strong>passwd username</strong></p><p>例:</p><blockquote><p>passwd oc</p></blockquote><img src="/2019/08/18/一些命令/passwdoc.png"><blockquote><p>passwd root</p></blockquote><h1 id="详细信息"><a href="#详细信息" class="headerlink" title="详细信息"></a>详细信息</h1><blockquote><p>ls -l   //(ll)</p></blockquote><h1 id="给权限"><a href="#给权限" class="headerlink" title="给权限"></a>给权限</h1><p>给单个文件777权限</p><blockquote><p>chmod 777 filename</p></blockquote><p>给文件夹及其子文件777权限</p><blockquote><p>chmod 777 -R 文件夹名</p></blockquote><h1 id="数据库命令"><a href="#数据库命令" class="headerlink" title="数据库命令"></a>数据库命令</h1><h2 id="备份指定数据库"><a href="#备份指定数据库" class="headerlink" title="备份指定数据库"></a>备份指定数据库</h2><blockquote><p>mysqldump -u 用户名 -p 数据库名 &gt; back.sql</p></blockquote><h2 id="备份所有数据库"><a href="#备份所有数据库" class="headerlink" title="备份所有数据库"></a>备份所有数据库</h2><blockquote><p>mysqldump –all-databases &gt; bak.sql</p></blockquote><h2 id="还原数据库"><a href="#还原数据库" class="headerlink" title="还原数据库"></a>还原数据库</h2><blockquote><p>mysql -u 用户名 -p 数据库名 &lt; back.sql</p></blockquote><h2 id="修改用户权限"><a href="#修改用户权限" class="headerlink" title="修改用户权限"></a>修改用户权限</h2><blockquote><p>grant all privileges on 库名.表名 to ‘用户名‘@’IP地址’ identified by ‘密码’ with grant option;     </p></blockquote><h2 id="刷新权限表"><a href="#刷新权限表" class="headerlink" title="刷新权限表"></a>刷新权限表</h2><blockquote><p>flush privileges;</p></blockquote><h2 id="修改密码"><a href="#修改密码" class="headerlink" title="修改密码"></a>修改密码</h2><blockquote><p>update mysql.user set password=password(“123456”) where user=”root”;</p></blockquote><blockquote><p>CREATE USER ‘John’@’%’ IDENTIFIED BY “123”;</p></blockquote><blockquote><p>set password for [userName]@localhost = password(‘[NewPassword]’)</p></blockquote>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> notes </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>bugku-login1-SKCTF</title>
       <link href="/2019/08/16/bugku-login1-SKCTF/"/>
       <url>/2019/08/16/bugku-login1-SKCTF/</url>
@@ -84,7 +103,7 @@
       <link href="/2019/07/28/no-privileges-on-mysql/"/>
       <url>/2019/07/28/no-privileges-on-mysql/</url>
       
-        <content type="html"><![CDATA[<h1 id="在Ubuntu18-04上搭建sqli-labs遇到的问题"><a href="#在Ubuntu18-04上搭建sqli-labs遇到的问题" class="headerlink" title="在Ubuntu18.04上搭建sqli-labs遇到的问题"></a>在Ubuntu18.04上搭建sqli-labs遇到的问题</h1><h2 id="普通用户无权限登录MySQL-修改加密方式"><a href="#普通用户无权限登录MySQL-修改加密方式" class="headerlink" title="普通用户无权限登录MySQL,修改加密方式"></a>普通用户无权限登录MySQL,修改加密方式</h2><p>安装好环境后,把sqli-labs-master文件夹放到/var/www/html里,本以为万事大吉可以开始玩injection了<br>怎料显示个</p><blockquote><p>Access denied for user ‘root’@’localhost’</p></blockquote><a id="more"></a><p>立马<a href="https://blog.csdn.net/weixin_41115274/article/details/78974472" target="_blank" rel="noopener">搜索一波–weixin_41115274-[CSDN]</a><br>发现是安装环境的时候埋下的祸根<br>马上搜索如何解决</p><ul><li>su了之后登录MySQL</li><li>select user, plugin from mysql.user;</li><li>可以看到root在plugin这一项是auto_socket,其他的都是mysql_native_password,此时需要把auto_socket改为mysql_native_password</li><li>语句1:update mysql.user set authentication_string=PASSWORD(‘123456’),plugin=’mysql_native_password’ where user=’root’;<br>flush privileges;清缓存</li><li>语句2:mysql&gt; ALTER USER ‘root’@’%’ IDENTIFIED WITH mysql_native_password BY ‘123456’;<br>(我用的是语句2)</li></ul><p><a href="https://blog.csdn.net/bingjianIT/article/details/82780535" target="_blank" rel="noopener">语句1–codekongs-[CSDN]</a><br><a href="https://blog.csdn.net/weixin_41725862/article/details/88045476" target="_blank" rel="noopener">语句2–行走的猪蹄子-[CSDN]</a></p><h1 id="在Ubuntu18-04搭建网站遇到的问题"><a href="#在Ubuntu18-04搭建网站遇到的问题" class="headerlink" title="在Ubuntu18.04搭建网站遇到的问题"></a>在Ubuntu18.04搭建网站遇到的问题</h1><p>作为一名超级新的萌新,以前搭站都是在Windows利用phpstudy搭的…<br>后来被师傅劝告在虚拟机上搭会比较好<br>因此学习一下怎样在虚拟机上搭站<br><a href="https://blog.csdn.net/timothy93bp/article/details/77530555" target="_blank" rel="noopener">MySQL+php7.0</a><br><a href="https://blog.csdn.net/qq_42280544/article/details/83904046" target="_blank" rel="noopener">MySQL+php5.6</a><br>为了省事我全用root来跟步骤…可能因为这样导致后来需要给权限才能正常工作</p><ul><li><p>给一个文件夹及其子文件777权限:</p><blockquote><p>chmod -r 777 文件夹名</p></blockquote></li><li><p>导入数据库:</p><blockquote><p>mysql -uroot -p 库名 &lt; xxx.sql</p></blockquote></li></ul>]]></content>
+        <content type="html"><![CDATA[<h1 id="在Ubuntu18-04上搭建sqli-labs遇到的问题"><a href="#在Ubuntu18-04上搭建sqli-labs遇到的问题" class="headerlink" title="在Ubuntu18.04上搭建sqli-labs遇到的问题"></a>在Ubuntu18.04上搭建sqli-labs遇到的问题</h1><h2 id="普通用户无权限登录MySQL-修改加密方式"><a href="#普通用户无权限登录MySQL-修改加密方式" class="headerlink" title="普通用户无权限登录MySQL,修改加密方式"></a>普通用户无权限登录MySQL,修改加密方式</h2><a id="more"></a><p>安装好环境后,把sqli-labs-master文件夹放到/var/www/html里,本以为万事大吉可以开始玩injection了</p><p>怎料显示个</p><blockquote><p>Access denied for user ‘root’@’localhost’</p></blockquote><p>立马<a href="https://blog.csdn.net/weixin_41115274/article/details/78974472" target="_blank" rel="noopener">搜索一波–weixin_41115274-[CSDN]</a></p><p>发现是安装环境的时候埋下的祸根</p><p>马上搜索如何解决</p><ul><li><p>su了之后登录MySQL</p></li><li><p>select user, plugin from mysql.user;</p></li><li><p>可以看到root在plugin这一项是auto_socket,其他的都是mysql_native_password,此时需要把auto_socket改为mysql_native_password</p></li><li><p>语句1:update mysql.user set authentication_string=PASSWORD(‘123456’),plugin=’mysql_native_password’ where user=’root’;<br>flush privileges;清缓存</p></li><li><p>语句2:mysql&gt; ALTER USER ‘root’@’%’ IDENTIFIED WITH mysql_native_password BY ‘123456’;<br>(我用的是语句2)</p></li></ul><p><a href="https://blog.csdn.net/bingjianIT/article/details/82780535" target="_blank" rel="noopener">语句1–codekongs-[CSDN]</a></p><p><a href="https://blog.csdn.net/weixin_41725862/article/details/88045476" target="_blank" rel="noopener">语句2–行走的猪蹄子-[CSDN]</a></p><h1 id="在Ubuntu18-04搭建网站遇到的问题"><a href="#在Ubuntu18-04搭建网站遇到的问题" class="headerlink" title="在Ubuntu18.04搭建网站遇到的问题"></a>在Ubuntu18.04搭建网站遇到的问题</h1><p>作为一名超级新的萌新,以前搭站都是在Windows利用phpstudy搭的…</p><p>后来被师傅劝告在虚拟机上搭会比较好</p><p>因此学习一下怎样在虚拟机上搭站</p><p><a href="https://blog.csdn.net/timothy93bp/article/details/77530555" target="_blank" rel="noopener">MySQL+php7.0</a></p><p><a href="https://blog.csdn.net/qq_42280544/article/details/83904046" target="_blank" rel="noopener">MySQL+php5.6</a></p><p>为了省事我全用root来跟步骤…可能因为这样导致后来需要给权限才能正常工作</p><ul><li>给一个文件夹及其子文件777权限:</li></ul><blockquote><p>chmod -r 777 文件夹名</p></blockquote><ul><li>导入数据库:</li></ul><blockquote><p>mysql -uroot -p 库名 &lt; xxx.sql</p></blockquote>]]></content>
       
       
       
@@ -175,93 +194,17 @@
     
     
     <entry>
-      <title>CRC32</title>
-      <link href="/2019/06/30/toolscrc32/"/>
-      <url>/2019/06/30/toolscrc32/</url>
-      
-        <content type="html"><![CDATA[<p><a href="https://github.com/theonlypwner/crc32" target="_blank" rel="noopener">CRC32</a></p><p>取自GitHub——theonlypwner</p><p>zip的CRC碰撞</p><p>可以这样操作：python crc32.py reverse <strong>0x2f5ead52</strong>(加粗部分为CRC)</p>]]></content>
-      
-      
-      
-        <tags>
-            
-            <tag> Tools </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>WebDirScan</title>
-      <link href="/2019/06/30/toolswebdirscan/"/>
-      <url>/2019/06/30/toolswebdirscan/</url>
-      
-        <content type="html"><![CDATA[<p><a href="https://github.com/TuuuNya/webdirscan" target="_blank" rel="noopener">webdirscan</a></p><p>取自GitHub——TuuuNya</p><p>可以这样操作：py2 webdirscan.py <a href="http://baidu.com" target="_blank" rel="noopener">http://baidu.com</a></p>]]></content>
-      
-      
-      
-        <tags>
-            
-            <tag> Tools </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>PDFChange</title>
-      <link href="/2019/06/29/swpdfchange/"/>
-      <url>/2019/06/29/swpdfchange/</url>
-      
-        <content type="html"><![CDATA[<p><a href="https://pan.baidu.com/s/1_vZNlzYk1UOwpjB2VlinnA" target="_blank" rel="noopener">PDFChange</a><br>提取码：8iai</p><p>取自微信公众号——软件安装管家</p><p>公众号有详细的安装教程</p>]]></content>
-      
-      
-      
-        <tags>
-            
-            <tag> SW </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>AndroidPhoneGoogleCAM</title>
+      <title>tools</title>
       <link href="/2019/06/29/toolsandroidphonegooglecam/"/>
       <url>/2019/06/29/toolsandroidphonegooglecam/</url>
       
-        <content type="html"><![CDATA[<p><a href="https://pan.baidu.com/share/init?surl=aNkgqyTLXfoz1uSNV90j9A" target="_blank" rel="noopener">GCAM</a></p><p>提取码：7777</p><p>取自Weibo——阿狗酱</p><p>建议关注微博，他会不定时更新</p><p>2019.7更新了小米8、mix3、mix2s，6x、PocophoneF1的<a href="https://www.celsoazevedo.com/files/android/google-camera/dev-urikill/#apk1026" target="_blank" rel="noopener">urikill版GCAM</a>，个人觉得效果更好。（标题的超链接也更新了，包括了urikill，也可以urikill版GCAM直达这个版本）</p>]]></content>
+        <content type="html"><![CDATA[<h1 id="GCAM"><a href="#GCAM" class="headerlink" title="GCAM"></a>GCAM</h1><p><a href="https://pan.baidu.com/share/init?surl=aNkgqyTLXfoz1uSNV90j9A" target="_blank" rel="noopener">https://pan.baidu.com/share/init?surl=aNkgqyTLXfoz1uSNV90j9A</a></p><p>提取码：7777</p><p>取自Weibo——阿狗酱</p><p>建议关注微博，他会不定时更新</p><p>2019.7更新了小米8、mix3、mix2s，6x、PocophoneF1的<a href="https://www.celsoazevedo.com/files/android/google-camera/dev-urikill/#apk1026" target="_blank" rel="noopener">urikill版GCAM</a>，个人觉得效果更好。（标题的超链接也更新了，包括了urikill，也可以urikill版GCAM直达这个版本）</p><h1 id="webdirscan"><a href="#webdirscan" class="headerlink" title="webdirscan"></a>webdirscan</h1><p><a href="https://github.com/TuuuNya/webdirscan" target="_blank" rel="noopener">https://github.com/TuuuNya/webdirscan</a></p><p>取自GitHub——TuuuNya</p><p>可以这样操作：py2 webdirscan.py <a href="http://baidu.com" target="_blank" rel="noopener">http://baidu.com</a></p><h1 id="CRC32"><a href="#CRC32" class="headerlink" title="CRC32"></a>CRC32</h1><p><a href="https://github.com/theonlypwner/crc32" target="_blank" rel="noopener">https://github.com/theonlypwner/crc32</a></p><p>取自GitHub——theonlypwner</p><p>zip的CRC碰撞</p><p>可以这样操作：python crc32.py reverse <strong>0x2f5ead52</strong>(加粗部分为CRC)</p><h1 id="ARCHPR"><a href="#ARCHPR" class="headerlink" title="ARCHPR"></a>ARCHPR</h1><p><a href="https://pan.baidu.com/s/1fGGGdT2vxiFDFUyJEkzvLw" target="_blank" rel="noopener">https://pan.baidu.com/s/1fGGGdT2vxiFDFUyJEkzvLw</a></p><p>爆rar的工具</p><p>提取码：nqtv</p><h1 id="PDFChange"><a href="#PDFChange" class="headerlink" title="PDFChange"></a>PDFChange</h1><p><a href="https://pan.baidu.com/s/1_vZNlzYk1UOwpjB2VlinnA" target="_blank" rel="noopener">https://pan.baidu.com/s/1_vZNlzYk1UOwpjB2VlinnA</a></p><p>提取码：8iai</p><p>取自微信公众号——软件安装管家</p><p>公众号有详细的安装教程</p>]]></content>
       
       
       
         <tags>
             
-            <tag> SW </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>ARCHPR</title>
-      <link href="/2019/06/29/toolsarchpr/"/>
-      <url>/2019/06/29/toolsarchpr/</url>
-      
-        <content type="html"><![CDATA[<p><a href="https://pan.baidu.com/s/1fGGGdT2vxiFDFUyJEkzvLw" target="_blank" rel="noopener">ARCHPR</a>–爆rar的工具</p><p>提取码：nqtv</p>]]></content>
-      
-      
-      
-        <tags>
-            
-            <tag> Tools </tag>
+            <tag> tool </tag>
             
         </tags>
       
