@@ -547,7 +547,16 @@
 <p><strong>注意上面的substr函数,length是非必须的,因此strrpos起到的作用是start起始位置</strong></p>
 <p>相关函数拓展:</p>
 <blockquote>
-<p>注意:strrpos() 函数对大小写敏感。<br>stripos() - 查找字符串在另一字符串中第一次出现的位置（不区分大小写）<br>strpos() - 查找字符串在另一字符串中第一次出现的位置（区分大小写）<br>strripos() - 查找字符串在另一字符串中最后一次出现的位置（不区分大小写）<br>语法<br>strrpos(string,find,start)<br>参数  描述<br>string  必需。规定被搜索的字符串。<br>find    必需。规定要查找的字符。<br>start   可选。规定在何处开始搜索。</p>
+<p>注意:strrpos() 函数对大小写敏感。
+stripos() - 查找字符串在另一字符串中第一次出现的位置（不区分大小写）
+strpos() - 查找字符串在另一字符串中第一次出现的位置（区分大小写）
+strripos() - 查找字符串在另一字符串中最后一次出现的位置（不区分大小写）
+语法
+strrpos(string,find,start)
+参数  描述
+string  必需。规定被搜索的字符串。
+find    必需。规定要查找的字符。
+start   可选。规定在何处开始搜索。</p>
 </blockquote>
 <p>但是理解了这两个函数对解题好像没什么大帮助</p>
 <p>提示:</p>
@@ -567,7 +576,9 @@
 
 <p>有点奇怪的是我上传不了…显示上传失败..可能跟php版本有关系</p>
 <blockquote>
-<p>可以使用 %00 截断的条件<br>1、PHP 版本 &lt; 5.3.4<br>2、php.ini 中 magic_quotes_gpc=off</p>
+<p>可以使用 %00 截断的条件
+1、PHP 版本 &lt; 5.3.4
+2、php.ini 中 magic_quotes_gpc=off</p>
 </blockquote>
 <p>(但是我调的php版本是5.2.17,按道理是没问题的,暂时先不管了)</p>
 <h1 id="pass12"><a href="#pass12" class="headerlink" title="pass12"></a>pass12</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">$is_upload = <span class="keyword">false</span>;</span><br><span class="line">$msg = <span class="keyword">null</span>;</span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>($_POST[<span class="string">'submit'</span>]))&#123;</span><br><span class="line">    $ext_arr = <span class="keyword">array</span>(<span class="string">'jpg'</span>,<span class="string">'png'</span>,<span class="string">'gif'</span>);</span><br><span class="line">    $file_ext = substr($_FILES[<span class="string">'upload_file'</span>][<span class="string">'name'</span>],strrpos($_FILES[<span class="string">'upload_file'</span>][<span class="string">'name'</span>],<span class="string">"."</span>)+<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">if</span>(in_array($file_ext,$ext_arr))&#123;</span><br><span class="line">        $temp_file = $_FILES[<span class="string">'upload_file'</span>][<span class="string">'tmp_name'</span>];</span><br><span class="line">        $img_path = $_POST[<span class="string">'save_path'</span>].<span class="string">"/"</span>.rand(<span class="number">10</span>, <span class="number">99</span>).date(<span class="string">"YmdHis"</span>).<span class="string">"."</span>.$file_ext;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(move_uploaded_file($temp_file,$img_path))&#123;</span><br><span class="line">            $is_upload = <span class="keyword">true</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            $msg = <span class="string">"上传失败"</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        $msg = <span class="string">"只允许上传.jpg|.png|.gif类型文件！"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -590,7 +601,8 @@
 <blockquote>
 <p>unpack(format,data)</p>
 <blockquote>
-<p>format必须,解包数据时所使用的格式<br>data非必需.被解包的二进制数据</p>
+<p>format必须,解包数据时所使用的格式
+data非必需.被解包的二进制数据</p>
 </blockquote>
 </blockquote>
 <blockquote>
@@ -617,7 +629,8 @@
 <blockquote>
 <p>copy image.jpg /b + webshell.php /a image.jpg</p>
 <blockquote>
-<p>/b:指定二进制格式复制、合并文件，用于图像或者声音类文件<br>/a:指定以ascii格式复制、合并文件，用于txt等文本类文件</p>
+<p>/b:指定二进制格式复制、合并文件，用于图像或者声音类文件
+/a:指定以ascii格式复制、合并文件，用于txt等文本类文件</p>
 </blockquote>
 </blockquote>
 </blockquote>
@@ -632,7 +645,8 @@
 <blockquote>
 <p>string image_type_to_extension( int $imagetype[, bool $include_dot = TRUE] )</p>
 <blockquote>
-<p>imagetype:IMAGETYPE_XXX 系列常量之一。<br>include_dot:是否在后缀名前加一个点。默认是 TRUE</p>
+<p>imagetype:IMAGETYPE_XXX 系列常量之一。 
+include_dot:是否在后缀名前加一个点。默认是 TRUE</p>
 </blockquote>
 </blockquote>
 </blockquote>
@@ -681,7 +695,8 @@
 <blockquote>
 <p>bool move_uploaded_file( string $filename, string $destination)</p>
 <blockquote>
-<p>filename:上传的文件的文件名<br>destination:移动文件到这个位置</p>
+<p>filename:上传的文件的文件名
+destination:移动文件到这个位置</p>
 </blockquote>
 </blockquote>
 </blockquote>
@@ -773,7 +788,8 @@
 </li>
 <li><p>save_name后门加上[0]使其变为数组,这里是你想上传的文件的名字(比如2.php)</p>
 </li>
-<li><p>end(也就是save_name[2])的必须为allow_suffix中3种的一种(比如jpg)<br>因为$ext=end($file)</p>
+<li><p>end(也就是save_name[2])的必须为allow_suffix中3种的一种(比如jpg)
+因为$ext=end($file)</p>
 </li>
 </ul>
 <img src="/2019/08/10/upload-labs-master/20payload.png">

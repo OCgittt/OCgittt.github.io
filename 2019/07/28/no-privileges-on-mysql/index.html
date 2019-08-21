@@ -371,9 +371,11 @@
 </li>
 <li><p>可以看到root在plugin这一项是auto_socket,其他的都是mysql_native_password,此时需要把auto_socket改为mysql_native_password</p>
 </li>
-<li><p>语句1:update mysql.user set authentication_string=PASSWORD(‘123456’),plugin=’mysql_native_password’ where user=’root’;<br>flush privileges;清缓存</p>
+<li><p>语句1:update mysql.user set authentication_string=PASSWORD(‘123456’),plugin=’mysql_native_password’ where user=’root’;
+flush privileges;清缓存</p>
 </li>
-<li><p>语句2:mysql&gt; ALTER USER ‘root’@’%’ IDENTIFIED WITH mysql_native_password BY ‘123456’;<br>(我用的是语句2)</p>
+<li><p>语句2:mysql&gt; ALTER USER ‘root’@’%’ IDENTIFIED WITH mysql_native_password BY ‘123456’;
+(我用的是语句2)</p>
 </li>
 </ul>
 <p><a href="https://blog.csdn.net/bingjianIT/article/details/82780535" target="_blank" rel="noopener">语句1–codekongs-[CSDN]</a></p>

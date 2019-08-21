@@ -465,7 +465,10 @@
 
 <img src="/2019/07/16/buuctf/2hex0x.png">
 
-<p>所以<br>0x73656c656374202a2066726f6d20603139313938313039333131313435313460<br>等价于<br>select * from `1919810931114514`</p>
+<p>所以
+0x73656c656374202a2066726f6d20603139313938313039333131313435313460
+等价于
+select * from `1919810931114514`</p>
 <p><strong>法二:</strong>把表名改了,再1’ or 1=1#</p>
 <p><strong>因为在php层面查询的时候固定语句一般是 select * from words where id = $id这种，数据库里面的变化php是管不到的,而且上面的过滤也没有过滤rename</strong></p>
 <p>mysql中rename，语法为</p>
@@ -497,10 +500,16 @@
 <p>源码里面不管是login、register还是change页面，只要是关于session[‘name’]的操作，都先用了strlower函数将name转成小写</p>
 <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">strlower</span><span class="params">(username)</span>:</span></span><br><span class="line">    username = nodeprep.prepare(username)</span><br><span class="line">    <span class="keyword">return</span> username</span><br></pre></td></tr></table></figure>
 
-<p>但是却放着python自带的lower()函数不用,引用了twisted模块的nodeprep.prepare函数<br>难道是它就喜欢多打from twisted.words.protocols.jabber.xmpp_stringprep import nodeprep这么多的字母吗</p>
+<p>但是却放着python自带的lower()函数不用,引用了twisted模块的nodeprep.prepare函数
+难道是它就喜欢多打from twisted.words.protocols.jabber.xmpp_stringprep import nodeprep这么多的字母吗</p>
 <p>问题就出在这里</p>
 <blockquote>
-<p>在requirements.txt文件中，发现这里用到的twisted版本是Twisted==10.2.0，而官网最新版本为19.2.0(2019/6/2)，版本差距这么大，估计是存在什么漏洞，于是搜索一下nodeprep.prepare，找到一篇unicode安全的文章，<a href="https://paper.tuisec.win/detail/a9ad1440249d95b" target="_blank" rel="noopener">https://paper.tuisec.win/detail/a9ad1440249d95b</a><br>这里原理就是利用nodeprep.prepare函数会将unicode字符ᴬ转换成A，而A在调用一次nodeprep.prepare函数会把A转换成a。<br>所以当我们用ᴬdmin注册的话，后台代码调用一次nodeprep.prepare函数，把用户名转换成Admin，我们用ᴬdmin进行登录，可以看到index页面的username变成了Admin，证实了我们的猜想，接下来我们就想办法让服务器再调用一次nodeprep.prepare函数即可。<br>作者：Miracle778<br>链接：<a href="https://www.jianshu.com/p/f92311564ad0" target="_blank" rel="noopener">https://www.jianshu.com/p/f92311564ad0</a><br>来源：简书</p>
+<p>在requirements.txt文件中，发现这里用到的twisted版本是Twisted==10.2.0，而官网最新版本为19.2.0(2019/6/2)，版本差距这么大，估计是存在什么漏洞，于是搜索一下nodeprep.prepare，找到一篇unicode安全的文章，<a href="https://paper.tuisec.win/detail/a9ad1440249d95b" target="_blank" rel="noopener">https://paper.tuisec.win/detail/a9ad1440249d95b</a>
+这里原理就是利用nodeprep.prepare函数会将unicode字符ᴬ转换成A，而A在调用一次nodeprep.prepare函数会把A转换成a。
+所以当我们用ᴬdmin注册的话，后台代码调用一次nodeprep.prepare函数，把用户名转换成Admin，我们用ᴬdmin进行登录，可以看到index页面的username变成了Admin，证实了我们的猜想，接下来我们就想办法让服务器再调用一次nodeprep.prepare函数即可。
+作者：Miracle778
+链接：<a href="https://www.jianshu.com/p/f92311564ad0" target="_blank" rel="noopener">https://www.jianshu.com/p/f92311564ad0</a>
+来源：简书</p>
 </blockquote>
 <p>这里的ᴬdmin很巧妙,直接用网页工具将A转换为Unicode很显然是不行的,我在另一处看到的WP用的ᴀdmin,而我用ᴀdmin注册的时候是不行的,最后看到了上面地址的WP用的ᴬdmin,最终成功了</p>
 <hr>
