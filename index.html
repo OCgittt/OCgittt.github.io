@@ -224,28 +224,75 @@
 
 
   
-    <article id="post-JarvisOJ" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-mysql学习" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/25/JarvisOJ/">jarvisOJ</a>
+      <a class="article-title" href="/2020/02/01/mysql学习/">mysql学习</a>
     </h1>
   
 
         
-        <a href="/2019/09/25/JarvisOJ/" class="archive-article-date">
-  	<time datetime="2019-09-25T09:07:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-25</time>
+        <a href="/2020/02/01/mysql学习/" class="archive-article-date">
+  	<time datetime="2020-02-01T06:50:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-01</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="平台地址-https-www-jarvisoj-com"><a href="#平台地址-https-www-jarvisoj-com" class="headerlink" title="平台地址:https://www.jarvisoj.com/"></a>平台地址:<a href="https://www.jarvisoj.com/" target="_blank" rel="noopener">https://www.jarvisoj.com/</a></h1>
-        
+        <h2 id="基础查询"><a href="#基础查询" class="headerlink" title="基础查询"></a>基础查询</h2><ul>
+<li>select 查询列表 from 表名;</li>
+</ul>
+<blockquote>
+<p>查询列表可由多个部分(字段/表达式/常量/变量/函数)组成,用逗号隔开</p>
+</blockquote>
+<p>执行顺序:
+(1)from字句
+(2)select字句</p>
+<h2 id="as关键字"><a href="#as关键字" class="headerlink" title="as关键字"></a>as关键字</h2><ul>
+<li>SELECT last_name FROM employees;</li>
+</ul>
+<img src="/2020/02/01/mysql学习/last1.png">
+
+<ul>
+<li>SELECT last_name as 姓 FROM employees;</li>
+</ul>
+<img src="/2020/02/01/mysql学习/last2.png">
+
+<p>相当于给last_name起别名</p>
+<p><code>as可写可不写,也可以加双引号&quot;姓 氏&quot;</code></p>
+<ul>
+<li>SELECT last_name 姓 FROM employees;       //也可</li>
+</ul>
+<h2 id="concat拼接函数"><a href="#concat拼接函数" class="headerlink" title="concat拼接函数"></a>concat拼接函数</h2><ul>
+<li>SELECT concat(last_name,first_name) as “姓 名” FROM employees;</li>
+</ul>
+<h2 id="MySQL加号"><a href="#MySQL加号" class="headerlink" title="MySQL加号"></a>MySQL加号</h2><p><code>进行加法运算</code></p>
+<ol>
+<li><p>两个都是数值型
+100+1.5==&gt;101.5</p>
+</li>
+<li><p>其中一个为字符型
+将字符型数据强制转换成数值型,如果无法转换,则字符型数据作0处理
+“张三”+100==&gt;100</p>
+</li>
+<li><p>其中一个为null
+null加任何东西都为null
+null+null==&gt;null
+null+100==&gt;null</p>
+</li>
+</ol>
+<h2 id="distinct去重"><a href="#distinct去重" class="headerlink" title="distinct去重"></a>distinct去重</h2><ul>
+<li><p>SELECT department_id FROM employees;</p>
+</li>
+<li><p>SELECT <strong>DISTINCT</strong> department_id FROM employees;</p>
+</li>
+</ul>
+
       
 
       
@@ -253,22 +300,11 @@
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CTF</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
       
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/25/JarvisOJ/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/02/01/mysql学习/">展开全文 >></a>
         </p>
       
 
@@ -343,6 +379,80 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2019/09/25/xxxxxxCTF/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-JarvisOJ" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/25/JarvisOJ/">jarvisOJ</a>
+    </h1>
+  
+
+        
+        <a href="/2019/09/25/JarvisOJ/" class="archive-article-date">
+  	<time datetime="2019-09-25T09:07:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="平台地址-https-www-jarvisoj-com"><a href="#平台地址-https-www-jarvisoj-com" class="headerlink" title="平台地址:https://www.jarvisoj.com/"></a>平台地址:<a href="https://www.jarvisoj.com/" target="_blank" rel="noopener">https://www.jarvisoj.com/</a></h1>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CTF</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/25/JarvisOJ/">展开全文 >></a>
         </p>
       
 
@@ -816,81 +926,6 @@
 
 
   
-    <article id="post-本地图片显示不出来的坑" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/27/本地图片显示不出来的坑/">本地图片显示不出来的解决方案</a>
-    </h1>
-  
-
-        
-        <a href="/2019/07/27/本地图片显示不出来的坑/" class="archive-article-date">
-  	<time datetime="2019-07-26T16:28:33.753Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-27</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="刚开始用hexo遇到的坑之一-hexo显示不了本地图片"><a href="#刚开始用hexo遇到的坑之一-hexo显示不了本地图片" class="headerlink" title="刚开始用hexo遇到的坑之一:hexo显示不了本地图片"></a>刚开始用hexo遇到的坑之一:hexo显示不了本地图片</h1><p>刚开始用hexo写blog,不是很懂markdown,也不是很懂hexo的markdown.</p>
-<p>用markdown语法的! [ ] ( )来po图,写的时候是可以看见的,但generate上hexo就不行了…</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">keng</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/07/27/本地图片显示不出来的坑/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -992,10 +1027,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">sqli-labs-master_les11</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">keng</a>
               </li>
              
@@ -1013,6 +1044,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">爬虫</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">sqli-labs-master_les11</a>
               </li>
             
             <div class="clearfix"></div>
