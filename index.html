@@ -28,7 +28,7 @@
   <style type="text/css">
   
     #container.show {
-      background: linear-gradient(200deg,#a0cfe4,#e8c37e);
+      background: linear-gradient(0deg,#a0cfe4,#e8c37e);
     }
   </style>
   
@@ -244,55 +244,15 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="基础查询"><a href="#基础查询" class="headerlink" title="基础查询"></a>基础查询</h2><ul>
+        <h1 id="基础查询"><a href="#基础查询" class="headerlink" title="基础查询"></a>基础查询</h1><ul>
 <li>select 查询列表 from 表名;</li>
 </ul>
 <blockquote>
 <p>查询列表可由多个部分(字段/表达式/常量/变量/函数)组成,用逗号隔开</p>
 </blockquote>
-<p>执行顺序:
-(1)from字句
-(2)select字句</p>
-<h2 id="as关键字"><a href="#as关键字" class="headerlink" title="as关键字"></a>as关键字</h2><ul>
-<li>SELECT last_name FROM employees;</li>
-</ul>
-<img src="/2020/02/01/mysql学习/last1.png">
-
-<ul>
-<li>SELECT last_name as 姓 FROM employees;</li>
-</ul>
-<img src="/2020/02/01/mysql学习/last2.png">
-
-<p>相当于给last_name起别名</p>
-<p><code>as可写可不写,也可以加双引号&quot;姓 氏&quot;</code></p>
-<ul>
-<li>SELECT last_name 姓 FROM employees;       //也可</li>
-</ul>
-<h2 id="concat拼接函数"><a href="#concat拼接函数" class="headerlink" title="concat拼接函数"></a>concat拼接函数</h2><ul>
-<li>SELECT concat(last_name,first_name) as “姓 名” FROM employees;</li>
-</ul>
-<h2 id="MySQL加号"><a href="#MySQL加号" class="headerlink" title="MySQL加号"></a>MySQL加号</h2><p><code>进行加法运算</code></p>
-<ol>
-<li><p>两个都是数值型
-100+1.5==&gt;101.5</p>
-</li>
-<li><p>其中一个为字符型
-将字符型数据强制转换成数值型,如果无法转换,则字符型数据作0处理
-“张三”+100==&gt;100</p>
-</li>
-<li><p>其中一个为null
-null加任何东西都为null
-null+null==&gt;null
-null+100==&gt;null</p>
-</li>
-</ol>
-<h2 id="distinct去重"><a href="#distinct去重" class="headerlink" title="distinct去重"></a>distinct去重</h2><ul>
-<li><p>SELECT department_id FROM employees;</p>
-</li>
-<li><p>SELECT <strong>DISTINCT</strong> department_id FROM employees;</p>
-</li>
-</ul>
-
+<h2 id="执行顺序"><a href="#执行顺序" class="headerlink" title="执行顺序"></a>执行顺序</h2><p>(1) from子句
+(2) select子句</p>
+        
       
 
       
@@ -872,7 +832,9 @@ null+100==&gt;null</p>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>作为一名零氪党,终于来到hexo阵营</p>
+        <!--作为一名零氪党,终于来到hexo阵营-->
+
+<p>下面是将wordpress的文章转移到hexo上的步骤</p>
         
       
 
@@ -1023,10 +985,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">sqli-labs</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">keng</a>
               </li>
              
@@ -1044,6 +1002,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">爬虫</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">sqli-labs</a>
               </li>
              
               <li class="article-tag-list-item">
