@@ -20,7 +20,12 @@
 <meta property="og:image" content="https://ocgittt.github.io/2020/02/01/mysql学习/datediff.png">
 <meta property="og:image" content="https://ocgittt.github.io/2020/02/01/mysql学习/date_format.png">
 <meta property="og:image" content="https://ocgittt.github.io/2020/02/01/mysql学习/strtodate.png">
-<meta property="og:updated_time" content="2020-02-09T09:45:37.852Z">
+<meta property="og:image" content="https://ocgittt.github.io/2020/02/01/mysql学习/join.png">
+<meta property="og:image" content="https://ocgittt.github.io/2020/02/01/mysql学习/table.png">
+<meta property="og:image" content="https://ocgittt.github.io/2020/02/01/mysql学习/table2.png">
+<meta property="og:image" content="https://ocgittt.github.io/2020/02/01/mysql学习/key.png">
+<meta property="og:image" content="https://ocgittt.github.io/2020/02/01/mysql学习/truncate.png">
+<meta property="og:updated_time" content="2020-02-16T11:00:23.442Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mysql学习">
 <meta name="twitter:description" content="mysql -h主机地址 -P端口号-u用户名 -p[密码] 本机可省略-h 3306可省略-P">
@@ -174,12 +179,13 @@
 <code>本机可省略-h
 3306可省略-P</code></p>
 <a id="more"></a>
-<h1 id="基础查询"><a href="#基础查询" class="headerlink" title="基础查询"></a>基础查询</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> 查询列表 <span class="keyword">FROM</span> 表名;</span><br></pre></td></tr></table></figure>
+<h1 id="DQL"><a href="#DQL" class="headerlink" title="DQL"></a>DQL</h1><p>Data Query Language</p>
+<h2 id="基础查询"><a href="#基础查询" class="headerlink" title="基础查询"></a>基础查询</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> 查询列表 <span class="keyword">FROM</span> 表名;</span><br></pre></td></tr></table></figure>
 
 <p>查询列表可由多个部分(字段/表达式/常量/变量/函数)组成,用逗号隔开</p>
-<h2 id="执行顺序"><a href="#执行顺序" class="headerlink" title="执行顺序"></a>执行顺序</h2><p>(1) from子句
+<h3 id="执行顺序"><a href="#执行顺序" class="headerlink" title="执行顺序"></a>执行顺序</h3><p>(1) from子句
 (2) select子句</p>
-<h2 id="AS关键字"><a href="#AS关键字" class="headerlink" title="AS关键字"></a>AS关键字</h2><ul>
+<h3 id="AS关键字"><a href="#AS关键字" class="headerlink" title="AS关键字"></a>AS关键字</h3><ul>
 <li>SELECT last_name FROM employees;</li>
 </ul>
 <img src="/2020/02/01/mysql学习/last1.png">
@@ -194,10 +200,10 @@
 <ul>
 <li>SELECT last_name 姓 FROM employees;       #也可</li>
 </ul>
-<h2 id="CONCAT拼接函数"><a href="#CONCAT拼接函数" class="headerlink" title="CONCAT拼接函数"></a>CONCAT拼接函数</h2><ul>
+<h3 id="CONCAT拼接函数"><a href="#CONCAT拼接函数" class="headerlink" title="CONCAT拼接函数"></a>CONCAT拼接函数</h3><ul>
 <li>SELECT concat(last_name,first_name) as “姓 名” FROM employees;</li>
 </ul>
-<h2 id="MySQL加号"><a href="#MySQL加号" class="headerlink" title="MySQL加号"></a>MySQL加号</h2><p><code>进行加法运算</code></p>
+<h3 id="MySQL加号"><a href="#MySQL加号" class="headerlink" title="MySQL加号"></a>MySQL加号</h3><p><code>进行加法运算</code></p>
 <p>1.两个都是数值型
 100+1.5==&gt;101.5</p>
 <p>2.其中一个为字符型
@@ -207,24 +213,24 @@
 null加任何东西都为null
 null+null==&gt;null
 null+100==&gt;null</p>
-<h2 id="DISTINCT去重"><a href="#DISTINCT去重" class="headerlink" title="DISTINCT去重"></a>DISTINCT去重</h2><ul>
+<h3 id="DISTINCT去重"><a href="#DISTINCT去重" class="headerlink" title="DISTINCT去重"></a>DISTINCT去重</h3><ul>
 <li><p>SELECT department_id FROM employees;</p>
 </li>
 <li><p>SELECT <strong>DISTINCT</strong> department_id FROM employees;</p>
 </li>
 </ul>
-<h2 id="查看表的结构"><a href="#查看表的结构" class="headerlink" title="查看表的结构"></a>查看表的结构</h2><p>DESC 表名;
+<h3 id="查看表的结构"><a href="#查看表的结构" class="headerlink" title="查看表的结构"></a>查看表的结构</h3><p>DESC 表名;
 SHOW COLUMNS FROM 表名;</p>
-<h1 id="条件查询"><a href="#条件查询" class="headerlink" title="条件查询"></a>条件查询</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> 查询列表 <span class="keyword">FROM</span> 表名 <span class="keyword">WHERE</span> 筛选条件;</span><br></pre></td></tr></table></figure>
+<h2 id="条件查询"><a href="#条件查询" class="headerlink" title="条件查询"></a>条件查询</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> 查询列表 <span class="keyword">FROM</span> 表名 <span class="keyword">WHERE</span> 筛选条件;</span><br></pre></td></tr></table></figure>
 
 <p><code>where可以理解为C的if,where子句的结果为true或false</code></p>
-<h2 id="执行顺序-1"><a href="#执行顺序-1" class="headerlink" title="执行顺序"></a>执行顺序</h2><p>(1) from子句
+<h3 id="执行顺序-1"><a href="#执行顺序-1" class="headerlink" title="执行顺序"></a>执行顺序</h3><p>(1) from子句
 (2) where子句
 (3) select子句</p>
 <p>where子句的筛选条件可由以下:</p>
-<h2 id="关系-条件-表达式"><a href="#关系-条件-表达式" class="headerlink" title="关系(条件)表达式"></a>关系(条件)表达式</h2><p><code>&gt;</code> , <code>&lt;</code> , <code>=</code> , <code>&gt;=</code> , <code>&lt;=</code> , <code>&lt;&gt;</code> (<code>!=</code>也可用)</p>
-<h2 id="逻辑表达式"><a href="#逻辑表达式" class="headerlink" title="逻辑表达式"></a>逻辑表达式</h2><p><code>and</code> , <code>or</code> , <code>not</code> (也可以<code>&amp;&amp;</code> , <code>||</code> , <code>!</code>)</p>
-<h2 id="模糊查询"><a href="#模糊查询" class="headerlink" title="模糊查询"></a>模糊查询</h2><p>(1) <strong><code>like</code></strong></p>
+<h3 id="关系-条件-表达式"><a href="#关系-条件-表达式" class="headerlink" title="关系(条件)表达式"></a>关系(条件)表达式</h3><p><code>&gt;</code> , <code>&lt;</code> , <code>=</code> , <code>&gt;=</code> , <code>&lt;=</code> , <code>&lt;&gt;</code> (<code>!=</code>也可用)</p>
+<h3 id="逻辑表达式"><a href="#逻辑表达式" class="headerlink" title="逻辑表达式"></a>逻辑表达式</h3><p><code>and</code> , <code>or</code> , <code>not</code> (也可以<code>&amp;&amp;</code> , <code>||</code> , <code>!</code>)</p>
+<h3 id="模糊查询"><a href="#模糊查询" class="headerlink" title="模糊查询"></a>模糊查询</h3><p>(1) <strong><code>like</code></strong></p>
 <p>一般和通配符搭配,对字符型数据进行<code>部分匹配</code>筛选</p>
 <p>常见通配符:</p>
 <p>① <code>_</code> 任意单个字符(1个)</p>
@@ -282,17 +288,17 @@ SHOW COLUMNS FROM 表名;</p>
 <code>IS NULL</code> 只能判断是否为NULL
 <code>&lt;=&gt;</code>     安全等于,上面两者都能判断</li>
 </ul>
-<h1 id="排序查询"><a href="#排序查询" class="headerlink" title="排序查询"></a>排序查询</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> 查询列表 <span class="keyword">FROM</span> 表名 [<span class="keyword">WHERE</span> 筛选条件] <span class="keyword">ORDER</span> <span class="keyword">BY</span> 排序列表</span><br></pre></td></tr></table></figure>
+<h2 id="排序查询"><a href="#排序查询" class="headerlink" title="排序查询"></a>排序查询</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> 查询列表 <span class="keyword">FROM</span> 表名 [<span class="keyword">WHERE</span> 筛选条件] <span class="keyword">ORDER</span> <span class="keyword">BY</span> 排序列表</span><br></pre></td></tr></table></figure>
 
 <p>排序列表可由多个部分组成(字段/表达式/函数/列数)
 <code>排序列表可用as起的别名</code></p>
-<h2 id="执行顺序-2"><a href="#执行顺序-2" class="headerlink" title="执行顺序"></a>执行顺序</h2><p>(1) from子句
+<h3 id="执行顺序-2"><a href="#执行顺序-2" class="headerlink" title="执行顺序"></a>执行顺序</h3><p>(1) from子句
 (2) where子句
 (3) select子句
 (4)order by子句</p>
 <p>排序
 ①升序 ASC [默认]②降序 DESC</p>
-<h1 id="常见函数"><a href="#常见函数" class="headerlink" title="常见函数"></a>常见函数</h1><h2 id="字符函数"><a href="#字符函数" class="headerlink" title="字符函数"></a>字符函数</h2><p>1.CONCAT 拼接字符
+<h2 id="常见函数"><a href="#常见函数" class="headerlink" title="常见函数"></a>常见函数</h2><h3 id="字符函数"><a href="#字符函数" class="headerlink" title="字符函数"></a>字符函数</h3><p>1.CONCAT 拼接字符
 <code>CONCAT(str1,str2,...)</code>
 2.LENGTH 获取字节长度</p>
 <p>3.CHAR_LENGTH 获取字符个数长度</p>
@@ -309,7 +315,7 @@ SHOW COLUMNS FROM 表名;</p>
 <code>STRCMP(expr1,expr2)</code> #expr1大于expr2则返回1,等于返回0,小于返回-1</p>
 <p>10.LEFT / RIGHT  从左 / 右边截取字符串
 <code>LEFT(str,len)</code></p>
-<h2 id="数学函数"><a href="#数学函数" class="headerlink" title="数学函数"></a>数学函数</h2><p>1.ABS 绝对值</p>
+<h3 id="数学函数"><a href="#数学函数" class="headerlink" title="数学函数"></a>数学函数</h3><p>1.ABS 绝对值</p>
 <p>2.CEIL 向上取整</p>
 <p>3.FLOOR 向下取整</p>
 <p>4.ROUND 四舍五入
@@ -317,7 +323,7 @@ SHOW COLUMNS FROM 表名;</p>
 <p>5.TRUNCATE 截断
 <code>TRUNCATE(X,D) 直接截断,不用四舍五入</code></p>
 <p>6.MOD 取余</p>
-<h2 id="日期函数"><a href="#日期函数" class="headerlink" title="日期函数"></a>日期函数</h2><p>1.NOW
+<h3 id="日期函数"><a href="#日期函数" class="headerlink" title="日期函数"></a>日期函数</h3><p>1.NOW
 <code>返回日期时间</code></p>
 <p>2.CURDATE
 <code>返回日期</code></p>
@@ -336,7 +342,7 @@ SHOW COLUMNS FROM 表名;</p>
 <img src="/2020/02/01/mysql学习/strtodate.png">
 
 
-<h2 id="流程控制函数"><a href="#流程控制函数" class="headerlink" title="流程控制函数"></a>流程控制函数</h2><p>1.IF
+<h3 id="流程控制函数"><a href="#流程控制函数" class="headerlink" title="流程控制函数"></a>流程控制函数</h3><p>1.IF
 <code>IF(expr1,expr2,expr3)</code></p>
 <p>expr1为真则执行expr2,否则执行expr3</p>
 <p>2.CASE</p>
@@ -346,21 +352,235 @@ SHOW COLUMNS FROM 表名;</p>
 <p>②类似多重if</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">CASE</span><br><span class="line">WHEN 条件1 THEN 结果1</span><br><span class="line">WHEN 条件2 THEN 结果2</span><br><span class="line">...</span><br><span class="line">ELSE 结果n  <span class="comment">#ELSE可省略</span></span><br><span class="line"><span class="keyword">END</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="分组-聚合-函数"><a href="#分组-聚合-函数" class="headerlink" title="分组(聚合)函数"></a>分组(聚合)函数</h2><p>1.SUM</p>
+<h3 id="分组-聚合-函数"><a href="#分组-聚合-函数" class="headerlink" title="分组(聚合)函数"></a>分组(聚合)函数</h3><p>1.SUM</p>
 <p>2.AVG</p>
 <p>3.MAX</p>
 <p>4.MIN</p>
 <p>5.COUNT 计算非空字段值的个数</p>
 <p>6.GROUP BY 对一个或多个列进行分组</p>
-<h1 id="分组查询"><a href="#分组查询" class="headerlink" title="分组查询"></a>分组查询</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> 查询列表</span><br><span class="line"><span class="keyword">FROM</span> 表名</span><br><span class="line">[<span class="keyword">WHERE</span> 筛选条件 筛选分组查询完成前的基础表]</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> 分组列表</span><br><span class="line">[<span class="keyword">HAVING</span> 筛选条件 筛选完成分组的表]</span><br><span class="line">[<span class="keyword">ORDER</span> <span class="keyword">BY</span> 排序列表]</span><br></pre></td></tr></table></figure>
+<h2 id="分组查询"><a href="#分组查询" class="headerlink" title="分组查询"></a>分组查询</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> 查询列表</span><br><span class="line"><span class="keyword">FROM</span> 表名</span><br><span class="line">[<span class="keyword">WHERE</span> 筛选条件 筛选分组查询完成前的基础表]</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> 分组列表</span><br><span class="line">[<span class="keyword">HAVING</span> 筛选条件 筛选完成分组的表]</span><br><span class="line">[<span class="keyword">ORDER</span> <span class="keyword">BY</span> 排序列表]</span><br></pre></td></tr></table></figure>
 
 <p>WHEN后面<strong>不能</strong>加分组函数,HAVING可加</p>
-<h2 id="执行顺序-3"><a href="#执行顺序-3" class="headerlink" title="执行顺序"></a>执行顺序</h2><p>(1) from子句
+<h3 id="执行顺序-3"><a href="#执行顺序-3" class="headerlink" title="执行顺序"></a>执行顺序</h3><p>(1) from子句
 (2) where子句
 (3) group by子句
 (4) select子句
 (5) having子句
 (6) order by子句</p>
+<h2 id="连接-多表-查询-JOIN"><a href="#连接-多表-查询-JOIN" class="headerlink" title="连接(多表)查询 JOIN"></a>连接(多表)查询 JOIN</h2><p>查询的字段来自多个表</p>
+<hr>
+<h2 id="SQL92语法"><a href="#SQL92语法" class="headerlink" title="SQL92语法"></a>SQL92语法</h2><p>内连接</p>
+<p>(1)等值连接</p>
+<p>例:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> 查询<span class="number">1</span>,查询<span class="number">2</span></span><br><span class="line"><span class="keyword">FROM</span> 表<span class="number">1</span>,表<span class="number">2</span>    <span class="comment">#也可以给表起别名,用于下方表1与表2 FROM 表1 AS 别名1,表2 AS 别名2</span></span><br><span class="line"><span class="keyword">WHERE</span> 表<span class="number">1.</span>列名=表<span class="number">2.</span>列名</span><br></pre></td></tr></table></figure>
+
+<p><code>WHERE后面有=的表达式</code></p>
+<p>(2)非等值
+<code>WHERE后面有非=的表达式,可以是BETWEEN AND……</code></p>
+<p>(3)自连接
+<code>相当于等值连接的特殊方式,一个表中存在关系:表1.列明=表1.列明</code></p>
+<hr>
+<h2 id="SQL99语法"><a href="#SQL99语法" class="headerlink" title="SQL99语法"></a>SQL99语法</h2><p>内连接的等值连接</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> 查询<span class="number">1</span>,查询<span class="number">2</span></span><br><span class="line"><span class="keyword">FROM</span> 表<span class="number">1</span>  </span><br><span class="line">[<span class="keyword">INNER</span>] <span class="keyword">JOIN</span> 表<span class="number">2</span></span><br><span class="line"><span class="keyword">ON</span> 连接条件</span><br><span class="line"><span class="keyword">WHERE</span> 筛选条件</span><br><span class="line"><span class="comment">#GROUP BY</span></span><br><span class="line"><span class="comment">#HAVING</span></span><br><span class="line"><span class="comment">#ORDER BY</span></span><br></pre></td></tr></table></figure>
+
+<p>三个表  例:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> stuname,majorname,score</span><br><span class="line"><span class="keyword">FROM</span> stuinfo s</span><br><span class="line"><span class="keyword">JOIN</span> major m <span class="keyword">ON</span> s.stuid=m.id</span><br><span class="line"><span class="keyword">JOIN</span> <span class="keyword">result</span> r <span class="keyword">ON</span> r.stuid=s.stuid</span><br><span class="line"><span class="keyword">WHERE</span> gender=<span class="string">'男'</span></span><br></pre></td></tr></table></figure>
+
+<p>(二)外连接 [只存在于SQL99语法]</p>
+<p><code>分为主表和从表,查询结果为主表中所有的记录+如果从表有匹配项,则显示匹配项,否则显示null</code></p>
+<p>一般用于查询主表有但从表没有的记录</p>
+<p>(1)左外连接</p>
+<p><code>左边为主表</code></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> 查询<span class="number">1</span>,查询<span class="number">2</span></span><br><span class="line"><span class="keyword">FROM</span> 表<span class="number">1</span></span><br><span class="line"><span class="keyword">LEFT</span> [<span class="keyword">OUTER</span>] <span class="keyword">JOIN</span> 表<span class="number">2</span></span><br><span class="line"><span class="keyword">ON</span> 连接条件</span><br><span class="line"><span class="keyword">WHERE</span> 筛选条件</span><br><span class="line"><span class="comment">#GROUP BY</span></span><br><span class="line"><span class="comment">#HAVING</span></span><br><span class="line"><span class="comment">#ORDER BY</span></span><br></pre></td></tr></table></figure>
+
+<p>(2)右外连接</p>
+<p><code>右边为主表</code></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> 查询<span class="number">1</span>,查询<span class="number">2</span></span><br><span class="line"><span class="keyword">FROM</span> 表<span class="number">1</span>   </span><br><span class="line"><span class="keyword">RIGHT</span> [<span class="keyword">OUTER</span>] <span class="keyword">JOIN</span> 表<span class="number">2</span></span><br><span class="line"><span class="keyword">ON</span> 连接条件</span><br><span class="line"><span class="keyword">WHERE</span> 筛选条件</span><br><span class="line"><span class="comment">#GROUP BY</span></span><br><span class="line"><span class="comment">#HAVING</span></span><br><span class="line"><span class="comment">#ORDER BY</span></span><br></pre></td></tr></table></figure>
+
+<p>(3)全外连接[<strong>MySQL不支持</strong>]</p>
+<p><code>FROM的全部表的记录都显示出来</code></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> 查询<span class="number">1</span>,查询<span class="number">2</span></span><br><span class="line"><span class="keyword">FROM</span> 表<span class="number">1</span>    </span><br><span class="line"><span class="keyword">FULL</span> [<span class="keyword">OUTER</span>] <span class="keyword">JOIN</span> 表<span class="number">2</span></span><br><span class="line"><span class="keyword">ON</span> 连接条件</span><br><span class="line"><span class="keyword">WHERE</span> 筛选条件</span><br><span class="line"><span class="comment">#GROUP BY</span></span><br><span class="line"><span class="comment">#HAVING</span></span><br><span class="line"><span class="comment">#ORDER BY</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="SQL92语法和SQL99语法的区别"><a href="#SQL92语法和SQL99语法的区别" class="headerlink" title="SQL92语法和SQL99语法的区别"></a>SQL92语法和SQL99语法的区别</h3><p>①SQL99使用JOIN关键字代替了FROM后面用于隔开表名的逗号</p>
+<p>②用ON将连接条件和筛选条件分离</p>
+<h3 id="JOIN连接总结"><a href="#JOIN连接总结" class="headerlink" title="JOIN连接总结"></a>JOIN连接总结</h3><img src="/2020/02/01/mysql学习/join.png">
+
+
+
+<h2 id="子查询"><a href="#子查询" class="headerlink" title="子查询"></a>子查询</h2><p>一个查询语句中嵌套了另一个完整的查询语句,被嵌套的语句叫子查询或内查询,外面的语句成为主查询或外查询</p>
+<h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><p>①如果子查询放在条件中,则放在条件右侧</p>
+<p>②子查询一般放在小括号中</p>
+<p>③子查询的执行顺序高于主查询</p>
+<p>④单行(返回结果为单行)子查询对应单行操作符 <code>&gt;</code> <code>&lt;</code> <code>&gt;=</code> <code>&lt;=</code> <code>=</code> <code>&lt;&gt;</code></p>
+<p>⑤多行子查询对应多行操作符 <code>any</code> <code>some</code> <code>all</code> <code>in</code></p>
+<p><code>in</code> 判断某字段是否在某一列表内 x in(10,30,50)</p>
+<p><code>any</code> / <code>some</code> (any和some功能一样)判断某字段的值是否满足其中一个 x&gt;any(10,30,50)</p>
+<blockquote>
+<p>此段引用<a href="https://www.cnblogs.com/jane4321/p/11101317.html" target="_blank" rel="noopener">https://www.cnblogs.com/jane4321/p/11101317.html</a>
+假设any内部的查询语句返回的结果个数是三个，如:result1,result2,result3,那么</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;select ...from ... where a &gt; any(...);</span><br><span class="line">-&gt;</span><br><span class="line">&gt;select ...from ... where a &gt; result1 or a &gt; result2 or a &gt; result3;</span><br><span class="line">&gt;some同理</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p><code>all</code> 判断某字段的值是否满足里面所有的 x&gt;all(10,30,50)</p>
+<h3 id="按子查询语句出现的位置分类"><a href="#按子查询语句出现的位置分类" class="headerlink" title="按子查询语句出现的位置分类"></a>按子查询语句出现的位置分类</h3><p>①select后面</p>
+<ul>
+<li>要求:子查询的结果为单行单列(标量子查询)</li>
+</ul>
+<p>②from后面(表查询[把子查询的结果作为一张新的表加入查询])</p>
+<ul>
+<li>要求:子查询的结果可以为多行多列</li>
+</ul>
+<p>③where或having后面</p>
+<ul>
+<li>要求:子查询的结果必须为单列</li>
+</ul>
+<blockquote>
+<p>单列又分为单行子查询和多行子查询</p>
+</blockquote>
+<p>④exists后面</p>
+<ul>
+<li>要求:子查询的结果必须为单列(相关子查询)</li>
+</ul>
+<h2 id="分页查询-LIMIT"><a href="#分页查询-LIMIT" class="headerlink" title="分页查询 LIMIT"></a>分页查询 LIMIT</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line"><span class="keyword">JOIN</span></span><br><span class="line"><span class="keyword">ON</span></span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span></span><br><span class="line"><span class="keyword">HAVING</span></span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span></span><br><span class="line"><span class="keyword">LIMIT</span> 起始条目数索引,显示的条目数</span><br></pre></td></tr></table></figure>
+
+<h3 id="执行顺序-4"><a href="#执行顺序-4" class="headerlink" title="执行顺序"></a>执行顺序</h3><p>(1)from子句
+(2)join子句
+(3)on子句
+(4)where子句
+(5)group by子句
+(6)having子句
+(7)select子句
+(8)order by子句
+(9)limit子句</p>
+<p>LIMIT 起始条目索引从0开始,不写则默认为0</p>
+<p>例:查询5条</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LIMIT 0,5</span><br></pre></td></tr></table></figure>
+
+<h2 id="联合查询"><a href="#联合查询" class="headerlink" title="联合查询"></a>联合查询</h2><p>查询结果来自多张表,但多张表之间没有关联</p>
+<p>多条待联合查询的查询语句的查询列数必须一致,查询类型、字段最好一致</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="string">'a_id'</span> <span class="keyword">FROM</span> aaa</span><br><span class="line"><span class="keyword">UNION</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="string">'b_id'</span> <span class="keyword">FROM</span> bbb; </span><br><span class="line"></span><br><span class="line"><span class="comment">#列名会显示第一个select的列名 id</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>union 自动去重</p>
+</li>
+<li><p>union all 可显示重复项</p>
+</li>
+</ul>
+<h1 id="DDL"><a href="#DDL" class="headerlink" title="DDL"></a>DDL</h1><p>Data Define Language</p>
+<h2 id="库的管理"><a href="#库的管理" class="headerlink" title="库的管理"></a>库的管理</h2><h3 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">DATABASE</span> [<span class="keyword">IF</span> <span class="keyword">NOT</span> <span class="keyword">EXISTS</span>] 库名;</span><br></pre></td></tr></table></figure>
+
+<h3 id="删除数据库"><a href="#删除数据库" class="headerlink" title="删除数据库"></a>删除数据库</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DROP</span> <span class="keyword">DATABASE</span> [<span class="keyword">IF</span> <span class="keyword">EXISTS</span>] 库名;</span><br></pre></td></tr></table></figure>
+
+<h2 id="表的管理"><a href="#表的管理" class="headerlink" title="表的管理"></a>表的管理</h2><h3 id="创建表"><a href="#创建表" class="headerlink" title="创建表"></a>创建表</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> [<span class="keyword">IF</span> <span class="keyword">NOT</span> <span class="keyword">EXISTS</span>]表名(</span><br><span class="line">    字段名 字段类型 [字段约束],</span><br><span class="line">    字段名 字段类型 [字段约束],</span><br><span class="line">    ...</span><br><span class="line">    字段名 字段类型 [字段约束]</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>例:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> stuinfo(</span><br><span class="line">    stuid <span class="built_in">INT</span>,</span><br><span class="line">    stuname <span class="built_in">VARCHAR</span>(<span class="number">20</span>),</span><br><span class="line">    stugender <span class="built_in">CHAR</span>,</span><br><span class="line">    email <span class="built_in">VARCHAR</span>(<span class="number">20</span>),</span><br><span class="line">    borndate DATETIME</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="常用类型"><a href="#常用类型" class="headerlink" title="常用类型"></a>常用类型</h4><ul>
+<li>int：整型 (TINYINT SMALLINT INT BIGINT)</li>
+<li>double/float：浮点型，例如double(5,2)表示整数+小数一共最多5位，其中必须有2位小数，即最大值为999.99</li>
+<li>decimal：浮点型，在表示钱方面使用该类型，因为不会出现精度缺失问题</li>
+<li>char：固定长度字符串类型；char(n)的n可选; char(4) 中4代表<strong>字符个数</strong></li>
+<li>varchar：可变长度字符串类型；varchar(n)的n必须要写</li>
+<li>text：字符串类型；表示存储较长文本</li>
+</ul>
+<img src="/2020/02/01/mysql学习/table.png">
+
+
+<ul>
+<li>blob：二进制型[字节类型]；//jpg mp3 avi</li>
+<li>date：日期类型，格式为：yyyy-MM-dd</li>
+<li>time：时间类型，格式为：hh:mm:ss</li>
+<li>timestamp/datetime：时间戳类型；日期+时间 yyyyMMdd hhmmss</li>
+</ul>
+<img src="/2020/02/01/mysql学习/table2.png">
+
+<hr>
+<h4 id="常见约束"><a href="#常见约束" class="headerlink" title="常见约束"></a>常见约束</h4><p>用于限制表中字段的数据,保证表中数据的一致性 准确性 可靠性</p>
+<ul>
+<li>NOT NULL 非空</li>
+<li>DEFAULT 默认</li>
+<li>CHECK[MySQL不支持] 检查 限制该字段的值必须满足指定条件</li>
+<li>FOREIGN KEY 外键: 用于限制两个表的关系,要求外键列的值必须来自主表的关联列(被引用的表为主表,引用的表为从表)</li>
+</ul>
+<p>要求:</p>
+<p>①主表的关联列和从表的关联列的类型必须一致,意义相同,名称没有要求</p>
+<p>②主表的关联列必须是主键</p>
+<ul>
+<li>PRIMARY KEY 主键: 限制该字段的值<strong>非空</strong>且不能重复, 可以单个项作为主键也可以是组合主键</li>
+<li>UNIQUE 唯一: 限制该字段的值不能重复, 可以单个项为唯一也可以是组合唯一</li>
+</ul>
+<img src="/2020/02/01/mysql学习/key.png">
+
+<p>简单来说主键≈唯一+NOT NULL</p>
+<p>例:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> stuinfo(</span><br><span class="line">    stuid <span class="built_in">INT</span> PRIMARY <span class="keyword">KEY</span> AUTO_INCREMENT //自增</span><br><span class="line">    stuname <span class="built_in">VARCHAR</span>(<span class="number">20</span>) <span class="keyword">UNIQUE</span> <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">    stugender <span class="built_in">CHAR</span> <span class="keyword">DEFAULT</span> <span class="string">'男'</span>,</span><br><span class="line">    email <span class="built_in">VARCHAR</span>(<span class="number">20</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">    majorid <span class="built_in">INT</span>,</span><br><span class="line">    [<span class="keyword">CONSTRAINT</span> fk_stuinfo_major] <span class="keyword">FOREIGN</span> <span class="keyword">KEY</span>(majorid) <span class="keyword">REFERENCES</span> major(<span class="keyword">id</span>)</span><br><span class="line">    <span class="comment">/*外键不能直接在后面加,</span></span><br><span class="line"><span class="comment">    需要最后一句[可不写CONSTRAINT 约束名[一般为fk_从表名_主表名]] </span></span><br><span class="line"><span class="comment">    FROEIGN(作为外键的列) REFERENCES　引用的表(列)</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>自增:</p>
+<p>①自增要设置在键上(主键/唯一键) </p>
+<p>②自增列为数值型 </p>
+<p>③一个表最多只能有一个自增长列</p>
+<hr>
+<h3 id="修改ALTER"><a href="#修改ALTER" class="headerlink" title="修改ALTER"></a>修改ALTER</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">ADD</span> | <span class="keyword">MODIFY</span> | <span class="keyword">CHANGE</span> | <span class="keyword">DROP</span> <span class="keyword">COLUMN</span> 字段名 字段类型 [字段约束];</span><br></pre></td></tr></table></figure>
+
+<p>修改表名</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">RENAME</span> <span class="keyword">TO</span> 新表名;</span><br></pre></td></tr></table></figure>
+
+<p>修改字段名</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">CHANGE</span> <span class="keyword">COLUMN</span> 列名 新列名 字段类型 [字段约束];</span><br></pre></td></tr></table></figure>
+
+<p>修改字段类型/字段约束</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">MODIFY</span> <span class="keyword">COLUMN</span> 列名 字段类型/字段约束;</span><br></pre></td></tr></table></figure>
+
+<p>删除字段</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">DROP</span> <span class="keyword">COLUMN</span> 列名;</span><br></pre></td></tr></table></figure>
+
+<h3 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> <span class="keyword">IF</span> <span class="keyword">EXISTS</span> 表名;</span><br></pre></td></tr></table></figure>
+
+<h3 id="复制表"><a href="#复制表" class="headerlink" title="复制表"></a>复制表</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> 新表名 <span class="keyword">LIKE</span> 旧表名;</span><br><span class="line"><span class="comment"># 仅复制表的结构,不复制表的内容</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> 新表名 <span class="keyword">SELECT</span> * <span class="keyword">FROM</span> 库名.表名;</span><br><span class="line"><span class="comment"># 复制表的结构+内容</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> 新表名 <span class="keyword">SELECT</span> 想要获得的表的结构的字段名 <span class="keyword">FROM</span> 库名.表名 <span class="keyword">WHERE</span> <span class="number">1</span>=<span class="number">2</span>;</span><br><span class="line"><span class="comment"># 复制需要获得的字段的结构,但不获取其内容</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="DML"><a href="#DML" class="headerlink" title="DML"></a>DML</h1><p>Data Manipulation Language</p>
+<!--
+insert
+
+update
+
+delete
+-->
+
+<h2 id="插入数据"><a href="#插入数据" class="headerlink" title="插入数据"></a>插入数据</h2><h3 id="方式一"><a href="#方式一" class="headerlink" title="方式一"></a>方式一</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> 表名[(字段名<span class="number">1</span>,字段名<span class="number">2</span>,...)] <span class="keyword">values</span>(值<span class="number">1</span>,值<span class="number">2</span>,...); //插入单行</span><br><span class="line"><span class="comment">#插入多行则 values(值1,值2,...),(值1,值2,...),...(值1,值2,...);</span></span><br><span class="line"><span class="comment">#省略列表则默认全部字段</span></span><br></pre></td></tr></table></figure>
+
+<p>①字段和值列表一一对应,类型、约束等必须匹配</p>
+<p>②数值型不用引号，非数值型要</p>
+<p>③字段顺序无要求</p>
+<h3 id="方式二"><a href="#方式二" class="headerlink" title="方式二"></a>方式二</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> 表名</span><br><span class="line"><span class="keyword">SET</span> 列名=值,列名=值,...</span><br></pre></td></tr></table></figure>
+
+<p>方式一支持插入多行、子查询，方式二不支持</p>
+<h2 id="修改"><a href="#修改" class="headerlink" title="修改"></a>修改</h2><h3 id="修改单个表"><a href="#修改单个表" class="headerlink" title="修改单个表"></a>修改单个表</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> 表名         //①</span><br><span class="line"><span class="keyword">SET</span> 列=值,列=值,... //②</span><br><span class="line"><span class="keyword">WHERE</span> 筛选条件      //③</span><br></pre></td></tr></table></figure>
+
+<p>执行顺序:①③②</p>
+<h3 id="修改多个表"><a href="#修改多个表" class="headerlink" title="修改多个表"></a>修改多个表</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#sql92语法</span></span><br><span class="line"><span class="keyword">UPDATE</span> 表<span class="number">1</span> 别名,表<span class="number">2</span> 别名,...</span><br><span class="line"><span class="keyword">SET</span> 列=值,..</span><br><span class="line"><span class="keyword">WHERE</span> 连接条件</span><br><span class="line"><span class="keyword">AND</span> 筛选条件;</span><br><span class="line"></span><br><span class="line"><span class="comment">#sql99语法</span></span><br><span class="line"><span class="keyword">UPDATE</span> 表<span class="number">1</span> 别名,</span><br><span class="line"><span class="keyword">INNER</span> | <span class="keyword">LEFT</span> | <span class="keyword">RIGHT</span> <span class="keyword">JOIN</span> 表<span class="number">2</span> 别名</span><br><span class="line"><span class="keyword">ON</span> 连接条件</span><br><span class="line"><span class="keyword">SET</span> 列=值,..</span><br><span class="line"><span class="keyword">WHERE</span> 筛选条件</span><br></pre></td></tr></table></figure>
+
+<h2 id="删除-1"><a href="#删除-1" class="headerlink" title="删除"></a>删除</h2><h3 id="方式一-delete"><a href="#方式一-delete" class="headerlink" title="方式一 delete"></a>方式一 delete</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> 表名 <span class="keyword">WHERE</span> 筛选条件;</span><br><span class="line"><span class="comment"># 所有字段都删除</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="方式二-truncate"><a href="#方式二-truncate" class="headerlink" title="方式二 truncate"></a>方式二 truncate</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">TRUNCATE</span> <span class="keyword">TABLE</span> 表名;</span><br><span class="line"><span class="comment"># 删除表中所有数据</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="delete与truncate的区别"><a href="#delete与truncate的区别" class="headerlink" title="delete与truncate的区别"></a>delete与truncate的区别</h3><p>①delete可加where条件,truncate不可</p>
+<p>②truncate效率更高</p>
+<p>③删除自增长列后再插入数据,自增长的列的开始数值不同</p>
+<ul>
+<li>使用delete删除后,重新插入数据,记录从断点处开始</li>
+<li>使用truncate删除后,重新插入数据,记录从1开始</li>
+</ul>
+<p><code>truncate删除相当于把表drop了再建一个相同结构的表</code></p>
+<p>④delete删除数据,会返回影响的行数,truncate返回0行受影响</p>
+<img src="/2020/02/01/mysql学习/truncate.png">
+
+<p>⑤delete删除数据,支持事务回滚(恢复),truncate不支持</p>
 
       
 
@@ -434,8 +654,8 @@ SHOW COLUMNS FROM 表名;</p>
 <nav id="article-nav">
   
   
-    <a href="/2019/09/25/xxxxxxCTF/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">NJUPTCTF2019</div>
+    <a href="/2019/09/25/JarvisOJ/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">jarvisOJ</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -462,7 +682,7 @@ SHOW COLUMNS FROM 表名;</p>
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#基础查询"><span class="toc-number">1.</span> <span class="toc-text">基础查询</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#执行顺序"><span class="toc-number">1.1.</span> <span class="toc-text">执行顺序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AS关键字"><span class="toc-number">1.2.</span> <span class="toc-text">AS关键字</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CONCAT拼接函数"><span class="toc-number">1.3.</span> <span class="toc-text">CONCAT拼接函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MySQL加号"><span class="toc-number">1.4.</span> <span class="toc-text">MySQL加号</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DISTINCT去重"><span class="toc-number">1.5.</span> <span class="toc-text">DISTINCT去重</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#查看表的结构"><span class="toc-number">1.6.</span> <span class="toc-text">查看表的结构</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#条件查询"><span class="toc-number">2.</span> <span class="toc-text">条件查询</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#执行顺序-1"><span class="toc-number">2.1.</span> <span class="toc-text">执行顺序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关系-条件-表达式"><span class="toc-number">2.2.</span> <span class="toc-text">关系(条件)表达式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#逻辑表达式"><span class="toc-number">2.3.</span> <span class="toc-text">逻辑表达式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#模糊查询"><span class="toc-number">2.4.</span> <span class="toc-text">模糊查询</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#排序查询"><span class="toc-number">3.</span> <span class="toc-text">排序查询</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#执行顺序-2"><span class="toc-number">3.1.</span> <span class="toc-text">执行顺序</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#常见函数"><span class="toc-number">4.</span> <span class="toc-text">常见函数</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#字符函数"><span class="toc-number">4.1.</span> <span class="toc-text">字符函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数学函数"><span class="toc-number">4.2.</span> <span class="toc-text">数学函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#日期函数"><span class="toc-number">4.3.</span> <span class="toc-text">日期函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#流程控制函数"><span class="toc-number">4.4.</span> <span class="toc-text">流程控制函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分组-聚合-函数"><span class="toc-number">4.5.</span> <span class="toc-text">分组(聚合)函数</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#分组查询"><span class="toc-number">5.</span> <span class="toc-text">分组查询</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#执行顺序-3"><span class="toc-number">5.1.</span> <span class="toc-text">执行顺序</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#DQL"><span class="toc-number">1.</span> <span class="toc-text">DQL</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#基础查询"><span class="toc-number">1.1.</span> <span class="toc-text">基础查询</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#执行顺序"><span class="toc-number">1.1.1.</span> <span class="toc-text">执行顺序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AS关键字"><span class="toc-number">1.1.2.</span> <span class="toc-text">AS关键字</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CONCAT拼接函数"><span class="toc-number">1.1.3.</span> <span class="toc-text">CONCAT拼接函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MySQL加号"><span class="toc-number">1.1.4.</span> <span class="toc-text">MySQL加号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DISTINCT去重"><span class="toc-number">1.1.5.</span> <span class="toc-text">DISTINCT去重</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查看表的结构"><span class="toc-number">1.1.6.</span> <span class="toc-text">查看表的结构</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#条件查询"><span class="toc-number">1.2.</span> <span class="toc-text">条件查询</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#执行顺序-1"><span class="toc-number">1.2.1.</span> <span class="toc-text">执行顺序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#关系-条件-表达式"><span class="toc-number">1.2.2.</span> <span class="toc-text">关系(条件)表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#逻辑表达式"><span class="toc-number">1.2.3.</span> <span class="toc-text">逻辑表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#模糊查询"><span class="toc-number">1.2.4.</span> <span class="toc-text">模糊查询</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#排序查询"><span class="toc-number">1.3.</span> <span class="toc-text">排序查询</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#执行顺序-2"><span class="toc-number">1.3.1.</span> <span class="toc-text">执行顺序</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常见函数"><span class="toc-number">1.4.</span> <span class="toc-text">常见函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#字符函数"><span class="toc-number">1.4.1.</span> <span class="toc-text">字符函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数学函数"><span class="toc-number">1.4.2.</span> <span class="toc-text">数学函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#日期函数"><span class="toc-number">1.4.3.</span> <span class="toc-text">日期函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#流程控制函数"><span class="toc-number">1.4.4.</span> <span class="toc-text">流程控制函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分组-聚合-函数"><span class="toc-number">1.4.5.</span> <span class="toc-text">分组(聚合)函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分组查询"><span class="toc-number">1.5.</span> <span class="toc-text">分组查询</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#执行顺序-3"><span class="toc-number">1.5.1.</span> <span class="toc-text">执行顺序</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#连接-多表-查询-JOIN"><span class="toc-number">1.6.</span> <span class="toc-text">连接(多表)查询 JOIN</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SQL92语法"><span class="toc-number">1.7.</span> <span class="toc-text">SQL92语法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SQL99语法"><span class="toc-number">1.8.</span> <span class="toc-text">SQL99语法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SQL92语法和SQL99语法的区别"><span class="toc-number">1.8.1.</span> <span class="toc-text">SQL92语法和SQL99语法的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JOIN连接总结"><span class="toc-number">1.8.2.</span> <span class="toc-text">JOIN连接总结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#子查询"><span class="toc-number">1.9.</span> <span class="toc-text">子查询</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#特点"><span class="toc-number">1.9.1.</span> <span class="toc-text">特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#按子查询语句出现的位置分类"><span class="toc-number">1.9.2.</span> <span class="toc-text">按子查询语句出现的位置分类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分页查询-LIMIT"><span class="toc-number">1.10.</span> <span class="toc-text">分页查询 LIMIT</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#执行顺序-4"><span class="toc-number">1.10.1.</span> <span class="toc-text">执行顺序</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#联合查询"><span class="toc-number">1.11.</span> <span class="toc-text">联合查询</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#DDL"><span class="toc-number">2.</span> <span class="toc-text">DDL</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#库的管理"><span class="toc-number">2.1.</span> <span class="toc-text">库的管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建数据库"><span class="toc-number">2.1.1.</span> <span class="toc-text">创建数据库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#删除数据库"><span class="toc-number">2.1.2.</span> <span class="toc-text">删除数据库</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#表的管理"><span class="toc-number">2.2.</span> <span class="toc-text">表的管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建表"><span class="toc-number">2.2.1.</span> <span class="toc-text">创建表</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#常用类型"><span class="toc-number">2.2.1.1.</span> <span class="toc-text">常用类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#常见约束"><span class="toc-number">2.2.1.2.</span> <span class="toc-text">常见约束</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#修改ALTER"><span class="toc-number">2.2.2.</span> <span class="toc-text">修改ALTER</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#删除"><span class="toc-number">2.2.3.</span> <span class="toc-text">删除</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#复制表"><span class="toc-number">2.2.4.</span> <span class="toc-text">复制表</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#DML"><span class="toc-number">3.</span> <span class="toc-text">DML</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#插入数据"><span class="toc-number">3.1.</span> <span class="toc-text">插入数据</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#方式一"><span class="toc-number">3.1.1.</span> <span class="toc-text">方式一</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#方式二"><span class="toc-number">3.1.2.</span> <span class="toc-text">方式二</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#修改"><span class="toc-number">3.2.</span> <span class="toc-text">修改</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#修改单个表"><span class="toc-number">3.2.1.</span> <span class="toc-text">修改单个表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#修改多个表"><span class="toc-number">3.2.2.</span> <span class="toc-text">修改多个表</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#删除-1"><span class="toc-number">3.3.</span> <span class="toc-text">删除</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#方式一-delete"><span class="toc-number">3.3.1.</span> <span class="toc-text">方式一 delete</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#方式二-truncate"><span class="toc-number">3.3.2.</span> <span class="toc-text">方式二 truncate</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#delete与truncate的区别"><span class="toc-number">3.3.3.</span> <span class="toc-text">delete与truncate的区别</span></a></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -574,19 +794,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">sqli-labs</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">sqli-labs-master_les11</a>
+                <a href="javascript:void(0)" class="js-tag color4">CTF</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">keng</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">CTF</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -599,6 +811,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">爬虫</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">sqli-labs</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">sqli-labs-master_les11</a>
               </li>
             
             <div class="clearfix"></div>
