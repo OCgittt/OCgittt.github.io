@@ -6,20 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://ocgittt.github.io">
-  <title>blogs from wordpress to hexo | OC的博客</title>
+  <title>wordpress的文章转到hexo | OC的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="下面是将wordpress的文章转移到hexo上的步骤">
-<meta name="keywords" content="keng">
+  <meta name="description" content="本文是将wordpress的文章转移到hexo上的步骤">
+<meta name="keywords" content="问题">
 <meta property="og:type" content="article">
-<meta property="og:title" content="blogs from wordpress to hexo">
+<meta property="og:title" content="wordpress的文章转到hexo">
 <meta property="og:url" content="https://ocgittt.github.io/2019/07/27/blogs-from-wordpress-to-hexo/index.html">
 <meta property="og:site_name" content="OC的博客">
-<meta property="og:description" content="下面是将wordpress的文章转移到hexo上的步骤">
+<meta property="og:description" content="本文是将wordpress的文章转移到hexo上的步骤">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-02-01T08:03:37.019Z">
+<meta property="og:image" content="https://ocgittt.github.io/2019/07/27/blogs-from-wordpress-to-hexo/p1.png">
+<meta property="og:updated_time" content="2020-02-17T09:50:52.289Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="blogs from wordpress to hexo">
-<meta name="twitter:description" content="下面是将wordpress的文章转移到hexo上的步骤">
+<meta name="twitter:title" content="wordpress的文章转到hexo">
+<meta name="twitter:description" content="本文是将wordpress的文章转移到hexo上的步骤">
+<meta name="twitter:image" content="https://ocgittt.github.io/2019/07/27/blogs-from-wordpress-to-hexo/p1.png">
   
     <link rel="alternative" href="/atom.xml" title="OC的博客" type="application/atom+xml">
   
@@ -152,7 +154,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      blogs from wordpress to hexo
+      wordpress的文章转到hexo
     </h1>
   
 
@@ -167,37 +169,44 @@
       
         <!--作为一名零氪党,终于来到hexo阵营-->
 
-<p>下面是将wordpress的文章转移到hexo上的步骤</p>
+<p>本文是将wordpress的文章转移到hexo上的步骤</p>
 <a id="more"></a>
-<ul>
-<li>wordpress:导出文章</li>
-<li>hexo:安装插件👇<blockquote>
+<p>1.wordpress:导出文章</p>
+<p>2.hexo:安装插件</p>
+<blockquote>
 <p>npm install hexo-migrator-wordpress –save</p>
+</blockquote>
+<p>如果没报错则直接到3.</p>
+<p>如果报错,</p>
 <blockquote>
-<p>如果报错:
-npm WARN deprecated <a href="mailto:left-pad@1.3.0" target="_blank" rel="noopener">left-pad@1.3.0</a>: use String.prototype.padStart()</p>
+<p>npm WARN deprecated <a href="mailto:left-pad@1.3.0" target="_blank" rel="noopener">left-pad@1.3.0</a>: use String.prototype.padStart()</p>
+</blockquote>
+<p>2.1改成淘宝源</p>
 <blockquote>
-<p>则改成淘宝源
-先改成淘宝源npm config set registry <a href="https://registry.npm.taobao.org" target="_blank" rel="noopener">https://registry.npm.taobao.org</a>
- 再安装一遍npm install hexo-migrator-wordpress –save
- 然后会提示要安装eslint
- 于是安装eslintnpm install eslint –save
- 这时会提示要安装acorn
- 继续安装acornnpm install acorn –save
- 这个时候再重新安装一次migrator</p>
+<p>npm config set registry <a href="https://registry.npm.taobao.org" target="_blank" rel="noopener">https://registry.npm.taobao.org</a></p>
 </blockquote>
+<p>2.2再安装一遍</p>
+<blockquote>
+<p>npm install hexo-migrator-wordpress –save</p>
 </blockquote>
+<p>2.3提示要安装eslint
+   <!--于是安装eslint--></p>
+<blockquote>
+<p>npm install eslint –save</p>
 </blockquote>
-</li>
-</ul>
-<ul>
-<li>导入文章👇<blockquote>
+<p>2.4提示要安装acorn</p>
+<blockquote>
+<p>npm install acorn –save</p>
+</blockquote>
+<p>2.5完成了提示所需要的东西之后就可以安装hexo-migrator-wordpress插件了</p>
+<p>3.导入文章</p>
+<blockquote>
 <p>hexo migrate wordpress &lt;source&gt;</p>
 </blockquote>
-</li>
-</ul>
-<p><a href="https://www.jianshu.com/p/75989cd399a6" target="_blank" rel="noopener">jsyzchen-简书</a>
-<a href="https://segmentfault.com/q/1010000019471594" target="_blank" rel="noopener">jokrface的回答-segmentfault</a></p>
+<p><a href="https://segmentfault.com/q/1010000019471594" target="_blank" rel="noopener">segmentfault-jokrface的回答</a>如下图</p>
+<img src="/2019/07/27/blogs-from-wordpress-to-hexo/p1.png">
+
+<p>从wordpress到hexo完整的过程参考<a href="https://www.jianshu.com/p/75989cd399a6" target="_blank" rel="noopener">简书-jsyzchen</a></p>
 
       
 
@@ -211,7 +220,7 @@ npm WARN deprecated <a href="mailto:left-pad@1.3.0" target="_blank" rel="noopene
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">keng</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">问题</a>
         		</li>
       		
 		</ul>
@@ -291,7 +300,7 @@ npm WARN deprecated <a href="mailto:left-pad@1.3.0" target="_blank" rel="noopene
     </a>
   
   
-    <a href="/2019/07/27/本地图片显示不出来的坑/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2019/07/27/HEXO本地图片显示不出来/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">本地图片显示不出来的解决方案</div>
       <i class="icon-circle-right"></i>
     </a>
@@ -444,6 +453,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">keng</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">问题</a>
               </li>
              
               <li class="article-tag-list-item">
