@@ -6,24 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://ocgittt.github.io">
-  <title>notes | OC的博客</title>
+  <title>Archives: 2020/4 | OC的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一些linux命令findfind &amp;lt;指定目录&amp;gt; &amp;lt;指定文件&amp;gt; &amp;lt;指定动作&amp;gt;">
-<meta name="keywords" content="notes">
-<meta property="og:type" content="article">
-<meta property="og:title" content="notes">
-<meta property="og:url" content="https://ocgittt.github.io/2019/08/18/notes/index.html">
+  <meta name="description" content="what&apos;s your problem">
+<meta property="og:type" content="website">
+<meta property="og:title" content="OC的博客">
+<meta property="og:url" content="https://ocgittt.github.io/archives/2020/04/index.html">
 <meta property="og:site_name" content="OC的博客">
-<meta property="og:description" content="一些linux命令findfind &amp;lt;指定目录&amp;gt; &amp;lt;指定文件&amp;gt; &amp;lt;指定动作&amp;gt;">
+<meta property="og:description" content="what&apos;s your problem">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://ocgittt.github.io/2019/08/18/notes/findquotes.png">
-<meta property="og:image" content="https://ocgittt.github.io/2019/08/18/notes/passwdoc.png">
-<meta property="og:image" content="https://ocgittt.github.io/2019/08/18/notes/passwdroot.png">
-<meta property="og:updated_time" content="2019-12-15T15:27:06.199Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="notes">
-<meta name="twitter:description" content="一些linux命令findfind &amp;lt;指定目录&amp;gt; &amp;lt;指定文件&amp;gt; &amp;lt;指定动作&amp;gt;">
-<meta name="twitter:image" content="https://ocgittt.github.io/2019/08/18/notes/findquotes.png">
+<meta name="twitter:title" content="OC的博客">
+<meta name="twitter:description" content="what&apos;s your problem">
   
     <link rel="alternative" href="/atom.xml" title="OC的博客" type="application/atom+xml">
   
@@ -149,166 +143,36 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-notes" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      notes
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2020" class="archive-year">2020</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2020/04/11/fuhao/" class="archive-article-date">
+  	<time datetime="2020-04-11T05:41:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-11</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2020/04/11/fuhao/">PHPnotes</a>
     </h1>
   
 
-        
-        <a href="/2019/08/18/notes/" class="archive-article-date">
-  	<time datetime="2019-08-18T05:56:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-18</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="一些linux命令"><a href="#一些linux命令" class="headerlink" title="一些linux命令"></a>一些linux命令</h1><h2 id="find"><a href="#find" class="headerlink" title="find"></a>find</h2><p><strong>find &lt;指定目录&gt; &lt;指定文件&gt; &lt;指定动作&gt;</strong></p>
-<a id="more"></a>
-
-<p>例如</p>
-<blockquote>
-<p>find /var/www/html/ -name test*
-(可以不要指定动作)</p>
-</blockquote>
-<blockquote>
-<p>find /var/www/html/ -name test* ls
-find /var/www/html/ -name “test*” ls</p>
-</blockquote>
-<p>感觉要不要双引号问题不大</p>
-<img src="/2019/08/18/notes/findquotes.png">
-
-
-<p>find &lt;指定目录&gt; -type f -mmin -10
-查找10分钟内更新过的普通文件,如果不加-type f,则会显示目录+普通文件+特殊文件</p>
-<blockquote>
-<p>find /var/www/html/ -type f -mmin -10</p>
-</blockquote>
-<h2 id="修改ssh密码"><a href="#修改ssh密码" class="headerlink" title="修改ssh密码"></a>修改ssh密码</h2><p><strong>passwd username</strong></p>
-<p>例:</p>
-<blockquote>
-<p>passwd oc</p>
-</blockquote>
-<img src="/2019/08/18/notes/passwdoc.png">
-
-<blockquote>
-<p>passwd root</p>
-</blockquote>
-<img src="/2019/08/18/notes/passwdroot.png">
-
-<h2 id="详细信息"><a href="#详细信息" class="headerlink" title="详细信息"></a>详细信息</h2><blockquote>
-<p>ls -l   //(ll)</p>
-</blockquote>
-<h2 id="给权限"><a href="#给权限" class="headerlink" title="给权限"></a>给权限</h2><p>给单个文件777权限</p>
-<blockquote>
-<p>chmod 777 filename</p>
-</blockquote>
-<p>给文件夹及其子文件777权限</p>
-<blockquote>
-<p>chmod 777 -R 文件夹名</p>
-</blockquote>
-<h2 id="sed"><a href="#sed" class="headerlink" title="sed"></a>sed</h2><p>用途:可修改文件</p>
-<p>用法: </p>
-<blockquote>
-<p>sed [-hnV][-e&lt;script&gt;][-f&lt;script文件&gt;][文本文件]</p>
-</blockquote>
-<ul>
-<li>-h或–help 显示帮助。</li>
-<li>-n或–quiet或–silent 仅显示script处理后的结果。</li>
-<li>-V或–version 显示版本信息。</li>
-</ul>
-<ul>
-<li>-e&lt;script&gt;或–expression=&lt;script&gt; 以选项中指定的script来处理输入的文本文件。</li>
-<li>-f&lt;script文件&gt;或–file=&lt;script文件&gt; 以选项中指定的script文件来处理输入的文本文件。</li>
-</ul>
-<ul>
-<li>a ：新增， a 的后面可以接字串，而这些字串会在新的一行出现(目前的下一行)～</li>
-<li>c ：取代， c 的后面可以接字串，这些字串可以取代 n1,n2 之间的行！</li>
-<li>d ：删除，因为是删除啊，所以 d 后面通常不接任何咚咚；</li>
-<li>i ：插入， i 的后面可以接字串，而这些字串会在新的一行出现(目前的上一行)；</li>
-<li>p ：打印，亦即将某个选择的数据印出。通常 p 会与参数 sed -n 一起运行～</li>
-<li>s ：取代，可以直接进行取代的工作哩！通常这个 s 的动作可以搭配正规表示法！</li>
-</ul>
-<p>例</p>
-<blockquote>
-<p>sed -e 2a\new test.php
-//  会在test.php的第二行加上’new’</p>
-</blockquote>
-<p>需要注意的是,上面这个命令之会回显出来的时候加上,而不是真正修改文件,直接修改文件需要用到-i</p>
-<blockquote>
-<p>sed -i 2a\new test.php
-//  这样就是直接在test.php文件第二行插入’new’  </p>
-</blockquote>
-<h2 id="数据库命令"><a href="#数据库命令" class="headerlink" title="数据库命令"></a>数据库命令</h2><h3 id="备份指定数据库"><a href="#备份指定数据库" class="headerlink" title="备份指定数据库"></a>备份指定数据库</h3><blockquote>
-<p>mysqldump -u 用户名 -p 数据库名 &gt; back.sql</p>
-</blockquote>
-<h3 id="备份所有数据库"><a href="#备份所有数据库" class="headerlink" title="备份所有数据库"></a>备份所有数据库</h3><blockquote>
-<p>mysqldump –all-databases &gt; bak.sql</p>
-</blockquote>
-<h3 id="还原数据库"><a href="#还原数据库" class="headerlink" title="还原数据库"></a>还原数据库</h3><blockquote>
-<p>mysql -u 用户名 -p 数据库名 &lt; back.sql</p>
-</blockquote>
-<h3 id="修改用户权限"><a href="#修改用户权限" class="headerlink" title="修改用户权限"></a>修改用户权限</h3><blockquote>
-<p>grant all privileges on 库名.表名 to ‘用户名‘@’IP地址’ identified by ‘密码’ with grant option;     </p>
-</blockquote>
-<h3 id="刷新权限表"><a href="#刷新权限表" class="headerlink" title="刷新权限表"></a>刷新权限表</h3><blockquote>
-<p>flush privileges;</p>
-</blockquote>
-<h3 id="修改密码"><a href="#修改密码" class="headerlink" title="修改密码"></a>修改密码</h3><blockquote>
-<p>update mysql.user set password=password(“123456”) where user=”root”;</p>
-</blockquote>
-<blockquote>
-<p>CREATE USER ‘John’@’%’ IDENTIFIED BY “123”;</p>
-</blockquote>
-<blockquote>
-<p>set password for userName@localhost = password(‘NewPassword’)</p>
-</blockquote>
-<h1 id="docker"><a href="#docker" class="headerlink" title="docker"></a>docker</h1><h2 id="拉镜像"><a href="#拉镜像" class="headerlink" title="拉镜像"></a>拉镜像</h2><blockquote>
-<p>docker pull [image]</p>
-</blockquote>
-<h2 id="查看当前镜像"><a href="#查看当前镜像" class="headerlink" title="查看当前镜像"></a>查看当前镜像</h2><blockquote>
-<p>docker images</p>
-</blockquote>
-<h2 id="新建容器"><a href="#新建容器" class="headerlink" title="新建容器"></a>新建容器</h2><blockquote>
-<p>docker run -d -p [host port]:[docker port] [image]</p>
-</blockquote>
-<h2 id="查看容器"><a href="#查看容器" class="headerlink" title="查看容器"></a>查看容器</h2><blockquote>
-<p>docker ps -a</p>
-</blockquote>
-<h2 id="拷贝文件"><a href="#拷贝文件" class="headerlink" title="拷贝文件"></a>拷贝文件</h2><blockquote>
-<p>docker cp [outfile] [container id]:[infile]</p>
-</blockquote>
-<h2 id="进去容器"><a href="#进去容器" class="headerlink" title="进去容器"></a>进去容器</h2><blockquote>
-<p>docker exec -it [container id] bash</p>
-</blockquote>
-<h2 id="启动容器"><a href="#启动容器" class="headerlink" title="启动容器"></a>启动容器</h2><blockquote>
-<p>docker start [container id]</p>
-</blockquote>
-<h2 id="停止容器"><a href="#停止容器" class="headerlink" title="停止容器"></a>停止容器</h2><blockquote>
-<p>docker stop [container id]</p>
-</blockquote>
-<h2 id="删除容器-注意要关了容器才能删"><a href="#删除容器-注意要关了容器才能删" class="headerlink" title="删除容器(注意要关了容器才能删)"></a>删除容器(注意要关了容器才能删)</h2><blockquote>
-<p>docker rm [container id]</p>
-</blockquote>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-        <div class="article-pop-out tagcloud">
-          <i class="icon-tuding"></i>
-          <a class="article-tag-list-link color3">置顶</a>
-        </div>
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -320,128 +184,19 @@ find /var/www/html/ -name “test*” ls</p>
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://ocgittt.github.io/2019/08/18/notes/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2019/09/25/xxxxxxCTF/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          NJUPTCTF2019
-        
-      </div>
-    </a>
   
   
-    <a href="/2019/08/10/upload-labs-master/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">upload-labs-master</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-        <div class="toc-container tooltip-left">
-            <i class="icon-font icon-category"></i>
-            <div class="tooltip tooltip-east">
-                <span class="tooltip-item">
-                </span>
-                <span class="tooltip-content">
-                    <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一些linux命令"><span class="toc-number">1.</span> <span class="toc-text">一些linux命令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#find"><span class="toc-number">1.1.</span> <span class="toc-text">find</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#修改ssh密码"><span class="toc-number">1.2.</span> <span class="toc-text">修改ssh密码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#详细信息"><span class="toc-number">1.3.</span> <span class="toc-text">详细信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#给权限"><span class="toc-number">1.4.</span> <span class="toc-text">给权限</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sed"><span class="toc-number">1.5.</span> <span class="toc-text">sed</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据库命令"><span class="toc-number">1.6.</span> <span class="toc-text">数据库命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#备份指定数据库"><span class="toc-number">1.6.1.</span> <span class="toc-text">备份指定数据库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#备份所有数据库"><span class="toc-number">1.6.2.</span> <span class="toc-text">备份所有数据库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#还原数据库"><span class="toc-number">1.6.3.</span> <span class="toc-text">还原数据库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#修改用户权限"><span class="toc-number">1.6.4.</span> <span class="toc-text">修改用户权限</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#刷新权限表"><span class="toc-number">1.6.5.</span> <span class="toc-text">刷新权限表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#修改密码"><span class="toc-number">1.6.6.</span> <span class="toc-text">修改密码</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#docker"><span class="toc-number">2.</span> <span class="toc-text">docker</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#拉镜像"><span class="toc-number">2.1.</span> <span class="toc-text">拉镜像</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#查看当前镜像"><span class="toc-number">2.2.</span> <span class="toc-text">查看当前镜像</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#新建容器"><span class="toc-number">2.3.</span> <span class="toc-text">新建容器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#查看容器"><span class="toc-number">2.4.</span> <span class="toc-text">查看容器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#拷贝文件"><span class="toc-number">2.5.</span> <span class="toc-text">拷贝文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#进去容器"><span class="toc-number">2.6.</span> <span class="toc-text">进去容器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#启动容器"><span class="toc-number">2.7.</span> <span class="toc-text">启动容器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#停止容器"><span class="toc-number">2.8.</span> <span class="toc-text">停止容器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#删除容器-注意要关了容器才能删"><span class="toc-number">2.9.</span> <span class="toc-text">删除容器(注意要关了容器才能删)</span></a></li></ol></li></ol>
-                    </div>
-                </span>
-            </div>
-        </div>
-        
-    </div>
-</aside>
-
-
-
-  
-  
+    </div></section>
   
 
-  
-
-  
-
-  
+    
 
 
           </div>
@@ -464,8 +219,8 @@ find /var/www/html/ -name “test*” ls</p>
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
-		isArchive: false,
+		isPost: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
