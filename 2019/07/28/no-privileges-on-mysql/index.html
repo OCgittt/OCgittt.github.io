@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="OC的博客">
 <meta property="og:description" content="在Ubuntu18.04上搭建sqli-labs遇到的问题普通用户无权限登录MySQL,修改加密方式">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-02-18T08:39:34.974Z">
+<meta property="og:updated_time" content="2020-06-13T03:50:54.992Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="no privileges on mysql">
 <meta name="twitter:description" content="在Ubuntu18.04上搭建sqli-labs遇到的问题普通用户无权限登录MySQL,修改加密方式">
@@ -167,16 +167,14 @@
       
         <h1 id="在Ubuntu18-04上搭建sqli-labs遇到的问题"><a href="#在Ubuntu18-04上搭建sqli-labs遇到的问题" class="headerlink" title="在Ubuntu18.04上搭建sqli-labs遇到的问题"></a>在Ubuntu18.04上搭建sqli-labs遇到的问题</h1><h2 id="普通用户无权限登录MySQL-修改加密方式"><a href="#普通用户无权限登录MySQL-修改加密方式" class="headerlink" title="普通用户无权限登录MySQL,修改加密方式"></a>普通用户无权限登录MySQL,修改加密方式</h2><a id="more"></a>
 
-<p>安装好环境后,把sqli-labs-master文件夹放到/var/www/html里,本以为万事大吉可以开始玩injection了</p>
-<p>怎料显示个</p>
+<p>安装好环境后,把sqli-labs-master文件夹放到/var/www/html里,显示</p>
 <blockquote>
 <p>Access denied for user ‘root’@’localhost’</p>
 </blockquote>
 <p>搜索到了<a href="https://blog.csdn.net/weixin_41115274/article/details/78974472" target="_blank" rel="noopener">weixin_41115274-[CSDN]</a></p>
-<p>发现是安装环境的时候埋下的祸根</p>
-<p>搜索如何解决</p>
+<p>解决方法</p>
 <ul>
-<li><p>su了之后登录MySQL</p>
+<li><p>su后登录MySQL</p>
 </li>
 <li><p>select user, plugin from mysql.user;</p>
 </li>
@@ -185,23 +183,21 @@
 <li><p>语句1:update mysql.user set authentication_string=PASSWORD(‘123456’),plugin=’mysql_native_password’ where user=’root’;
 flush privileges;清缓存</p>
 </li>
-<li><p>语句2:mysql&gt; ALTER USER ‘root’@’%’ IDENTIFIED WITH mysql_native_password BY ‘123456’;
-(我用的是语句2)</p>
+<li><p>语句2:mysql&gt; ALTER USER ‘root’@’%’ IDENTIFIED WITH mysql_native_password BY ‘123456’;</p>
 </li>
 </ul>
 <p><a href="https://blog.csdn.net/bingjianIT/article/details/82780535" target="_blank" rel="noopener">语句1–codekongs-[CSDN]</a></p>
 <p><a href="https://blog.csdn.net/weixin_41725862/article/details/88045476" target="_blank" rel="noopener">语句2–行走的猪蹄子-[CSDN]</a></p>
-<h1 id="在Ubuntu18-04搭建网站遇到的问题"><a href="#在Ubuntu18-04搭建网站遇到的问题" class="headerlink" title="在Ubuntu18.04搭建网站遇到的问题"></a>在Ubuntu18.04搭建网站遇到的问题</h1><p>作为一名超级新的萌新,以前搭站都是在Windows利用phpstudy搭的…</p>
-<p>后来被师傅劝告在虚拟机上搭会比较好</p>
-<p>因此学习一下怎样在虚拟机上搭站</p>
+<h1 id="在Ubuntu18-04搭建网站遇到的问题"><a href="#在Ubuntu18-04搭建网站遇到的问题" class="headerlink" title="在Ubuntu18.04搭建网站遇到的问题"></a>在Ubuntu18.04搭建网站遇到的问题</h1><p>在Windows可利用phpstudy、xamp等集成环境搭网站</p>
+<p>在虚拟机上安装环境搭站：</p>
 <p><a href="https://blog.csdn.net/timothy93bp/article/details/77530555" target="_blank" rel="noopener">MySQL+php7.0</a></p>
 <p><a href="https://blog.csdn.net/qq_42280544/article/details/83904046" target="_blank" rel="noopener">MySQL+php5.6</a></p>
-<p>为了省事我全用root来跟步骤…可能因为这样导致后来需要给权限才能正常工作</p>
+<p>安装时全用root权限，可能因为这样导致后来需要给权限才能正常工作</p>
 <ul>
 <li>给一个文件夹及其子文件777权限:</li>
 </ul>
 <blockquote>
-<p>chmod -r 777 文件夹名</p>
+<p>chmod -R 777 文件夹名</p>
 </blockquote>
 <ul>
 <li>导入数据库:</li>
@@ -450,11 +446,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">问题</a>
+                <a href="javascript:void(0)" class="js-tag color4">CTF</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">CTF</a>
+                <a href="javascript:void(0)" class="js-tag color3">问题</a>
               </li>
              
               <li class="article-tag-list-item">

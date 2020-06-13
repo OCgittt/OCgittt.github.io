@@ -26,7 +26,7 @@
 <meta property="og:image" content="https://ocgittt.github.io/2020/02/01/mysql学习/table2.png">
 <meta property="og:image" content="https://ocgittt.github.io/2020/02/01/mysql学习/key.png">
 <meta property="og:image" content="https://ocgittt.github.io/2020/02/01/mysql学习/truncate.png">
-<meta property="og:updated_time" content="2020-02-17T09:30:39.832Z">
+<meta property="og:updated_time" content="2020-06-13T04:01:19.094Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mysql学习">
 <meta name="twitter:description" content="mysql -h主机地址 -P端口号-u用户名 -p[密码] 本机可省略-h 3306可省略-P">
@@ -614,6 +614,15 @@ delete
 <p>3.编写事务的sql语句</p>
 <p>4.结束事务</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#提交</span></span><br><span class="line"><span class="keyword">COMMIT</span>;</span><br><span class="line"><span class="comment">#回滚</span></span><br><span class="line"><span class="keyword">ROLLBACK</span>;</span><br></pre></td></tr></table></figure>
+
+<p>存储过程例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">delimiter $$    #分隔符</span><br><span class="line">DROP PROCEDURE IF EXISTS export;</span><br><span class="line">create procedure export(IN tb varchar(30))</span><br><span class="line">begin</span><br><span class="line">DECLARE url varchar(300);</span><br><span class="line">select concat(&quot;select name,value,date into outfile &apos;/var/www/html/files/&quot;,date_format(now(),&apos;%Y%m%d%H%i%s&apos;),&quot;.csv&apos;&quot;,&quot; character set gbk fields terminated by &apos;,&apos; optionally enclosed by&apos;&quot;,&quot;&quot;&quot;&quot;,&quot;&apos;escaped by &apos;&quot;,&quot;&quot;&quot;&quot;,&quot;&apos; lines terminated by &apos;\\r\\n&apos; from (select &apos;name&apos;,&apos;value&apos;,&apos;date&apos; union select name,value,date from &quot;,tb,&quot;)b order by name;&quot;)into url;</span><br><span class="line">select url; #查看是否拼接成功</span><br><span class="line">#执行语句</span><br><span class="line">set @sql=url;</span><br><span class="line">prepare s1 from @sql;</span><br><span class="line">execute s1;</span><br><span class="line">deallocate prepare s1;</span><br><span class="line"></span><br><span class="line">end$$</span><br><span class="line"></span><br><span class="line">delimiter ;</span><br></pre></td></tr></table></figure>
+
+<p>菜鸟教程
+<a href="https://www.runoob.com/w3cnote/mysql-stored-procedure.html" target="_blank" rel="noopener">https://www.runoob.com/w3cnote/mysql-stored-procedure.html</a></p>
+<p>变量声明/赋值
+<a href="https://www.cnblogs.com/missingLBJ/p/8529466.html" target="_blank" rel="noopener">https://www.cnblogs.com/missingLBJ/p/8529466.html</a></p>
+
       
 
       
@@ -706,8 +715,8 @@ delete
     </a>
   
   
-    <a href="/2019/09/25/xxxxxxCTF/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">NJUPTCTF2019</div>
+    <a href="/2019/09/25/JarvisOJ/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">jarvisOJ</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -854,11 +863,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">问题</a>
+                <a href="javascript:void(0)" class="js-tag color4">CTF</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">CTF</a>
+                <a href="javascript:void(0)" class="js-tag color3">问题</a>
               </li>
              
               <li class="article-tag-list-item">
