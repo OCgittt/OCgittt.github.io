@@ -6,19 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://ocgittt.github.io">
-  <title>tags | OC的博客</title>
+  <title>docker | OC的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="what&apos;s your problem">
-<meta property="og:type" content="website">
-<meta property="og:title" content="tags">
-<meta property="og:url" content="https://ocgittt.github.io/tags/index.html">
+  <meta name="description" content="docker笔记">
+<meta name="keywords" content="notes">
+<meta property="og:type" content="article">
+<meta property="og:title" content="docker">
+<meta property="og:url" content="https://ocgittt.github.io/2020/06/21/docker/index.html">
 <meta property="og:site_name" content="OC的博客">
-<meta property="og:description" content="what&apos;s your problem">
+<meta property="og:description" content="docker笔记">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-11T05:27:43.576Z">
+<meta property="og:updated_time" content="2020-06-21T15:33:50.623Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="tags">
-<meta name="twitter:description" content="what&apos;s your problem">
+<meta name="twitter:title" content="docker">
+<meta name="twitter:description" content="docker笔记">
   
     <link rel="alternative" href="/atom.xml" title="OC的博客" type="application/atom+xml">
   
@@ -144,27 +145,39 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="page-" class="article article-type-page " itemscope itemprop="blogPost">
+            <article id="post-docker" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      tags
+      docker
     </h1>
   
 
         
-        <a href="/tags/index.html" class="archive-article-date">
-  	<time datetime="2019-08-11T05:26:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-11</time>
+        <a href="/2020/06/21/docker/" class="archive-article-date">
+  	<time datetime="2020-06-21T15:12:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-21</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>docker笔记</p>
+<a id="more"></a>
+
+<p>参考
+<a href="https://xi4or0uji.github.io/2019/02/19/%E7%94%A8docker%E6%90%AD%E4%B8%AActf%E9%A2%98%E7%9B%AE/" target="_blank" rel="noopener">用docker搭个ctf题目</a>
+<a href="https://help.aliyun.com/document_detail/51853.html" target="_blank" rel="noopener">部署并使用Docker_搭建应用_建站教程_云服务器 ECS-阿里云</a>
+<a href="https://www.jianshu.com/p/ac3e79d8e637" target="_blank" rel="noopener">通过dockerfile文件创建tomcat容器并上传至docker仓库</a>
+<a href="https://blog.csdn.net/zhenliang8/article/details/78330658" target="_blank" rel="noopener">Docker容器使用问题：Failed to get D-Bus connection: Operation not permitted</a>
+<a href="https://blog.csdn.net/qq_17639365/article/details/86655177" target="_blank" rel="noopener">dockerfile——EXPOSE和端口映射参数-p、-P总结</a>
+<a href="https://www.jianshu.com/p/540407aeb55b" target="_blank" rel="noopener">Docker Centos添加SSH服务</a></p>
+<figure class="highlight docker"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#拉镜像</span></span><br><span class="line">docker pull [image]</span><br><span class="line"><span class="comment">#查看当前镜像</span></span><br><span class="line">docker images</span><br><span class="line"><span class="comment">#新建容器 -d 后台运行  -p 映射端口</span></span><br><span class="line">docker <span class="keyword">run</span><span class="bash"> -d -p [host port]:[docker port] [image]</span></span><br><span class="line"><span class="comment">#查看运行中的容器</span></span><br><span class="line">docker ps</span><br><span class="line"><span class="comment">#查看全部容器</span></span><br><span class="line">docker ps -a</span><br><span class="line"><span class="comment">#拷贝文件(注意冒号)</span></span><br><span class="line">docker cp [outfile] [container id]:[infile]</span><br><span class="line"><span class="comment">#进容器</span></span><br><span class="line">docker exec -it [container id] /bin/bash</span><br><span class="line"><span class="comment">#启动容器</span></span><br><span class="line">docker start [container id]</span><br><span class="line"><span class="comment">#停止容器</span></span><br><span class="line">docker stop [container id]</span><br><span class="line"><span class="comment">#删除容器(注意要关了容器才能删)</span></span><br><span class="line">docker rm [container id]</span><br><span class="line"><span class="comment">#删除镜像</span></span><br><span class="line">docker rmi [image]</span><br><span class="line"><span class="comment">#标签(push之前一般都要tag)</span></span><br><span class="line">docker tag [OPTIONS] IMAGE[:TAG] [REGISTRYHOST/][USERNAME/]NAME[:TAG]</span><br><span class="line"><span class="comment">#上传镜像</span></span><br><span class="line">docker push [image][:tag]</span><br></pre></td></tr></table></figure>
+
+
       
 
       
@@ -172,6 +185,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">notes</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -222,7 +246,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://ocgittt.github.io/tags/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://ocgittt.github.io/2020/06/21/docker/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -234,6 +258,16 @@
 </article>
 
   
+<nav id="article-nav">
+  
+  
+    <a href="/2020/05/02/webports/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">目录/端口站点</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -297,7 +331,7 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
