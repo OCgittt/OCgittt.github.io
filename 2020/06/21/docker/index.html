@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="OC的博客">
 <meta property="og:description" content="docker笔记">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-06-22T09:31:19.655Z">
+<meta property="og:updated_time" content="2020-06-22T09:37:37.122Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="docker">
 <meta name="twitter:description" content="docker笔记">
@@ -168,6 +168,12 @@
         <p>docker笔记</p>
 <a id="more"></a>
 
+<p>常用命令</p>
+<figure class="highlight docker"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#拉镜像</span></span><br><span class="line">docker pull [image]</span><br><span class="line"><span class="comment">#查看当前镜像</span></span><br><span class="line">docker images</span><br><span class="line"><span class="comment">#新建容器 -d 后台运行  -p 映射端口</span></span><br><span class="line">docker <span class="keyword">run</span><span class="bash"> -d -p [host port]:[docker port] [image]</span></span><br><span class="line"><span class="comment">#查看运行中的容器</span></span><br><span class="line">docker ps</span><br><span class="line"><span class="comment">#查看全部容器</span></span><br><span class="line">docker ps -a</span><br><span class="line"><span class="comment">#拷贝文件(注意冒号)</span></span><br><span class="line">docker cp [outfile] [container id]:[infile]</span><br><span class="line"><span class="comment">#进容器</span></span><br><span class="line">docker exec -it [container id] /bin/bash</span><br><span class="line"><span class="comment">#启动容器</span></span><br><span class="line">docker start [container id]</span><br><span class="line"><span class="comment">#停止容器</span></span><br><span class="line">docker stop [container id]</span><br><span class="line"><span class="comment">#删除容器(注意要关了容器才能删)</span></span><br><span class="line">docker rm [container id]</span><br><span class="line"><span class="comment">#删除镜像</span></span><br><span class="line">docker rmi [image]</span><br><span class="line"><span class="comment">#标签(push之前一般都要tag)</span></span><br><span class="line">docker tag [OPTIONS] IMAGE[:TAG] [REGISTRYHOST/][USERNAME/]NAME[:TAG]</span><br><span class="line"><span class="comment">#上传镜像</span></span><br><span class="line">docker push [image][:tag]</span><br></pre></td></tr></table></figure>
+
+<p>例</p>
+<figure class="highlight docker"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#拉取镜像</span></span><br><span class="line">docker pull docker.io/ocbiu/gdpc-centos</span><br><span class="line"></span><br><span class="line"><span class="comment">#启动容器</span></span><br><span class="line">docker <span class="keyword">run</span><span class="bash"> -d --name ssh1 -p 10022:22 -p 50071:50070 -p 16011:16010 --privileged=<span class="literal">true</span> docker.io/ocbiu/gdpc-centos:v1 /usr/sbin/init</span></span><br></pre></td></tr></table></figure>
+
 <p>参考</p>
 <p><a href="https://xi4or0uji.github.io/2019/02/19/%E7%94%A8docker%E6%90%AD%E4%B8%AActf%E9%A2%98%E7%9B%AE/" target="_blank" rel="noopener">用docker搭个ctf题目</a></p>
 <p><a href="https://help.aliyun.com/document_detail/51853.html" target="_blank" rel="noopener">部署并使用Docker_搭建应用_建站教程_云服务器 ECS-阿里云</a></p>
@@ -175,10 +181,7 @@
 <p><a href="https://blog.csdn.net/zhenliang8/article/details/78330658" target="_blank" rel="noopener">Docker容器使用问题：Failed to get D-Bus connection: Operation not permitted</a></p>
 <p><a href="https://blog.csdn.net/qq_17639365/article/details/86655177" target="_blank" rel="noopener">dockerfile——EXPOSE和端口映射参数-p、-P总结</a></p>
 <p><a href="https://www.jianshu.com/p/540407aeb55b" target="_blank" rel="noopener">Docker Centos添加SSH服务</a></p>
-<figure class="highlight docker"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#拉镜像</span></span><br><span class="line">docker pull [image]</span><br><span class="line"><span class="comment">#查看当前镜像</span></span><br><span class="line">docker images</span><br><span class="line"><span class="comment">#新建容器 -d 后台运行  -p 映射端口</span></span><br><span class="line">docker <span class="keyword">run</span><span class="bash"> -d -p [host port]:[docker port] [image]</span></span><br><span class="line"><span class="comment">#查看运行中的容器</span></span><br><span class="line">docker ps</span><br><span class="line"><span class="comment">#查看全部容器</span></span><br><span class="line">docker ps -a</span><br><span class="line"><span class="comment">#拷贝文件(注意冒号)</span></span><br><span class="line">docker cp [outfile] [container id]:[infile]</span><br><span class="line"><span class="comment">#进容器</span></span><br><span class="line">docker exec -it [container id] /bin/bash</span><br><span class="line"><span class="comment">#启动容器</span></span><br><span class="line">docker start [container id]</span><br><span class="line"><span class="comment">#停止容器</span></span><br><span class="line">docker stop [container id]</span><br><span class="line"><span class="comment">#删除容器(注意要关了容器才能删)</span></span><br><span class="line">docker rm [container id]</span><br><span class="line"><span class="comment">#删除镜像</span></span><br><span class="line">docker rmi [image]</span><br><span class="line"><span class="comment">#标签(push之前一般都要tag)</span></span><br><span class="line">docker tag [OPTIONS] IMAGE[:TAG] [REGISTRYHOST/][USERNAME/]NAME[:TAG]</span><br><span class="line"><span class="comment">#上传镜像</span></span><br><span class="line">docker push [image][:tag]</span><br></pre></td></tr></table></figure>
 
-<p>例:</p>
-<figure class="highlight docker"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#拉取镜像</span></span><br><span class="line">docker pull docker.io/ocbiu/gdpc-centos</span><br><span class="line"></span><br><span class="line"><span class="comment">#启动容器</span></span><br><span class="line">docker <span class="keyword">run</span><span class="bash"> -d --name ssh1 -p 10022:22 -p 50071:50070 -p 16011:16010 --privileged=<span class="literal">true</span> docker.io/ocbiu/gdpc-centos:v1 /usr/sbin/init</span></span><br></pre></td></tr></table></figure>
       
 
       
@@ -402,19 +405,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">sqli-labs</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">sqli-labs-master_les11</a>
+                <a href="javascript:void(0)" class="js-tag color3">问题</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">CTF</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">问题</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -423,6 +418,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tool</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">sqli-labs</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">sqli-labs-master_les11</a>
               </li>
             
             <div class="clearfix"></div>
